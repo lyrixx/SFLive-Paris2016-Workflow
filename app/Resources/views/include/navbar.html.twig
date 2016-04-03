@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                     <li>
-                        <a href="{{ url('homepage', {_switch_user: '_exit'}) }}">
+                        <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: '_exit'})) }}">
                             Hello {{ app.user.username }} | logout
                         </a>
                     </li>
@@ -25,17 +25,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ url('homepage', {_switch_user: 'alice'}) }}">
+                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'alice'})) }}">
                                     Alice
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('homepage', {_switch_user: 'journalist'}) }}">
+                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'journalist'})) }}">
                                     Journalist
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('homepage', {_switch_user: 'spellchecker'}) }}">
+                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'spellchecker'})) }}">
                                     Spellchecker
                                 </a>
                             </li>

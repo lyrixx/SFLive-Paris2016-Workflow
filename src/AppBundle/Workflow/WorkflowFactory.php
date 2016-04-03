@@ -2,6 +2,7 @@
 
 namespace AppBundle\Workflow;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\MarkingStore\PropertyAccessorMarkingStore;
 use Symfony\Component\Workflow\Transition;
@@ -9,7 +10,14 @@ use Symfony\Component\Workflow\Workflow;
 
 class WorkflowFactory
 {
-    public static function createWorkflow()
+    private $eventDispatcher;
+
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function createWorkflow()
     {
         $definition = new Definition();
 
@@ -27,7 +35,7 @@ class WorkflowFactory
         $definition->addTransition(new Transition('spellchecker_approval', 'wait_for_spellchecker', 'approved_by_spellchecker'));
         $definition->addTransition(new Transition('publish', ['approved_by_journalist', 'approved_by_spellchecker'], 'published'));
 
-        $workflow = new Workflow($definition, new PropertyAccessorMarkingStore());
+        $workflow = new Workflow($definition, new PropertyAccessorMarkingStore(), $this->eventDispatcher);
 
         return $workflow;
     }
