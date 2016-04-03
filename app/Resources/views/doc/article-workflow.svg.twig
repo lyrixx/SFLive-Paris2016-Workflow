@@ -1,0 +1,107 @@
+<svg width="1036pt" height="255pt" class="img-responsive"
+viewBox="0.00 0.00 1036.00 255.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 251)">
+    <title>workflow</title>
+    <polygon fill="white" stroke="none" points="-4,4 -4,-251 1032,-251 1032,4 -4,4"/>
+    <!-- place_draft -->
+    <g id="node1" class="node"><title>place_draft</title>
+        <ellipse fill="lightblue" stroke="#333333" cx="58" cy="-123" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="58" y="-120.8" font-family="Arial" font-size="9.00">draft</text>
+    </g>
+    <!-- transition_request_review -->
+    <g id="node7" class="node"><title>transition_request_review</title>
+        <polygon fill="none" stroke="#333333" points="267.5,-180.5 152.5,-180.5 152.5,-65.5 267.5,-65.5 267.5,-180.5"/>
+        <text text-anchor="middle" x="210" y="-120.8" font-family="Arial" font-size="9.00">request_review</text>
+    </g>
+    <!-- place_draft&#45;&gt;transition_request_review -->
+    <g id="edge1" class="edge"><title>place_draft&#45;&gt;transition_request_review</title>
+        <path fill="none" stroke="#333333" d="M115.709,-123C125.975,-123 136.729,-123 147.135,-123"/>
+        <polygon fill="#333333" stroke="#333333" points="147.211,-124.75 152.211,-123 147.211,-121.25 147.211,-124.75"/>
+    </g>
+    <!-- place_wait_for_journalist -->
+    <g id="node2" class="node"><title>place_wait_for_journalist</title>
+        <ellipse fill="none" stroke="#333333" cx="362" cy="-190" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="362" y="-187.8" font-family="Arial" font-size="9.00">wait_for_journalist</text>
+    </g>
+    <!-- transition_journalist_approval -->
+    <g id="node8" class="node"><title>transition_journalist_approval</title>
+        <polygon fill="none" stroke="#333333" points="571.5,-247.5 456.5,-247.5 456.5,-132.5 571.5,-132.5 571.5,-247.5"/>
+        <text text-anchor="middle" x="514" y="-187.8" font-family="Arial" font-size="9.00">journalist_approval</text>
+    </g>
+    <!-- place_wait_for_journalist&#45;&gt;transition_journalist_approval -->
+    <g id="edge4" class="edge"><title>place_wait_for_journalist&#45;&gt;transition_journalist_approval</title>
+        <path fill="none" stroke="#333333" d="M419.709,-190C429.975,-190 440.729,-190 451.135,-190"/>
+        <polygon fill="#333333" stroke="#333333" points="451.211,-191.75 456.211,-190 451.211,-188.25 451.211,-191.75"/>
+    </g>
+    <!-- place_approved_by_journalist -->
+    <g id="node3" class="node"><title>place_approved_by_journalist</title>
+        <ellipse fill="none" stroke="#333333" cx="666" cy="-190" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="666" y="-187.8" font-family="Arial" font-size="9.00">approved_by_journalist</text>
+    </g>
+    <!-- transition_publish -->
+    <g id="node10" class="node"><title>transition_publish</title>
+        <polygon fill="none" stroke="#333333" points="875.5,-180.5 760.5,-180.5 760.5,-65.5 875.5,-65.5 875.5,-180.5"/>
+        <text text-anchor="middle" x="818" y="-120.8" font-family="Arial" font-size="9.00">publish</text>
+    </g>
+    <!-- place_approved_by_journalist&#45;&gt;transition_publish -->
+    <g id="edge8" class="edge"><title>place_approved_by_journalist&#45;&gt;transition_publish</title>
+        <path fill="none" stroke="#333333" d="M719.042,-166.755C730.844,-161.483 743.487,-155.836 755.635,-150.41"/>
+        <polygon fill="#333333" stroke="#333333" points="756.592,-151.899 760.443,-148.262 755.164,-148.703 756.592,-151.899"/>
+    </g>
+    <!-- place_wait_for_spellchecker -->
+    <g id="node4" class="node"><title>place_wait_for_spellchecker</title>
+        <ellipse fill="none" stroke="#333333" cx="362" cy="-57" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="362" y="-54.8" font-family="Arial" font-size="9.00">wait_for_spellchecker</text>
+    </g>
+    <!-- transition_spellchecker_approval -->
+    <g id="node9" class="node"><title>transition_spellchecker_approval</title>
+        <polygon fill="none" stroke="#333333" points="571.5,-114.5 456.5,-114.5 456.5,0.5 571.5,0.5 571.5,-114.5"/>
+        <text text-anchor="middle" x="514" y="-54.8" font-family="Arial" font-size="9.00">spellchecker_approval</text>
+    </g>
+    <!-- place_wait_for_spellchecker&#45;&gt;transition_spellchecker_approval -->
+    <g id="edge6" class="edge"><title>place_wait_for_spellchecker&#45;&gt;transition_spellchecker_approval</title>
+        <path fill="none" stroke="#333333" d="M419.709,-57C429.975,-57 440.729,-57 451.135,-57"/>
+        <polygon fill="#333333" stroke="#333333" points="451.211,-58.7501 456.211,-57 451.211,-55.2501 451.211,-58.7501"/>
+    </g>
+    <!-- place_approved_by_spellchecker -->
+    <g id="node5" class="node"><title>place_approved_by_spellchecker</title>
+        <ellipse fill="none" stroke="#333333" cx="666" cy="-57" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="666" y="-54.8" font-family="Arial" font-size="9.00">approved_by_spellchecker</text>
+    </g>
+    <!-- place_approved_by_spellchecker&#45;&gt;transition_publish -->
+    <g id="edge9" class="edge"><title>place_approved_by_spellchecker&#45;&gt;transition_publish</title>
+        <path fill="none" stroke="#333333" d="M719.042,-79.8984C730.844,-85.0915 743.487,-90.6541 755.635,-95.9993"/>
+        <polygon fill="#333333" stroke="#333333" points="755.162,-97.7032 760.443,-98.1151 756.572,-94.4995 755.162,-97.7032"/>
+    </g>
+    <!-- place_published -->
+    <g id="node6" class="node"><title>place_published</title>
+        <ellipse fill="none" stroke="#333333" cx="970" cy="-123" rx="57.5" ry="57.5"/>
+        <text text-anchor="middle" x="970" y="-120.8" font-family="Arial" font-size="9.00">published</text>
+    </g>
+    <!-- transition_request_review&#45;&gt;place_wait_for_journalist -->
+    <g id="edge2" class="edge"><title>transition_request_review&#45;&gt;place_wait_for_journalist</title>
+        <path fill="none" stroke="#333333" d="M267.709,-148.33C279.72,-153.695 292.398,-159.358 304.406,-164.721"/>
+        <polygon fill="#333333" stroke="#333333" points="303.87,-166.398 309.149,-166.84 305.297,-163.203 303.87,-166.398"/>
+    </g>
+    <!-- transition_request_review&#45;&gt;place_wait_for_spellchecker -->
+    <g id="edge3" class="edge"><title>transition_request_review&#45;&gt;place_wait_for_spellchecker</title>
+        <path fill="none" stroke="#333333" d="M267.709,-98.0482C279.72,-92.7631 292.398,-87.1847 304.406,-81.9015"/>
+        <polygon fill="#333333" stroke="#333333" points="305.277,-83.4301 309.149,-79.8145 303.867,-80.2265 305.277,-83.4301"/>
+    </g>
+    <!-- transition_journalist_approval&#45;&gt;place_approved_by_journalist -->
+    <g id="edge5" class="edge"><title>transition_journalist_approval&#45;&gt;place_approved_by_journalist</title>
+        <path fill="none" stroke="#333333" d="M571.709,-190C581.975,-190 592.729,-190 603.135,-190"/>
+        <polygon fill="#333333" stroke="#333333" points="603.211,-191.75 608.211,-190 603.211,-188.25 603.211,-191.75"/>
+    </g>
+    <!-- transition_spellchecker_approval&#45;&gt;place_approved_by_spellchecker -->
+    <g id="edge7" class="edge"><title>transition_spellchecker_approval&#45;&gt;place_approved_by_spellchecker</title>
+        <path fill="none" stroke="#333333" d="M571.709,-57C581.975,-57 592.729,-57 603.135,-57"/>
+        <polygon fill="#333333" stroke="#333333" points="603.211,-58.7501 608.211,-57 603.211,-55.2501 603.211,-58.7501"/>
+    </g>
+    <!-- transition_publish&#45;&gt;place_published -->
+    <g id="edge10" class="edge"><title>transition_publish&#45;&gt;place_published</title>
+        <path fill="none" stroke="#333333" d="M875.709,-123C885.975,-123 896.729,-123 907.135,-123"/>
+        <polygon fill="#333333" stroke="#333333" points="907.211,-124.75 912.211,-123 907.211,-121.25 907.211,-124.75"/>
+    </g>
+</g>
+</svg>
