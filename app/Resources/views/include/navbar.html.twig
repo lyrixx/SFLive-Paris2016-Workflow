@@ -24,21 +24,13 @@
                             Connect as <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'alice'})) }}">
-                                    Alice
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'journalist'})) }}">
-                                    Journalist
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: 'spellchecker'})) }}">
-                                    Spellchecker
-                                </a>
-                            </li>
+                            {% for user in ['alice', 'journalist', 'spellchecker', 'admin'] %}
+                                <li>
+                                    <a href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: user})) }}">
+                                        {{ user|title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </li>
                 {% endif %}

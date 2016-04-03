@@ -1,4 +1,6 @@
 security:
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_WRITTER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
 
@@ -6,9 +8,10 @@ security:
         in_memory:
             memory:
                 users:
-                    alice: { password: password, roles: "ROLE_WRITTER" }
-                    spellchecker: { password: password , roles: "ROLE_SPELLCHECKER" }
-                    journalist: { password: password , roles: "ROLE_JOURNALIST" }
+                    alice: { password: password, roles: ROLE_WRITTER }
+                    spellchecker: { password: password , roles: ROLE_SPELLCHECKER }
+                    journalist: { password: password , roles: ROLE_JOURNALIST }
+                    admin: { password: password , roles: ROLE_ADMIN }
 
     firewalls:
         dev:
