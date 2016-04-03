@@ -15,14 +15,16 @@
                     There is not article, Add one ?
                 </p>
 
-                <form action="{{ url('article_create') }}" method="post"  class="form-inline">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" value="My first article" class="form-control" />
-                    </div>
-                    <button type="submit"  class="btn btn-default">create</button>
-                </form>
             </li>
         {% endfor %}
     </ul>
+
+    <h2>Add new article</h2>
+    <form action="{{ url('article_create') }}" method="post"  class="form-inline">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="{{ articles ? "Aticles #{(articles|length) + 1}" : "My first article" }}" class="form-control" />
+        </div>
+        <button type="submit"  class="btn btn-default">create</button>
+    </form>
 {% endblock %}
