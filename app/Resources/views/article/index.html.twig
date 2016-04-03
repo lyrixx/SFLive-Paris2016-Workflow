@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Article List</h1>
-    <ul>
+    <ul class="list-unstyled">
         {% for article in articles %}
             <li>
                 <a href="{{ url('article_show', {id: article.id}) }}">
@@ -11,10 +11,16 @@
             </li>
         {% else %}
             <li>
-                There is not article, Add one ?
-                <form action="{{ url('article_create') }}" method="post">
-                    <input type="text" name="title" value="My first article"></input>
-                    <button type="submit">create</button>
+                <p>
+                    There is not article, Add one ?
+                </p>
+
+                <form action="{{ url('article_create') }}" method="post"  class="form-inline">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" value="My first article" class="form-control" />
+                    </div>
+                    <button type="submit"  class="btn btn-default">create</button>
                 </form>
             </li>
         {% endfor %}

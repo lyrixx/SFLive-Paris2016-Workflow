@@ -33,7 +33,7 @@ class ArticleController extends Controller
         $em->persist($article);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('homepage'));
+        return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
     }
 
     /**
@@ -53,11 +53,11 @@ class ArticleController extends Controller
     public function applyTransitionAction(Request $request, Article $article)
     {
         try {
-            $this->get('workflow.article')->apply($article, $request->request->get('name'));
+            $this->get('workflow.article')->apply($article, $request->request->get('transition'));
 
             $this->get('doctrine')->getManager()->flush();
         } catch (ExceptionInterface $e) {
-            $this->get('session')->getFlashBag()->add('error', $e->getMessage());
+            $this->get('session')->getFlashBag()->add('danger', $e->getMessage());
         }
 
         return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
