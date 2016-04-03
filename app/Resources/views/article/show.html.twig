@@ -10,7 +10,7 @@
         <code>{{ article.marking|keys|join('</code>, <code>')|default('[]')|raw }}</code>
     </p>
     <p>
-        This object apply the following transitions:
+        The following transitions could be applied to this article:
         <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post" class="form-inline">
             {% for transition in workflow_available_transitions(article) %}
                 <button type="submit" class="btn btn-default" name="transition" value="{{ transition.name }}">{{ transition.name }}</button>
