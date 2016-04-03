@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Article "{{ article.title}}"</h1>
+    <p>
+        raw property marking:
+        <code>
+            {{ article.marking|keys|join(', ')|default('[]') }}
+        </code>
+    </p>
+    <p>
+        This object apply the following transitions:
+        <ul>
+            {% for transition in workflow_available_transitions(article) %}
+                <li>
+                    <code>
+                        {{ transition.name }}
+                    </code>
+                    <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post">
+                        <input type="hidden" name="name" value="{{ transition.name }}"/>
+                        <button type="submit">Execute this transition</button>
+                    </form>
+                </li>
+            {% else %}
+                <li>The object can not apply any transition</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>
+        <form action="{{ url('article_reset_marking', {id: article.id}) }}" method="post">
+            <button type="submit">Reset marking</button>
+        </form>
+    </p>
+{% endblock %}

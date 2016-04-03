@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Article List</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ url('article_show', {id: article.id}) }}">
+                    {{ article.title }}
+                </a>
+            </li>
+        {% else %}
+            <li>
+                There is not article, Add one ?
+                <form action="{{ url('article_create') }}" method="post">
+                    <input type="text" name="title" value="My first article"></input>
+                    <button type="submit">create</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
