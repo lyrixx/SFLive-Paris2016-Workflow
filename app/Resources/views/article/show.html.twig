@@ -15,7 +15,8 @@
             {% for transition in workflow_available_transitions(article) %}
                 <button type="submit" class="btn btn-default" name="transition" value="{{ transition.name }}">{{ transition.name }}</button>
             {% else %}
-                The object can not apply any transition
+                The object can not apply any transition.
+                May be you can try with another user ; he may have more permissions than you
             {% endfor %}
         </form>
     </p>
