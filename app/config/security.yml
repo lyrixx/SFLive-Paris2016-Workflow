@@ -7,7 +7,7 @@ security:
             memory:
                 users:
                     alice: { password: password, roles: "ROLE_WRITTER" }
-                    spellchecker: { password: password , roles: "SPELLCHECKER" }
+                    spellchecker: { password: password , roles: "ROLE_SPELLCHECKER" }
                     journalist: { password: password , roles: "ROLE_JOURNALIST" }
 
     firewalls:
