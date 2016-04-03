@@ -13,6 +13,8 @@
     </head>
     <body>
         <div class="container">
+            {{ include('include/navbar.html.twig') }}
+
             {{ flash.flashbag() }}
 
             {% block content '' %}
