@@ -13,14 +13,19 @@ class WorkflowFactory
     {
         $definition = new Definition();
 
-        $definition->addPlaces(range('a', 'g'));
+        $definition->addPlaces([
+            'draft',
+            'wait_for_journalist',
+            'approved_by_journalist',
+            'wait_for_spellchecker',
+            'approved_by_spellchecker',
+            'published',
+        ]);
 
-        $definition->addTransition(new Transition('t1', 'a',        ['b', 'c']));
-        $definition->addTransition(new Transition('t2', ['b', 'c'],  'd'));
-        $definition->addTransition(new Transition('t3', 'd',         'e'));
-        $definition->addTransition(new Transition('t4', 'd',         'f'));
-        $definition->addTransition(new Transition('t5', 'e',         'g'));
-        $definition->addTransition(new Transition('t6', 'f',         'g'));
+        $definition->addTransition(new Transition('request_review', 'draft', ['wait_for_journalist', 'wait_for_spellchecker']));
+        $definition->addTransition(new Transition('journalist_approval', 'wait_for_journalist', 'approved_by_journalist'));
+        $definition->addTransition(new Transition('spellchecker_approval', 'wait_for_spellchecker', 'approved_by_spellchecker'));
+        $definition->addTransition(new Transition('publish', ['approved_by_journalist', 'approved_by_spellchecker'], 'published'));
 
         $workflow = new Workflow($definition, new PropertyAccessorMarkingStore());
 
