@@ -25,3 +25,25 @@
         </form>
     </p>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    $(function() {
+        var marking = {{ article.marking|keys|json_encode|raw }};
+        var $svg = $('#article-workflow');
+
+        for (var i = 0; i < marking.length; i++) {
+            var name = marking[i];
+            $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
+                var place = $(place).parent();
+                var ref = $('ellipse', place);
+                var newEllipse = ref.clone();
+                newEllipse.attr('rx', ref.attr('rx') * .9);
+                newEllipse.attr('ry', ref.attr('ry') * .9);
+                ref.after(newEllipse);
+            });
+        }
+    });
+    </script>
+{% endblock %}
