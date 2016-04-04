@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8f0fd731811603fb6fb29057e877fbad",
+    "hash": "e9fc723ed96d253e1c404676c09e8406",
     "content-hash": "eaf70129492a46584f46772f49dee77e",
     "packages": [
         {
@@ -1592,12 +1592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyrixx/symfony.git",
-                "reference": "64b4a2077c2862240f0b0df54b0f61f6ea5826cb"
+                "reference": "85f2fa6426f8eca8c77240c04351d597b095f34f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/64b4a2077c2862240f0b0df54b0f61f6ea5826cb",
-                "reference": "64b4a2077c2862240f0b0df54b0f61f6ea5826cb",
+                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/85f2fa6426f8eca8c77240c04351d597b095f34f",
+                "reference": "85f2fa6426f8eca8c77240c04351d597b095f34f",
                 "shasum": ""
             },
             "require": {
@@ -1726,7 +1726,7 @@
             "support": {
                 "source": "https://github.com/lyrixx/symfony/tree/component-workflow"
             },
-            "time": "2016-04-03 21:21:16"
+            "time": "2016-04-04 08:50:54"
         },
         {
             "name": "twig/twig",
