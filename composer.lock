@@ -1592,12 +1592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyrixx/symfony.git",
-                "reference": "85f2fa6426f8eca8c77240c04351d597b095f34f"
+                "reference": "ce5968af204eb6367c342470cad5535805aac61b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/85f2fa6426f8eca8c77240c04351d597b095f34f",
-                "reference": "85f2fa6426f8eca8c77240c04351d597b095f34f",
+                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/ce5968af204eb6367c342470cad5535805aac61b",
+                "reference": "ce5968af204eb6367c342470cad5535805aac61b",
                 "shasum": ""
             },
             "require": {
@@ -1726,7 +1726,7 @@
             "support": {
                 "source": "https://github.com/lyrixx/symfony/tree/component-workflow"
             },
-            "time": "2016-04-04 08:50:54"
+            "time": "2016-04-04 12:29:56"
         },
         {
             "name": "twig/twig",
