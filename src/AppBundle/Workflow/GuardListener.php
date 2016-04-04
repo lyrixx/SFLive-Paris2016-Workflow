@@ -38,9 +38,9 @@ class GuardListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'workflow.unnamed.guard' => 'onTransition',
-            'workflow.unnamed.guard.journalist_approval' => 'onTransitionJournalist',
-            'workflow.unnamed.guard.spellchecker_approval' => 'onTransitionSpellChecker',
+            'workflow.article.guard' => 'onTransition',
+            'workflow.article.guard.journalist_approval' => 'onTransitionJournalist',
+            'workflow.article.guard.spellchecker_approval' => 'onTransitionSpellChecker',
         );
     }
 }

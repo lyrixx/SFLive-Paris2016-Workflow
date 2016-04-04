@@ -5,32 +5,9 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="workflow.factory" class="AppBundle\Workflow\WorkflowFactory">
-            <argument type="service" id="event_dispatcher" />
-        </service>
-
-
-        <service id="workflow.registry" class="Symfony\Component\Workflow\Registry">
-            <argument type="collection">
-                <argument type="collection">
-                    <argument type="service" id="workflow.article" />
-                    <argument>AppBundle\Entity\Article</argument>
-                </argument>
-            </argument>
-        </service>
-
-        <service id="workflow.article" class="Symfony\Component\Workflow\Workflow">
-            <factory service="workflow.factory" method="createWorkflow" />
-        </service>
-
         <service id="workflow.guard" class="AppBundle\Workflow\GuardListener">
             <argument type="service" id="security.authorization_checker" />
             <tag name="kernel.event_subscriber" />
-        </service>
-
-        <service id="twig.ext.workflow" class="Symfony\Bridge\Twig\Extension\WorkflowExtension">
-            <argument type="service" id="workflow.registry" />
-            <tag name="twig.extension" />
         </service>
     </services>
 </container>
