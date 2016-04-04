@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: workflow.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -52,41 +53,3 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-
-app:
-    workflow:
-        article:
-            marking_store:
-                type: property_accessor
-            supports:
-                - AppBundle\Entity\Article
-            places:
-                - draft
-                - wait_for_journalist
-                - approved_by_journalist
-                - wait_for_spellchecker
-                - approved_by_spellchecker
-                - published
-            transitions:
-                request_review:
-                    from:
-                        - draft
-                    to:
-                        - wait_for_journalist
-                        - wait_for_spellchecker
-                journalist_approval:
-                    from:
-                        - wait_for_journalist
-                    to:
-                        - approved_by_journalist
-                spellchecker_approval:
-                    from:
-                        - wait_for_spellchecker
-                    to:
-                        - approved_by_spellchecker
-                publish:
-                    from:
-                        - approved_by_journalist
-                        - approved_by_spellchecker
-                    to:
-                        - published
