@@ -1,0 +1,13 @@
+{
+  "name": "Symfony Demo Workflow",
+  "description": "A simple application to discover the new Symfony Workflow Component",
+  "repository": "https://github.com/symfony/symfony",
+  "keywords": ["symfony", "Workflow"],
+  "addons": [
+    "blackfire",
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [
+    { "url": "https://github.com/ddollar/heroku-buildpack-multi.git" }
+  ]
+}

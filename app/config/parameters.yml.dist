@@ -1,9 +1,4 @@
 parameters:
-    database_driver: pdo_pgsql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony_demo_workflow
-    database_user:     ubuntu
-    database_password: ~
+    database_url: postgres://ubuntu@postgres.lxc/symfony_demo_workflow
 
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret: ThisTokenIsNotSoSecretChangeIt
