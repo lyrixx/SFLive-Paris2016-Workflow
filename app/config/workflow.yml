@@ -14,27 +14,21 @@ framework:
                 - published
             transitions:
                 request_review:
-                    from:
-                        - draft
+                    from: draft
                     to:
                         - wait_for_journalist
                         - wait_for_spellchecker
                 journalist_approval:
-                    from:
-                        - wait_for_journalist
-                    to:
-                        - approved_by_journalist
+                    from: wait_for_journalist
+                    to: approved_by_journalist
                 spellchecker_approval:
-                    from:
-                        - wait_for_spellchecker
-                    to:
-                        - approved_by_spellchecker
+                    from: wait_for_spellchecker
+                    to: approved_by_spellchecker
                 publish:
                     from:
                         - approved_by_journalist
                         - approved_by_spellchecker
-                    to:
-                        - published
+                    to: published
 
         # Another workflow, in French, for the SFLive Paris 2016
         article_fr:
@@ -49,28 +43,149 @@ framework:
                 - attente correcteur
                 - correcteur OK
                 - publié
-
             transitions:
-
                 demande relecture:
-                    from:
-                        - brouillon
+                    from: brouillon
                     to:
                         - attente_journaliste
                         - attente correcteur
                 journaliste approuve:
-                    from:
-                        - attente_journaliste
-                    to:
-                        - journaliste OK
+                    from: attente_journaliste
+                    to: journaliste OK
                 correcteur approuve:
-                    from:
-                        - attente correcteur
-                    to:
-                        - correcteur OK
+                    from: attente correcteur
+                    to: correcteur OK
                 publication:
                     from:
                         - journaliste OK
                         - correcteur OK
-                    to:
-                        - publié
+                    to: publié
+
+        straight:
+            marking_store:
+                type: property_accessor
+            supports:
+                - stdClass # Just a hack
+            places:
+                - a
+                - b
+                - c
+                - d
+            transitions:
+                t1:
+                    from: a
+                    to: b
+                t2:
+                    from: b
+                    to: c
+                t3:
+                    from: c
+                    to: d
+
+        round_trip:
+            marking_store:
+                type: property_accessor
+            supports:
+                - stdClass # Just a hack
+            places:
+                - a
+                - b
+                - c
+            transitions:
+                t1:
+                    from: a
+                    to: b
+                t2:
+                    from: b
+                    to: c
+                t3:
+                    from: c
+                    to: a
+
+        or:
+            marking_store:
+                type: property_accessor
+            supports:
+                - stdClass # Just a hack
+            places:
+                - a
+                - b
+                - c
+                - d
+            transitions:
+                t1:
+                    from: a
+                    to: b
+                t2:
+                    from: a
+                    to: c
+                t3:
+                    from: b
+                    to: d
+                t4:
+                    from: c
+                    to: d
+
+        and:
+            marking_store:
+                type: property_accessor
+            supports:
+                - stdClass # Just a hack
+            places:
+                - a
+                - b
+                - c
+                - d
+                - e
+                - f
+            transitions:
+                t1:
+                    from: a
+                    to: [b, c]
+                t2:
+                    from: b
+                    to: d
+                t3:
+                    from: c
+                    to: e
+                t4:
+                    from: [d, e]
+                    to: f
+
+
+        wtf:
+            marking_store:
+                type: property_accessor
+            supports: stdClass # Just a hack
+            places: [ a, b, c, d, e, f, g, h, i, j, k ]
+            transitions:
+                t1:
+                    from: a
+                    to: b
+                t2:
+                    from: b
+                    to: c
+                t3:
+                    from: c
+                    to: d
+                t4:
+                    from: b
+                    to: e
+                t5:
+                    from: b
+                    to: f
+                t6:
+                    from: [c, d]
+                    to: [f, g]
+                t7:
+                    from: e
+                    to: h
+                t8:
+                    from: [e, g, i]
+                    to: h
+                t9:
+                    from: [f, g]
+                    to: [i, j]
+                t10:
+                    from: h
+                    to: k
