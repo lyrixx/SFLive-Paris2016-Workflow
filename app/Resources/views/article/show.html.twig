@@ -2,29 +2,50 @@
 
 {% block content %}
     <h1>Article "{{ article.title}}"</h1>
-    <p>
-        <code>
-            AppBundle\Entity\Article::marking
-        </code>
-        =
-        <code>{{ article.marking|keys|join('</code>, <code>')|default('[]')|raw }}</code>
-    </p>
-    <p>
-        The following transitions could be applied to this article:
-        <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post" class="form-inline">
-            {% for transition in workflow_available_transitions(article) %}
-                <button type="submit" class="btn btn-default" name="transition" value="{{ transition.name }}">{{ transition.name }}</button>
-            {% else %}
-                The object can not apply any transition.
-                May be you can try with another user ; he may have more permissions than you
-            {% endfor %}
-        </form>
-    </p>
-    <p>
-        <form action="{{ url('article_reset_marking', {id: article.id}) }}" method="post" class="form-inline">
-            <button type="submit" class="btn btn-warning">Reset marking</button>
-        </form>
-    </p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Current Marking</h2>
+            <p>
+                <code>
+                    AppBundle\Entity\Article::marking
+                </code>
+                <br />
+                =
+                <br />
+                <code>{{ article.marking|keys|join('</code>, <code>')|default('[]')|raw }}</code>
+            </p>
+            <p>
+                <form action="{{ url('article_reset_marking', {id: article.id}) }}" method="post" class="form-inline">
+                    <button type="submit" class="btn btn-danger btn-xs">Reset marking</button>
+                </form>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h2>What can you do?</h2>
+            <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post">
+                <div class="btn-group-vertical" role="group">
+                    {% for transition in workflow_transitions(article) %}
+                        <button type="submit" name="transition" value="{{ transition.name }}"
+                            {% if workflow_can(article, transition.name) -%}
+                                class="btn btn-primary"
+                            {%- else -%}
+                                class="btn btn-danger" disabled="disabled"
+                            {%- endif -%}
+                        >
+                            {{ transition.name }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </form>
+            <br />
+            {% if not workflow_available_transitions(article) %}
+                <strong>The object can not apply any transition.</strong>
+                <br />
+                May be you can try with another user ;
+                he may have more permissions than you.
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -35,10 +56,11 @@
         var $svg = $('#article-workflow');
 
         for (var i = 0; i < marking.length; i++) {
-            var name = marking[i];
+            var name = marking[i].replace(/[^\w]/i, '_').toLowerCase();
             $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
                 var place = $(place).parent();
                 var ref = $('ellipse', place);
+                ref.attr('stroke', 'red');
                 var newEllipse = ref.clone();
                 newEllipse.attr('rx', ref.attr('rx') * .9);
                 newEllipse.attr('ry', ref.attr('ry') * .9);

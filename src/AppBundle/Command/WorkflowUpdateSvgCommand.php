@@ -38,7 +38,6 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
         file_put_contents(sprintf('%s/Resources/views/doc/article-workflow.svg.twig', $this->getContainer()->getParameter('kernel.root_dir')), $svg);
     }
 
-
     private function getProperty($object, $property)
     {
         $reflectionProperty = new \ReflectionProperty(get_class($object), $property);

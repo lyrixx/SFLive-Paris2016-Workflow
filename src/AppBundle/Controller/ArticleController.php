@@ -53,14 +53,17 @@ class ArticleController extends Controller
     public function applyTransitionAction(Request $request, Article $article)
     {
         try {
-            $this->get('workflow.article')->apply($article, $request->request->get('transition'));
+            $this->get('workflow.article')
+                ->apply($article, $request->request->get('transition'));
 
             $this->get('doctrine')->getManager()->flush();
         } catch (ExceptionInterface $e) {
             $this->get('session')->getFlashBag()->add('danger', $e->getMessage());
         }
 
-        return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
+        return $this->redirect(
+            $this->generateUrl('article_show', ['id' => $article->getId()])
+        );
     }
 
     /**
