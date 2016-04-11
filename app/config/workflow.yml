@@ -30,37 +30,6 @@ framework:
                         - approved_by_spellchecker
                     to: published
 
-        # Another workflow, in French, for the SFLive Paris 2016
-        article_fr:
-            marking_store:
-                type: property_accessor
-            supports:
-                - stdClass # Just a hack
-            places:
-                - brouillon
-                - attente_journaliste
-                - journaliste OK
-                - attente correcteur
-                - correcteur OK
-                - publié
-            transitions:
-                demande relecture:
-                    from: brouillon
-                    to:
-                        - attente_journaliste
-                        - attente correcteur
-                journaliste approuve:
-                    from: attente_journaliste
-                    to: journaliste OK
-                correcteur approuve:
-                    from: attente correcteur
-                    to: correcteur OK
-                publication:
-                    from:
-                        - journaliste OK
-                        - correcteur OK
-                    to: publié
-
         straight:
             marking_store:
                 type: property_accessor

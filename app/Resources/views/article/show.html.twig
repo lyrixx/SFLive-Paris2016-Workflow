@@ -38,7 +38,7 @@
                 </div>
             </form>
             <br />
-            {% if not workflow_available_transitions(article) %}
+            {% if not workflow_enabled_transitions(article) %}
                 <strong>The object can not apply any transition.</strong>
                 <br />
                 May be you can try with another user ;

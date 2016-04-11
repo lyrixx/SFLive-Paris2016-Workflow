@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8617eede0b64dfcb33d6a4e193c1d974",
-    "content-hash": "63fb8cf054d75bcd5fb9d8184f381093",
+    "hash": "93c4803cddf299cb5c97bd3257fa731b",
+    "content-hash": "b8acea1db2846e9f31ae4ad5d0b2547e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1644,12 +1644,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyrixx/symfony.git",
-                "reference": "e9e40825421d32dded768bea4515fab2c76bfb07"
+                "reference": "b6a863f266d9fe4dc480c21ef751d16121f20791"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/e9e40825421d32dded768bea4515fab2c76bfb07",
-                "reference": "e9e40825421d32dded768bea4515fab2c76bfb07",
+                "url": "https://api.github.com/repos/lyrixx/symfony/zipball/b6a863f266d9fe4dc480c21ef751d16121f20791",
+                "reference": "b6a863f266d9fe4dc480c21ef751d16121f20791",
                 "shasum": ""
             },
             "require": {
@@ -1778,7 +1778,7 @@
             "support": {
                 "source": "https://github.com/lyrixx/symfony/tree/component-workflow"
             },
-            "time": "2016-04-06 12:54:41"
+            "time": "2016-04-11 08:32:52"
         },
         {
             "name": "twig/twig",
