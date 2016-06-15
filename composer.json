@@ -29,14 +29,13 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "sensio/generator-bundle": "^3.0",
         "symfony/monolog-bundle": "^2.8",
-        "symfony/symfony": "dev-component-workflow as 3.0.0"
+        "symfony/symfony": "dev-component-workflow as 3.1.0"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
         "post-install-cmd": [
-            "patch -p1 < app/Resources/patch/1.diff || true",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -45,7 +44,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-update-cmd": [
-            "patch -p1 < app/Resources/patch/1.diff || true",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
