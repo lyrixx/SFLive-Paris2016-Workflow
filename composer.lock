@@ -956,16 +956,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
                 "shasum": ""
             },
             "require": {
@@ -1000,7 +1000,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-10-17 15:23:22"
+            "time": "2016-11-07 23:38:38"
         },
         {
             "name": "psr/cache",
@@ -1211,16 +1211,16 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "c46c729089b3b14f3a3743508518dad4e5f7aaf4"
+                "reference": "0d3c9c4864142dc6a368fa0d952a8b83215e8740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/c46c729089b3b14f3a3743508518dad4e5f7aaf4",
-                "reference": "c46c729089b3b14f3a3743508518dad4e5f7aaf4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/0d3c9c4864142dc6a368fa0d952a8b83215e8740",
+                "reference": "0d3c9c4864142dc6a368fa0d952a8b83215e8740",
                 "shasum": ""
             },
             "require": {
@@ -1259,7 +1259,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2016-11-06 19:25:27"
+            "time": "2016-11-07 19:48:31"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -1655,12 +1655,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "53b55fca364815b1051fbce897591d708c52d546"
+                "reference": "eb1498155b3096f259274b52eb782dcc07fe9536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/53b55fca364815b1051fbce897591d708c52d546",
-                "reference": "53b55fca364815b1051fbce897591d708c52d546",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/eb1498155b3096f259274b52eb782dcc07fe9536",
+                "reference": "eb1498155b3096f259274b52eb782dcc07fe9536",
                 "shasum": ""
             },
             "require": {
@@ -1789,7 +1789,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-11-06 18:43:42"
+            "time": "2016-11-09 15:39:39"
         },
         {
             "name": "twig/twig",

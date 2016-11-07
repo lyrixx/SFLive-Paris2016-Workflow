@@ -28,7 +28,9 @@
             <hr />
 
             <div>
-                {{ include('doc/article-workflow.svg.twig') }}
+                {% block svg %}
+                    {{ include('doc/workflow.article.svg.twig') }}
+                {% endblock %}
             </div>
         </div>
         {% block javascripts %}

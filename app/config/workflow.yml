@@ -1,8 +1,6 @@
 framework:
     workflows:
         article:
-            marking_store:
-                type: property_accessor
             supports:
                 - AppBundle\Entity\Article
             places:
@@ -30,9 +28,23 @@ framework:
                         - approved_by_spellchecker
                     to: published
 
+        task:
+            type: state_machine
+            supports:
+                - AppBundle\Entity\Task
+            places:
+                - backlog
+                - in_progress
+                - done
+            transitions:
+                processing:
+                    from: backlog
+                    to: in_progress
+                done:
+                    from: in_progress
+                    to: done
+
         straight:
-            marking_store:
-                type: property_accessor
             supports:
                 - stdClass # Just a hack
             places:
@@ -52,8 +64,6 @@ framework:
                     to: d
 
         round_trip:
-            marking_store:
-                type: property_accessor
             supports:
                 - stdClass # Just a hack
             places:
@@ -72,8 +82,6 @@ framework:
                     to: a
 
         or:
-            marking_store:
-                type: property_accessor
             supports:
                 - stdClass # Just a hack
             places:
@@ -96,8 +104,6 @@ framework:
                     to: d
 
         and:
-            marking_store:
-                type: property_accessor
             supports:
                 - stdClass # Just a hack
             places:
@@ -123,8 +129,6 @@ framework:
 
 
         wtf:
-            marking_store:
-                type: property_accessor
             supports: stdClass # Just a hack
             places: [ a, b, c, d, e, f, g, h, i, j, k ]
             transitions:

@@ -3,10 +3,12 @@
 namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Workflow\Dumper\GraphvizDumper;
+use Symfony\Component\Workflow\Workflow;
 
 class WorkflowUpdateSvgCommand extends ContainerAwareCommand
 {
@@ -15,12 +17,15 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
         $this
             ->setName('workflow:build:svg')
             ->setDescription('Build the SVG')
+            ->addArgument('service_name', InputArgument::REQUIRED, 'The service name of the workflow (ex workflow.article)')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $workflow = $this->getContainer()->get('workflow.article');
+        $name = $input->getArgument('service_name');
+
+        $workflow = $this->getContainer()->get($name);
         $definition = $this->getProperty($workflow, 'definition');
 
         $dumper = new GraphvizDumper();
@@ -33,14 +38,14 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
 
         $svg = $process->getOutput();
 
-        $svg = preg_replace('/.*<svg/ms', '<svg class="img-responsive" id="article-workflow"', $svg);
+        $svg = preg_replace('/.*<svg/ms', sprintf('<svg class="img-responsive" id="%s"', str_replace('.', '-', $name)), $svg);
 
-        file_put_contents(sprintf('%s/Resources/views/doc/article-workflow.svg.twig', $this->getContainer()->getParameter('kernel.root_dir')), $svg);
+        file_put_contents(sprintf('%s/Resources/views/doc/%s.svg.twig', $this->getContainer()->getParameter('kernel.root_dir'), $name), $svg);
     }
 
     private function getProperty($object, $property)
     {
-        $reflectionProperty = new \ReflectionProperty(get_class($object), $property);
+        $reflectionProperty = new \ReflectionProperty(Workflow::class, $property);
         $reflectionProperty->setAccessible(true);
 
         return $reflectionProperty->getValue($object);

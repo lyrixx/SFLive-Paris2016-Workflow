@@ -3,6 +3,7 @@
 namespace AppBundle\Twig;
 
 use Symfony\Component\Workflow\Registry;
+use Symfony\Component\Workflow\Workflow;
 
 class WorkflowExtension extends \Twig_Extension
 {
@@ -39,7 +40,7 @@ class WorkflowExtension extends \Twig_Extension
 
     private function getProperty($object, $property)
     {
-        $reflectionProperty = new \ReflectionProperty(get_class($object), $property);
+        $reflectionProperty = new \ReflectionProperty(Workflow::class, $property);
         $reflectionProperty->setAccessible(true);
 
         return $reflectionProperty->getValue($object);

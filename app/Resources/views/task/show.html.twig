@@ -1,32 +1,32 @@
-{% extends 'layout.html.twig' %}
+{% extends 'task/layout.html.twig' %}
 
 {% block content %}
-    <h1>Article "{{ article.title}}"</h1>
+    <h1>Task "{{ task.title}}"</h1>
     <div class="row">
         <div class="col-md-4">
             <h2>Current Marking</h2>
             <p>
                 <code>
-                    AppBundle\Entity\Article::marking
+                    AppBundle\Entity\Task::marking
                 </code>
                 <br />
                 =
                 <br />
-                <code>{{ article.marking|keys|join('</code>, <code>')|default('[]')|raw }}</code>
+                <code>{{ task.marking }}</code>
             </p>
             <p>
-                <form action="{{ url('article_reset_marking', {id: article.id}) }}" method="post" class="form-inline">
+                <form action="{{ url('task_reset_marking', {id: task.id}) }}" method="post" class="form-inline">
                     <button type="submit" class="btn btn-danger btn-xs">Reset marking</button>
                 </form>
             </p>
         </div>
         <div class="col-md-6">
             <h2>What can you do?</h2>
-            <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post">
+            <form action="{{ url('task_apply_transition', {id: task.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
-                    {% for transition in workflow_transitions(article) %}
+                    {% for transition in workflow_transitions(task) %}
                         <button type="submit" name="transition" value="{{ transition.name }}"
-                            {% if workflow_can(article, transition.name) -%}
+                            {% if workflow_can(task, transition.name) -%}
                                 class="btn btn-primary"
                             {%- else -%}
                                 class="btn btn-danger" disabled="disabled"
@@ -38,7 +38,7 @@
                 </div>
             </form>
             <br />
-            {% if not workflow_transitions(article) %}
+            {% if not workflow_transitions(task) %}
                 <strong>The object can not apply any transition.</strong>
                 <br />
                 May be you can try with another user ;
@@ -52,21 +52,20 @@
     {{ parent() }}
     <script>
     $(function() {
-        var marking = {{ article.marking|keys|json_encode|raw }};
-        var $svg = $('#workflow-article');
+        var name = "{{ task.marking }}".replace(/[^\w]/i, '_').toLowerCase();
+        var $svg = $('#state_machine-task');
+        console.log(name);
 
-        for (var i = 0; i < marking.length; i++) {
-            var name = marking[i].replace(/[^\w]/i, '_').toLowerCase();
-            $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
-                var place = $(place).parent();
-                var ref = $('ellipse', place);
-                ref.attr('stroke', 'red');
-                var newEllipse = ref.clone();
-                newEllipse.attr('rx', ref.attr('rx') * .9);
-                newEllipse.attr('ry', ref.attr('ry') * .9);
-                ref.after(newEllipse);
-            });
-        }
+        $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
+            console.log('a');
+            var place = $(place).parent();
+            var ref = $('ellipse', place);
+            ref.attr('stroke', 'red');
+            var newEllipse = ref.clone();
+            newEllipse.attr('rx', ref.attr('rx') * .9);
+            newEllipse.attr('ry', ref.attr('ry') * .9);
+            ref.after(newEllipse);
+        });
     });
     </script>
 {% endblock %}
