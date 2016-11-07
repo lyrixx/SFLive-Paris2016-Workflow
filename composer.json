@@ -16,9 +16,6 @@
             "Tests\\": "tests/"
         }
     },
-    "repositories": [
-        {"type":"vcs","url": "git@github.com:lyrixx/symfony"}
-    ],
     "require": {
         "php": ">=5.5.9",
         "doctrine/doctrine-bundle": "^1.6",
@@ -29,7 +26,7 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "sensio/generator-bundle": "^3.0",
         "symfony/monolog-bundle": "^2.8",
-        "symfony/symfony": "dev-component-workflow as 3.1.0"
+        "symfony/symfony": "3.2.*@dev"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^3.0"
