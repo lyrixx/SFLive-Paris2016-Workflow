@@ -5,7 +5,7 @@
     <ul class="list-unstyled">
         {% for task in tasks %}
             <li>
-                <a href="{{ url('task_show', {id: task.id}) }}">
+                <a href="{{ path('task_show', {id: task.id}) }}">
                     {{ task.title }}
                 </a>
             </li>
@@ -20,7 +20,7 @@
     </ul>
 
     <h2>Add new task</h2>
-    <form action="{{ url('task_create') }}" method="post"  class="form-inline">
+    <form action="{{ path('task_create') }}" method="post"  class="form-inline">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" value="{{ tasks ? "Tasks #{(tasks|length) + 1}" : "My first task" }}" class="form-control" />

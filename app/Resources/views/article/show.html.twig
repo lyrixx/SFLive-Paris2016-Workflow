@@ -15,14 +15,14 @@
                 <code>{{ article.marking|keys|join('</code>, <code>')|default('[]')|raw }}</code>
             </p>
             <p>
-                <form action="{{ url('article_reset_marking', {id: article.id}) }}" method="post" class="form-inline">
+                <form action="{{ path('article_reset_marking', {id: article.id}) }}" method="post" class="form-inline">
                     <button type="submit" class="btn btn-danger btn-xs">Reset marking</button>
                 </form>
             </p>
         </div>
         <div class="col-md-6">
             <h2>What can you do?</h2>
-            <form action="{{ url('article_apply_transition', {id: article.id}) }}" method="post">
+            <form action="{{ path('article_apply_transition', {id: article.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
                     {% for transition in workflow_transitions(article) %}
                         <button type="submit" name="transition" value="{{ transition.name }}"

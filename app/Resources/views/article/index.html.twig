@@ -5,7 +5,7 @@
     <ul class="list-unstyled">
         {% for article in articles %}
             <li>
-                <a href="{{ url('article_show', {id: article.id}) }}">
+                <a href="{{ path('article_show', {id: article.id}) }}">
                     {{ article.title }}
                 </a>
             </li>
@@ -20,7 +20,7 @@
     </ul>
 
     <h2>Add new article</h2>
-    <form action="{{ url('article_create') }}" method="post"  class="form-inline">
+    <form action="{{ path('article_create') }}" method="post"  class="form-inline">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" value="{{ articles ? "Articles #{(articles|length) + 1}" : "My first article" }}" class="form-control" />
