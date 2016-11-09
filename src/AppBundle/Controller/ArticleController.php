@@ -9,10 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 
+/**
+ * @Route("/article")
+ */
 class ArticleController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("", name="article_index")
      */
     public function indexAction()
     {

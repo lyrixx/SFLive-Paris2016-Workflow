@@ -24,14 +24,6 @@
             {{ flash.flashbag() }}
 
             {% block content '' %}
-
-            <hr />
-
-            <div>
-                {% block svg %}
-                    {{ include('doc/workflow.article.svg.twig') }}
-                {% endblock %}
-            </div>
         </div>
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
