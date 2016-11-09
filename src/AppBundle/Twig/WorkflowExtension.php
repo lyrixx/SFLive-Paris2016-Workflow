@@ -3,7 +3,6 @@
 namespace AppBundle\Twig;
 
 use Symfony\Component\Workflow\Registry;
-use Symfony\Component\Workflow\Workflow;
 
 class WorkflowExtension extends \Twig_Extension
 {
@@ -27,22 +26,11 @@ class WorkflowExtension extends \Twig_Extension
     {
         $workflow = $this->workflowRegistry->get($object, $name);
 
-        $definition = $this->getProperty($workflow, 'definition');
-
-        return $definition->getTransitions();
+        return $workflow->getDefinition()->getTransitions();
     }
 
     public function getName()
     {
         return 'workflow_developer';
-    }
-
-
-    private function getProperty($object, $property)
-    {
-        $reflectionProperty = new \ReflectionProperty(Workflow::class, $property);
-        $reflectionProperty->setAccessible(true);
-
-        return $reflectionProperty->getValue($object);
     }
 }

@@ -25,8 +25,7 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
     {
         $name = $input->getArgument('service_name');
 
-        $workflow = $this->getContainer()->get($name);
-        $definition = $this->getProperty($workflow, 'definition');
+        $definition = $this->getContainer()->get($name)->getDefinition();
 
         $dumper = new GraphvizDumper();
 
@@ -41,13 +40,5 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
         $svg = preg_replace('/.*<svg/ms', sprintf('<svg class="img-responsive" id="%s"', str_replace('.', '-', $name)), $svg);
 
         file_put_contents(sprintf('%s/Resources/views/doc/%s.svg.twig', $this->getContainer()->getParameter('kernel.root_dir'), $name), $svg);
-    }
-
-    private function getProperty($object, $property)
-    {
-        $reflectionProperty = new \ReflectionProperty(Workflow::class, $property);
-        $reflectionProperty->setAccessible(true);
-
-        return $reflectionProperty->getValue($object);
     }
 }
