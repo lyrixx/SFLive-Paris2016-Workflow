@@ -16,7 +16,7 @@ class WorkflowExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('workflow_transitions', [$this, 'getTransitions']),
+            new \Twig_SimpleFunction('workflow_all_transitions', [$this, 'getTransitions']),
         );
     }
 
