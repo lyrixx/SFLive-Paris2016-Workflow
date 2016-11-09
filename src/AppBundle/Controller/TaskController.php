@@ -15,7 +15,7 @@ use Symfony\Component\Workflow\Exception\ExceptionInterface;
 class TaskController extends Controller
 {
     /**
-     * @Route("/", name="task_homepage")
+     * @Route("/", name="task_index")
      */
     public function indexAction()
     {
