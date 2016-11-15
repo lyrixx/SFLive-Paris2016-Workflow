@@ -54,7 +54,6 @@
     $(function() {
         var name = "{{ task.marking }}".replace(/[^\w]/i, '_').toLowerCase();
         var $svg = $('#state_machine-task');
-        console.log(name);
 
         $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
             console.log('a');
