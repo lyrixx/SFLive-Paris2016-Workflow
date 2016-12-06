@@ -39,6 +39,8 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
 
         $svg = preg_replace('/.*<svg/ms', sprintf('<svg class="img-responsive" id="%s"', str_replace('.', '-', $name)), $svg);
 
-        file_put_contents(sprintf('%s/Resources/views/doc/%s.svg.twig', $this->getContainer()->getParameter('kernel.root_dir'), $name), $svg);
+        $shortName = explode('.', $name)[1];
+
+        file_put_contents(sprintf('%s/Resources/views/%s/doc.svg.twig', $this->getContainer()->getParameter('kernel.root_dir'), $shortName), $svg);
     }
 }
