@@ -5,9 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="workflow.guard" class="AppBundle\Workflow\GuardListener">
+        <service id="workflow.listener.guard" class="AppBundle\Workflow\GuardListener">
             <argument type="service" id="security.authorization_checker" />
             <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="workflow.listener.audit_trail" class="Symfony\Component\Workflow\EventListener\AuditTrailListener">
+            <argument type="service" id="logger" />
+            <tag name="kernel.event_subscriber" />
+            <tag name="monolog.logger" channel="workflow" />
         </service>
 
         <service id="workflow.twig_extension_developer" class="AppBundle\Twig\WorkflowExtension">
