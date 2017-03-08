@@ -1,6 +1,7 @@
 framework:
     workflows:
         article:
+            audit_trail: true
             supports:
                 - AppBundle\Entity\Article
             places:
