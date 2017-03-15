@@ -5,11 +5,6 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="workflow.listener.guard" class="AppBundle\Workflow\GuardListener">
-            <argument type="service" id="security.authorization_checker" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-
         <service id="workflow.twig_extension_developer" class="AppBundle\Twig\WorkflowExtension">
             <argument type="service" id="workflow.registry" />
             <tag name="twig.extension" />

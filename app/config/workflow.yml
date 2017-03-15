@@ -13,17 +13,21 @@ framework:
                 - published
             transitions:
                 request_review:
+                    guard: "is_fully_authenticated()"
                     from: draft
                     to:
                         - wait_for_journalist
                         - wait_for_spellchecker
                 journalist_approval:
+                    guard: "is_granted('ROLE_JOURNALIST')"
                     from: wait_for_journalist
                     to: approved_by_journalist
                 spellchecker_approval:
+                    guard: "is_fully_authenticated() and has_role('ROLE_SPELLCHECKER')"
                     from: wait_for_spellchecker
                     to: approved_by_spellchecker
                 publish:
+                    guard: "is_fully_authenticated()"
                     from:
                         - approved_by_journalist
                         - approved_by_spellchecker
