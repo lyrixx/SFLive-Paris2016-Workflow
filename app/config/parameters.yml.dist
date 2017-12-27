@@ -1,4 +1,0 @@
-parameters:
-    database_url: postgres://ubuntu@postgres.lxc/symfony_demo_workflow
-
-    secret: ThisTokenIsNotSoSecretChangeIt
