@@ -20,7 +20,7 @@
                 </form>
             </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h2>What can you do?</h2>
             <form action="{{ path('article_apply_transition', {id: article.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
@@ -44,6 +44,36 @@
                 May be you can try with another user ;
                 he may have more permissions than you.
             {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h2>Metadata</h2>
+            <p>
+                <strong>Workflow</strong>:<br >
+                <code>{{ workflow_metadata(article, 'title') }}</code>
+            </p>
+            <p>
+                <strong>Current place(s)</strong>
+                <ul>
+                    {% for place in workflow_marked_places(article) %}
+                        <li>
+                            {{ place }}:
+                            <code>{{ workflow_metadata(article, 'title', place) ?: 'n-a'}}</code>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </p>
+            <p>
+                <strong>Enabled transition(s)</strong>
+                <ul>
+                    {% for transition in workflow_transitions(article) %}
+                        <li>
+                            {{ transition.name }}:
+                            <code>{{ workflow_metadata(article, 'title', transition) ?: 'n-a'}}</code>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </p>
+
         </div>
     </div>
 {% endblock %}

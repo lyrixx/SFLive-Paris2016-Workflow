@@ -6,12 +6,22 @@ framework:
             supports:
                 - App\Entity\Article
             places:
-                - draft
-                - wait_for_journalist
-                - approved_by_journalist
-                - wait_for_spellchecker
-                - approved_by_spellchecker
-                - published
+                draft:
+                    metadata:
+                        title: Draft
+                wait_for_journalist:
+                    metadata:
+                        title: Wait For Journalist
+                approved_by_journalist:
+                    metadata:
+                        title: Approved By Journalist
+                wait_for_spellchecker:
+                    metadata:
+                        title: Wait For Spellchecker
+                approved_by_spellchecker:
+                    metadata:
+                        title: Approved By Spellchecker
+                published: ~
             transitions:
                 request_review:
                     guard: "is_fully_authenticated()"
@@ -19,20 +29,30 @@ framework:
                     to:
                         - wait_for_journalist
                         - wait_for_spellchecker
+                    metadata:
+                        title: Do you want a Review?
                 journalist_approval:
                     guard: "is_granted('ROLE_JOURNALIST')"
                     from: wait_for_journalist
                     to: approved_by_journalist
+                    metadata:
+                        title: Do you valid the article?
                 spellchecker_approval:
                     guard: "is_fully_authenticated() and has_role('ROLE_SPELLCHECKER')"
                     from: wait_for_spellchecker
                     to: approved_by_spellchecker
+                    metadata:
+                        title: Do you valid the spell check?
                 publish:
                     guard: "is_fully_authenticated()"
                     from:
                         - approved_by_journalist
                         - approved_by_spellchecker
                     to: published
+                    metadata:
+                        title: Do you want to publish?
+            metadata:
+                title: Workflow to manager article
 
         task:
             type: state_machine
