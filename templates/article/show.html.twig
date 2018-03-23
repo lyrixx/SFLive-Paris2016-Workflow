@@ -3,7 +3,7 @@
 {% block main %}
     <h1>Article "{{ article.title}}"</h1>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h2>Current Marking</h2>
             <p>
                 <code>
@@ -20,7 +20,7 @@
                 </form>
             </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h2>What can you do?</h2>
             <form action="{{ path('article_apply_transition', {id: article.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
@@ -45,7 +45,29 @@
                 he may have more permissions than you.
             {% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <h2>Why you can't?</h2>
+            <ul class="list-unstyled">
+                {% for transition in workflow_all_transitions(article) %}
+                    {% if not workflow_can(article, transition.name) %}
+                        <li>
+                            <strong>{{ transition.name }}</strong>:
+                            <ul class="list-unstyled">
+                            {% for blocker in workflow_build_transition_blocker_list(article, transition.name) %}
+                                <li>
+                                    {{ blocker.message }}
+                                    {% if blocker.parameters.expression is defined %}
+                                        <code>{{ blocker.parameters.expression }}</code>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-3">
             <h2>Metadata</h2>
             <p>
                 <strong>Workflow</strong>:<br >
