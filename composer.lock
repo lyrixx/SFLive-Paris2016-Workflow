@@ -2562,12 +2562,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "fb5c6df687f5f48149ff82576f14044bdf14e597"
+                "reference": "cd14bbb18f2183d427b9c2999ff4ca6a1f32b685"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/fb5c6df687f5f48149ff82576f14044bdf14e597",
-                "reference": "fb5c6df687f5f48149ff82576f14044bdf14e597",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/cd14bbb18f2183d427b9c2999ff4ca6a1f32b685",
+                "reference": "cd14bbb18f2183d427b9c2999ff4ca6a1f32b685",
                 "shasum": ""
             },
             "require": {
@@ -2668,7 +2668,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-03-23T08:01:57+00:00"
+            "time": "2018-03-23T16:00:48+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -4337,12 +4337,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/workflow.git",
-                "reference": "74374bb1a913fd87a588ba5b6293efc83c5ac354"
+                "reference": "00897c61126e1e355a798b4be0aa0322d7636bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/workflow/zipball/74374bb1a913fd87a588ba5b6293efc83c5ac354",
-                "reference": "74374bb1a913fd87a588ba5b6293efc83c5ac354",
+                "url": "https://api.github.com/repos/symfony/workflow/zipball/00897c61126e1e355a798b4be0aa0322d7636bf8",
+                "reference": "00897c61126e1e355a798b4be0aa0322d7636bf8",
                 "shasum": ""
             },
             "require": {
@@ -4396,7 +4396,7 @@
                 "transition",
                 "workflow"
             ],
-            "time": "2018-03-23T10:28:40+00:00"
+            "time": "2018-03-23T16:00:48+00:00"
         },
         {
             "name": "symfony/yaml",
