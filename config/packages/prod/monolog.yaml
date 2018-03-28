@@ -3,13 +3,20 @@ monolog:
         main:
             type: fingers_crossed
             action_level: error
-            handler: nested
+            handler: grouped
             excluded_404s:
                 # regex: exclude all 404 errors from the logs
                 - ^/
-        nested:
+        grouped:
+            type: group
+            members: [file, stderr]
+        file:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        stderr:
+            type:  stream
+            path:  "php://stderr"
             level: debug
         console:
             type:   console
