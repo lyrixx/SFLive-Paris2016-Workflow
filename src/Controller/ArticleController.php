@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
+use Symfony\Component\Workflow\Transition;
 
 /**
  * @Route("/article")
@@ -55,9 +56,14 @@ class ArticleController extends Controller
      */
     public function applyTransitionAction(Request $request, Article $article)
     {
+        $transitionName = $request->request->get('transition');
+
         try {
-            $this->get('workflow.article')
-                ->apply($article, $request->request->get('transition'));
+            $this->get('workflow.article')->apply($article, $transitionName);
+
+            $transition = $this->getTransition($transitionName);
+            $title = $this->get('workflow.article')->getMetadataStore()->getMetadata('title', $transition);
+            $request->getSession()->getFlashBag()->add('info', "You have successfully applied the transition with title: '$title'");
 
             $this->get('doctrine')->getManager()->flush();
         } catch (ExceptionInterface $e) {
@@ -79,5 +85,16 @@ class ArticleController extends Controller
         $this->get('doctrine')->getManager()->flush();
 
         return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
+    }
+
+    private function getTransition(string $transitionName): ?Transition
+    {
+        foreach ($this->get('workflow.article')->getDefinition()->getTransitions() as $transition) {
+            if ($transitionName === $transition->getName()) {
+                return $transition;
+            }
+        }
+
+        return null;
     }
 }
