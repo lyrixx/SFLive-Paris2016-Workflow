@@ -61,7 +61,7 @@ class ArticleController extends Controller
 
             $this->get('doctrine')->getManager()->flush();
         } catch (ExceptionInterface $e) {
-            $this->get('session')->getFlashBag()->add('danger', $e->getMessage());
+            $request->getSession()->getFlashBag()->add('danger', $e->getMessage());
         }
 
         return $this->redirect(
