@@ -70,7 +70,7 @@ framework:
                     from: in_progress
                     to: done
                     metadata:
-                        explaination: It's not possible to finish a task after 16:00
+                        explanation: It's not possible to finish a task after 16:00
                         time_limit: 16:00
 
         straight:

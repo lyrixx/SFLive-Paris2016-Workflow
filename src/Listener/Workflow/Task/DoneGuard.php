@@ -16,8 +16,8 @@ class DoneGuard implements EventSubscriberInterface
             return;
         }
 
-        $explaination = $event->getMetadata('explaination', $event->getTransition());
-        $event->addTransitionBlocker(new TransitionBlocker($explaination , 0));
+        $explanation = $event->getMetadata('explanation', $event->getTransition());
+        $event->addTransitionBlocker(new TransitionBlocker($explanation , 0));
     }
 
     public static function getSubscribedEvents()
