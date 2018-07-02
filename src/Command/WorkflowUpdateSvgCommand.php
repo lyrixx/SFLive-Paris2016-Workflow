@@ -41,6 +41,6 @@ class WorkflowUpdateSvgCommand extends ContainerAwareCommand
 
         $shortName = explode('.', $name)[1];
 
-        file_put_contents(sprintf('%s/Resources/views/%s/doc.svg.twig', $this->getContainer()->getParameter('kernel.root_dir'), $shortName), $svg);
+        file_put_contents(sprintf('%s/templates/%s/doc.svg.twig', $this->getContainer()->getParameter('kernel.project_dir'), $shortName), $svg);
     }
 }
