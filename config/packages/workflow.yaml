@@ -59,16 +59,27 @@ framework:
             supports:
                 - App\Entity\Task
             places:
-                - backlog
-                - in_progress
-                - done
+                - new
+                - backlogged
+                - processing
+                - failed
+                - completed
             transitions:
-                processing:
-                    from: backlog
-                    to: in_progress
-                done:
-                    from: in_progress
-                    to: done
+                start_process:
+                    from: new
+                    to: processing
+                retry:
+                    from: backlogged
+                    to: processing
+                temp_error:
+                    from: processing
+                    to: backlogged
+                permanent_error:
+                    from: processing
+                    to: failed
+                complete_without_error:
+                    from: processing
+                    to: completed
 
         straight:
             type: workflow
