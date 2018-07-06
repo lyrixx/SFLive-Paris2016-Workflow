@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
@@ -25,8 +24,7 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/create", name="task_create")
-     * @Method("POST")
+     * @Route("/create", methods={"POST"}, name="task_create")
      */
     public function createAction(Request $request)
     {
@@ -50,8 +48,7 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/apply-transition/{id}", name="task_apply_transition")
-     * @Method("POST")
+     * @Route("/apply-transition/{id}", methods={"POST"}, name="task_apply_transition")
      */
     public function applyTransitionAction(Request $request, Task $task)
     {
@@ -70,8 +67,7 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/reset-marking/{id}", name="task_reset_marking")
-     * @Method("POST")
+     * @Route("/reset-marking/{id}", methods={"POST"}, name="task_reset_marking")
      */
     public function resetMarkingAction(Task $task)
     {

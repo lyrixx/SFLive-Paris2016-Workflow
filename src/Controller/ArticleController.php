@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
@@ -25,8 +24,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/create", name="article_create")
-     * @Method("POST")
+     * @Route("/create", methods={"POST"}, name="article_create")
      */
     public function createAction(Request $request)
     {
@@ -50,8 +48,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/apply-transition/{id}", name="article_apply_transition")
-     * @Method("POST")
+     * @Route("/apply-transition/{id}", methods={"POST"}, name="article_apply_transition")
      */
     public function applyTransitionAction(Request $request, Article $article)
     {
@@ -70,8 +67,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/reset-marking/{id}", name="article_reset_marking")
-     * @Method("POST")
+     * @Route("/reset-marking/{id}", methods={"POST"}, name="article_reset_marking")
      */
     public function resetMarkingAction(Article $article)
     {
