@@ -39,10 +39,9 @@
             </form>
             <br />
             {% if not workflow_transitions(task) %}
-                <strong>The object can not apply any transition.</strong>
+                <strong>{{ 'no_transition_available'|trans }}</strong>
                 <br />
-                May be you can try with another user ;
-                he may have more permissions than you.
+                {{ 'try_as_another_user'|trans }}
             {% endif %}
         </div>
     </div>
@@ -51,20 +50,34 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
+
     $(function() {
+
         var name = "{{ task.marking }}".replace(/[^\w]/i, '_').toLowerCase();
         var $svg = $('#state_machine-task');
 
-        $('g.node title:contains("place_'+name+'")', $svg).each(function(j, place) {
-            console.log('a');
-            var place = $(place).parent();
-            var ref = $('ellipse', place);
-            ref.attr('stroke', 'red');
-            var newEllipse = ref.clone();
-            newEllipse.attr('rx', ref.attr('rx') * .9);
-            newEllipse.attr('ry', ref.attr('ry') * .9);
-            ref.after(newEllipse);
+        sha1(name).then(function (placeHash) {
+            console.log(name, placeHash);
+            let search = 'place_' + placeHash;
+            console.log('searching for ' + search + ' in $svg');
+
+            $('g.node title:contains("'+search +'")', $svg).each(function(j, place) {
+                console.log("now looking for " + name);
+                console.log(place);
+                    console.log('found ' + name, j, place);
+                    var place = $(place).parent();
+                    var ref = $('ellipse', place);
+                    ref.attr('stroke', 'red');
+                    var newEllipse = ref.clone();
+                    newEllipse.attr('rx', ref.attr('rx') * .9);
+                    newEllipse.attr('ry', ref.attr('ry') * .9);
+                    ref.after(newEllipse);
+            });
         });
+
+        // let placeHash = sha1(name);
+        // let placeHash = crypto.createHash('sha1').update(name).digest("hex");
     });
     </script>
 {% endblock %}
