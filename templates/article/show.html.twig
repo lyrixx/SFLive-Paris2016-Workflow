@@ -95,10 +95,36 @@
                     {% endfor %}
                 </ul>
             </p>
-
         </div>
     </div>
 {% endblock %}
+
+{% block main_footer %}
+    <ul class="list-unstyled">
+        {% for transitionContext in article.transitionContexts %}
+            <li>
+                <dl>
+                    <dt>New Marking</dt>
+                    <dd>{{ transitionContext|keys|join(', ') }}</dd>
+
+                    <dt>When </dt>
+                    <dd>{{ transitionContext.time|date('Y-m-d H:i:s') }}</dd>
+
+                    <dt>Context</dt>
+                    <dd style="padding-left:1em">
+                        <dl>
+                            {% for k, v in transitionContext.context %}
+                                <dt>{{ k }}</dt>
+                                <dd>{{ v }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </dd>
+                </dl>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
 
 {% block javascripts %}
     {{ parent() }}
@@ -111,11 +137,7 @@
             var name = marking[i].replace(/[^\w]/i, '_').toLowerCase();
             sha1(name).then(function (placeHash) {
                 let search = 'place_' + placeHash;
-                console.log('searching for ' + search + ' in $svg');
                 $('g.node title:contains("'+search+'")', $svg).each(function(j, place) {
-                    console.log("now looking for " + name);
-                    console.log(place);
-                    console.log('found ' + name, j, place);
                     var place = $(place).parent();
                     var ref = $('ellipse', place);
                     ref.attr('stroke', 'red');

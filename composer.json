@@ -75,7 +75,7 @@
         "symfony": {
             "id": "01C2CD6XKSK8MNQE22GG0QPSG7",
             "allow-contrib": false,
-            "require": "4.2.*"
+            "require": "4.3.*"
         }
     }
 }
