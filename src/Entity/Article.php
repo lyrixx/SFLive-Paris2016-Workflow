@@ -23,9 +23,15 @@ class Article
     /** @ORM\Column(type="json_array", nullable=true) */
     private $marking;
 
+    /**
+     * @ORM\Column(type="json_array", nullable=true)
+     */
+    private $transitionContexts;
+
     public function __construct($title = 'Title')
     {
         $this->title = $title;
+        $this->transitionContexts = [];
     }
 
     public function getId()
@@ -48,8 +54,23 @@ class Article
         return $this->marking;
     }
 
-    public function setMarking($marking)
+    public function setMarking($marking, $context = [])
     {
         $this->marking = $marking;
+        $this->transitionContexts[] = [
+            'new_marking' => $marking,
+            'context' => $context,
+            'time' => (new \DateTime())->format('c'),
+        ];
+    }
+
+    public function getTransitionContexts()
+    {
+        return $this->transitionContexts;
+    }
+
+    public function setTransitionContexts($transitionContexts)
+    {
+        $this->transitionContexts = $transitionContexts;
     }
 }
