@@ -2,12 +2,8 @@ framework:
     workflows:
         article:
             type: workflow
-            audit_trail: true
             marking_store:
                 type: method
-                arguments:
-                    - false
-                    - marking
             supports:
                 - App\Entity\Article
             places:
@@ -58,11 +54,14 @@ framework:
                         title: Do you want to publish?
             metadata:
                 title: Workflow to manager article
+            audit_trail: true
 
         task:
             type: state_machine
             supports:
                 - App\Entity\Task
+            marking_store:
+                type: method
             places:
                 - new
                 - backlogged

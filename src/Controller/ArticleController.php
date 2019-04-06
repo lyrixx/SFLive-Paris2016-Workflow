@@ -55,9 +55,8 @@ class ArticleController extends Controller
         try {
             $this->get('workflow.article')
                 ->apply($article, $request->request->get('transition'), [
-                    'user' => $this->getUser()->getUsername(),
+                    'time' => date('y-m-d H:i:s'),
                 ]);
-
             $this->get('doctrine')->getManager()->flush();
         } catch (ExceptionInterface $e) {
             $this->get('session')->getFlashBag()->add('danger', $e->getMessage());

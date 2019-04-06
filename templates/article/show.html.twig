@@ -53,7 +53,7 @@
                         <li>
                             <strong>{{ transition.name }}</strong>:
                             <ul class="list-unstyled">
-                            {% for blocker in workflow_build_transition_blocker_list(article, transition.name) %}
+                            {% for blocker in workflow_transition_blockers(article, transition.name) %}
                                 <li>
                                     {{ blocker.message }}
                                     {% if blocker.parameters.expression is defined %}
@@ -100,29 +100,27 @@
 {% endblock %}
 
 {% block main_footer %}
-    <ul class="list-unstyled">
-        {% for transitionContext in article.transitionContexts %}
-            <li>
-                <dl>
-                    <dt>New Marking</dt>
-                    <dd>{{ transitionContext|keys|join(', ') }}</dd>
+    <div class="col-md-6">
+        <h2>Last 5 transitions context</h2>
+        {% for transitionContext in article.transitionContexts[0:5] %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <dl class="dl-horizontal" style="margin: 0">
+                        <dt>New Marking</dt>
+                        <dd>{{ transitionContext.new_marking|keys|join(', ') }}</dd>
 
-                    <dt>When </dt>
-                    <dd>{{ transitionContext.time|date('Y-m-d H:i:s') }}</dd>
+                        <dt>When</dt>
+                        <dd>{{ transitionContext.time|date('Y-m-d H:i:s') }}</dd>
 
-                    <dt>Context</dt>
-                    <dd style="padding-left:1em">
-                        <dl>
-                            {% for k, v in transitionContext.context %}
-                                <dt>{{ k }}</dt>
-                                <dd>{{ v }}</dd>
-                            {% endfor %}
-                        </dl>
-                    </dd>
-                </dl>
-            </li>
+                        {% for k, v in transitionContext.context %}
+                            <dt>{{ k|title }}</dt>
+                            <dd>{{ v }}</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
 
 
