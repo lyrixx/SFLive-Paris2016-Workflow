@@ -10,45 +10,45 @@ framework:
                 draft:
                     metadata:
                         title: Draft
-                wait_for_journalist:
+                waiting for journalist:
                     metadata:
-                        title: Wait For Journalist
-                approved_by_journalist:
+                        title: Waiting for Journalist review
+                approved by journalist:
                     metadata:
                         title: Approved By Journalist
-                wait_for_spellchecker:
+                wait for spellchecker:
                     metadata:
-                        title: Wait For Spellchecker
-                approved_by_spellchecker:
+                        title: Waiting for Spellchecker review
+                approved by spellchecker:
                     metadata:
                         title: Approved By Spellchecker
                 published: ~
             transitions:
-                request_review:
+                request review:
                     guard: "is_fully_authenticated()"
                     from: draft
                     to:
-                        - wait_for_journalist
-                        - wait_for_spellchecker
+                        - waiting for journalist
+                        - wait for spellchecker
                     metadata:
                         title: Do you want a Review?
-                journalist_approval:
+                journalist approval:
                     guard: "is_granted('ROLE_JOURNALIST')"
-                    from: wait_for_journalist
-                    to: approved_by_journalist
+                    from: waiting for journalist
+                    to: approved by journalist
                     metadata:
                         title: Do you valid the article?
-                spellchecker_approval:
+                spellchecker approval:
                     guard: "is_fully_authenticated() and has_role('ROLE_SPELLCHECKER')"
-                    from: wait_for_spellchecker
-                    to: approved_by_spellchecker
+                    from: wait for spellchecker
+                    to: approved by spellchecker
                     metadata:
                         title: Do you valid the spell check?
                 publish:
                     guard: "is_fully_authenticated()"
                     from:
-                        - approved_by_journalist
-                        - approved_by_spellchecker
+                        - approved by journalist
+                        - approved by spellchecker
                     to: published
                     metadata:
                         title: Do you want to publish?
