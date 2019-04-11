@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">Workflow</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}">Symfony Workflow</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -15,7 +15,7 @@
                 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                     <li>
                         <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: '_exit'})) }}">
-                            Hello {{ app.user.username }} | logout
+                            Hello {{ app.user.username|title }} | logout
                         </a>
                     </li>
                 {% else %}

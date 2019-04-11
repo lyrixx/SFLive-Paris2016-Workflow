@@ -1,10 +1,13 @@
 SFLive-Paris2016-Workflow
 =========================
 
+Demo application of the [symfony/workflow](https://symfony.com/doc/current/components/workflow.html) component.
+
 Installation
 ------------
 
     composer install
+    edit the .env file
     bin/console doctrine:database:create
     bin/console doctrine:schema:update --force
 
