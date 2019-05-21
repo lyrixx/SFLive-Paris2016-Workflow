@@ -4,7 +4,6 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: false
 
     App\:
         resource: '../src/*'

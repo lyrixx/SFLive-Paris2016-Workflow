@@ -39,7 +39,7 @@ framework:
                     metadata:
                         title: Do you valid the article?
                 spellchecker approval:
-                    guard: "is_fully_authenticated() and has_role('ROLE_SPELLCHECKER')"
+                    guard: "is_fully_authenticated() and is_granted('ROLE_SPELLCHECKER')"
                     from: wait for spellchecker
                     to: approved by spellchecker
                     metadata:

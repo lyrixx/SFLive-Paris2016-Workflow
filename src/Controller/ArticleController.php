@@ -3,20 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 /**
  * @Route("/article")
  */
-class ArticleController extends Controller
+class ArticleController extends AbstractController
 {
     /**
      * @Route("", name="article_index")
      */
-    public function indexAction()
+    public function index()
     {
         return $this->render('article/index.html.twig', [
             'articles' => $this->get('doctrine')->getRepository('App:Article')->findAll(),
@@ -26,7 +27,7 @@ class ArticleController extends Controller
     /**
      * @Route("/create", methods={"POST"}, name="article_create")
      */
-    public function createAction(Request $request)
+    public function create(Request $request)
     {
         $article = new Article($request->request->get('title', 'title'));
 
@@ -40,7 +41,7 @@ class ArticleController extends Controller
     /**
      * @Route("/show/{id}", name="article_show")
      */
-    public function showAction(Article $article)
+    public function show(Article $article)
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
@@ -50,10 +51,10 @@ class ArticleController extends Controller
     /**
      * @Route("/apply-transition/{id}", methods={"POST"}, name="article_apply_transition")
      */
-    public function applyTransitionAction(Request $request, Article $article)
+    public function applyTransition(WorkflowInterface $articleWorkflow, Request $request, Article $article)
     {
         try {
-            $this->get('workflow.article')
+            $articleWorkflow
                 ->apply($article, $request->request->get('transition'), [
                     'time' => date('y-m-d H:i:s'),
                 ]);
@@ -70,7 +71,7 @@ class ArticleController extends Controller
     /**
      * @Route("/reset-marking/{id}", methods={"POST"}, name="article_reset_marking")
      */
-    public function resetMarkingAction(Article $article)
+    public function resetMarking(Article $article)
     {
         $article->setMarking([]);
         $this->get('doctrine')->getManager()->flush();
