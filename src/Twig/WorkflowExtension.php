@@ -3,8 +3,10 @@
 namespace App\Twig;
 
 use Symfony\Component\Workflow\Registry;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class WorkflowExtension extends \Twig_Extension
+class WorkflowExtension extends AbstractExtension
 {
     private $workflowRegistry;
 
@@ -16,8 +18,8 @@ class WorkflowExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('workflow_all_transitions', [$this, 'getTransitions']),
-            new \Twig_SimpleFunction('workflow_build_transition_blocker_list', [$this, 'buildTransitionBlockerList']),
+            new TwigFunction('workflow_all_transitions', [$this, 'getTransitions']),
+            new TwigFunction('workflow_build_transition_blocker_list', [$this, 'buildTransitionBlockerList']),
         );
     }
 
@@ -35,10 +37,5 @@ class WorkflowExtension extends \Twig_Extension
         $workflow = $this->workflowRegistry->get($subject, $name);
 
         return $workflow->buildTransitionBlockerList($subject, $transitionName);
-    }
-
-    public function getName()
-    {
-        return 'workflow_developer';
     }
 }
