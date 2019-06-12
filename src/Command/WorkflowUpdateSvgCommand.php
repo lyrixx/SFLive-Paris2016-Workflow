@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Workflow\Dumper\GraphvizDumper;
+use Symfony\Component\Workflow\Dumper\StateMachineGraphvizDumper;
+use Symfony\Component\Workflow\StateMachine;
 
 class WorkflowUpdateSvgCommand extends Command implements ContainerAwareInterface
 {
@@ -28,9 +30,14 @@ class WorkflowUpdateSvgCommand extends Command implements ContainerAwareInterfac
     {
         $name = $input->getArgument('service_name');
 
-        $definition = $this->container->get($name)->getDefinition();
+        $workflow = $this->container->get($name);
+        $definition = $workflow->getDefinition();
 
-        $dumper = new GraphvizDumper();
+        if ($workflow instanceof StateMachine) {
+            $dumper = new StateMachineGraphvizDumper();
+        } else {
+            $dumper = new GraphvizDumper();
+        }
 
         $dot = $dumper->dump($definition, null, ['node' => ['width' => 1.6]]);
 
