@@ -6,31 +6,44 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^1.6.10|^2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.3|^2.0",
+        "doctrine/orm": "^2.5.11",
+        "phpdocumentor/reflection-docblock": "^3.0|^4.0",
         "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "*",
-        "symfony/console": "*",
-        "symfony/expression-language": "*",
+        "symfony/asset": "4.3.*",
+        "symfony/console": "4.3.*",
+        "symfony/expression-language": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "*",
-        "symfony/framework-bundle": "*",
+        "symfony/form": "4.3.*",
+        "symfony/framework-bundle": "4.3.*",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "*",
-        "symfony/process": "*",
-        "symfony/security-bundle": "*",
-        "symfony/serializer-pack": "*",
-        "symfony/twig-bundle": "*",
-        "symfony/validator": "*",
-        "symfony/web-link": "*",
-        "symfony/workflow": "*",
-        "symfony/yaml": "*"
+        "symfony/process": "4.3.*",
+        "symfony/property-access": "4.3.*",
+        "symfony/property-info": "4.3.*",
+        "symfony/security-bundle": "4.3.*",
+        "symfony/serializer": "4.3.*",
+        "symfony/twig-bundle": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/web-link": "4.3.*",
+        "symfony/workflow": "4.3.*",
+        "symfony/yaml": "4.3.*"
     },
     "require-dev": {
-        "symfony/debug-pack": "*",
-        "symfony/dotenv": "*",
+        "easycorp/easy-log-handler": "^1.0.7",
+        "symfony/browser-kit": "4.3.*",
+        "symfony/css-selector": "4.3.*",
+        "symfony/debug-bundle": "4.3.*",
+        "symfony/dotenv": "4.3.*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "*"
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/phpunit-bridge": "4.3.*",
+        "symfony/stopwatch": "4.3.*",
+        "symfony/twig-bundle": "4.3.*",
+        "symfony/var-dumper": "4.3.*",
+        "symfony/web-profiler-bundle": "4.3.*",
+        "symfony/web-server-bundle": "4.3.*"
     },
     "config": {
         "preferred-install": {
@@ -59,7 +72,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

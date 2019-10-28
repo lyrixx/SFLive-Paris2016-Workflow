@@ -1,6 +1,8 @@
 
 ###> symfony/framework-bundle ###
-.env
+/.env.local
+/.env.local.php
+/.env.*.local
 /public/bundles/
 /var/
 /vendor/
@@ -8,9 +10,10 @@
 
 ###> symfony/phpunit-bridge ###
 .phpunit
+.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
-.web-server-pid
+/.web-server-pid
 ###< symfony/web-server-bundle ###
