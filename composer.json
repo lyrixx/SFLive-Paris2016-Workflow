@@ -3,7 +3,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
@@ -12,38 +12,37 @@
         "doctrine/orm": "^2.5.11",
         "phpdocumentor/reflection-docblock": "^3.0|^4.0",
         "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "4.3.*",
-        "symfony/console": "4.3.*",
-        "symfony/expression-language": "4.3.*",
+        "symfony/asset": "5.0.*",
+        "symfony/console": "5.0.*",
+        "symfony/expression-language": "5.0.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "4.3.*",
-        "symfony/framework-bundle": "4.3.*",
+        "symfony/form": "5.0.*",
+        "symfony/framework-bundle": "5.0.*",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/process": "4.3.*",
-        "symfony/property-access": "4.3.*",
-        "symfony/property-info": "4.3.*",
-        "symfony/security-bundle": "4.3.*",
-        "symfony/serializer": "4.3.*",
-        "symfony/twig-bundle": "4.3.*",
-        "symfony/validator": "4.3.*",
-        "symfony/web-link": "4.3.*",
-        "symfony/workflow": "4.3.*",
-        "symfony/yaml": "4.3.*"
+        "symfony/process": "5.0.*",
+        "symfony/property-access": "5.0.*",
+        "symfony/property-info": "5.0.*",
+        "symfony/security-bundle": "5.0.*",
+        "symfony/serializer": "5.0.*",
+        "symfony/twig-bundle": "5.0.*",
+        "symfony/validator": "5.0.*",
+        "symfony/web-link": "5.0.*",
+        "symfony/workflow": "5.0.*",
+        "symfony/yaml": "5.0.*"
     },
     "require-dev": {
         "easycorp/easy-log-handler": "^1.0.7",
-        "symfony/browser-kit": "4.3.*",
-        "symfony/css-selector": "4.3.*",
-        "symfony/debug-bundle": "4.3.*",
-        "symfony/dotenv": "4.3.*",
+        "symfony/browser-kit": "5.0.*",
+        "symfony/css-selector": "5.0.*",
+        "symfony/debug-bundle": "5.0.*",
+        "symfony/dotenv": "5.0.*",
         "symfony/maker-bundle": "^1.0",
         "symfony/monolog-bundle": "^3.0",
-        "symfony/phpunit-bridge": "4.3.*",
-        "symfony/stopwatch": "4.3.*",
-        "symfony/twig-bundle": "4.3.*",
-        "symfony/var-dumper": "4.3.*",
-        "symfony/web-profiler-bundle": "4.3.*",
-        "symfony/web-server-bundle": "4.3.*"
+        "symfony/phpunit-bridge": "5.0.*",
+        "symfony/stopwatch": "5.0.*",
+        "symfony/twig-bundle": "5.0.*",
+        "symfony/var-dumper": "5.0.*",
+        "symfony/web-profiler-bundle": "5.0.*"
     },
     "config": {
         "preferred-install": {
@@ -90,7 +89,7 @@
         "symfony": {
             "id": "01C2CD6XKSK8MNQE22GG0QPSG7",
             "allow-contrib": false,
-            "require": "4.3.*"
+            "require": "5.0.*"
         }
     }
 }
