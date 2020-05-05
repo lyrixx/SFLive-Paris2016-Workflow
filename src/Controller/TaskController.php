@@ -20,7 +20,7 @@ class TaskController extends AbstractController
     public function index()
     {
         return $this->render('task/index.html.twig', [
-            'tasks' => $this->get('doctrine')->getRepository('App:Task')->findAll(),
+            'tasks' => $this->get('doctrine')->getRepository(Task::class)->findAll(),
         ]);
     }
 
