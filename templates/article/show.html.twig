@@ -132,8 +132,7 @@
         var $svg = $('#workflow-article');
 
         for (var i = 0; i < marking.length; i++) {
-            var name = marking[i].replace(/[^\w]/i, '_').toLowerCase();
-            sha1(name).then(function (placeHash) {
+            sha1(marking[i]).then(function (placeHash) {
                 let search = 'place_' + placeHash;
                 $('g.node title:contains("'+search+'")', $svg).each(function(j, place) {
                     var place = $(place).parent();
