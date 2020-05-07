@@ -41,7 +41,7 @@ class WorkflowUpdateSvgCommand extends Command implements ContainerAwareInterfac
 
         $dot = $dumper->dump($definition, null, ['node' => ['width' => 1.6]]);
 
-        $process = new Process('dot -Tsvg');
+        $process = new Process(['dot', '-Tsvg']);
         $process->setInput($dot);
         $process->mustRun();
 
@@ -52,5 +52,7 @@ class WorkflowUpdateSvgCommand extends Command implements ContainerAwareInterfac
         $shortName = explode('.', $name)[1];
 
         file_put_contents(sprintf('%s/templates/%s/doc.svg.twig', $this->container->getParameter('kernel.project_dir'), $shortName), $svg);
+
+        return 0;
     }
 }
