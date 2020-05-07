@@ -83,15 +83,6 @@
     "jdorn/sql-formatter": {
         "version": "1.3.x-dev"
     },
-    "laminas/laminas-code": {
-        "version": "3.5.x-dev"
-    },
-    "laminas/laminas-eventmanager": {
-        "version": "3.3-dev"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.1.x-dev"
-    },
     "monolog/monolog": {
         "version": "2.x-dev"
     },
@@ -105,7 +96,7 @@
         "version": "2.5.0"
     },
     "php": {
-        "version": "7.4"
+        "version": "7.3.17"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.x-dev"
@@ -194,6 +185,9 @@
     },
     "symfony/dependency-injection": {
         "version": "5.0.x-dev"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "2.1-dev"
     },
     "symfony/doctrine-bridge": {
         "version": "5.0.x-dev"
@@ -324,11 +318,17 @@
             "tests/.gitignore"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "1.15-dev"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "1.12.x-dev"
     },
     "symfony/polyfill-intl-idn": {
         "version": "1.12.x-dev"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "1.15-dev"
     },
     "symfony/polyfill-mbstring": {
         "version": "1.12.x-dev"
@@ -338,6 +338,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "1.12.x-dev"
+    },
+    "symfony/polyfill-php80": {
+        "version": "1.15-dev"
     },
     "symfony/process": {
         "version": "5.0.x-dev"
@@ -400,6 +403,9 @@
     },
     "symfony/stopwatch": {
         "version": "5.0.x-dev"
+    },
+    "symfony/string": {
+        "version": "5.1-dev"
     },
     "symfony/test-pack": {
         "version": "dev-master"
@@ -472,9 +478,6 @@
     },
     "twig/twig": {
         "version": "3.x-dev"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.1.x-dev"
     },
     "webmozart/assert": {
         "version": "1.6.0"
