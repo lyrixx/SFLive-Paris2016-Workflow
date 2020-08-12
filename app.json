@@ -3,11 +3,5 @@
   "description": "A simple application to discover the new Symfony Workflow Component",
   "repository": "https://github.com/symfony/symfony",
   "keywords": ["symfony", "workflow"],
-  "addons": [
-    "blackfire",
-    "heroku-postgresql:hobby-dev"
-  ],
-  "buildpacks": [
-    { "url": "https://github.com/ddollar/heroku-buildpack-multi.git" }
-  ]
+  "stack": "heroku-18"
 }
