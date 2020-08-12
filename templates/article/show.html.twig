@@ -101,8 +101,8 @@
 
 {% block main_footer %}
     <div class="col-md-6">
-        <h2>Last 5 transitions context</h2>
-        {% for transitionContext in article.transitionContexts[0:5] %}
+        <h2>Last 5 transitions context <small class="text-muted">(most recent first)</small></h2>
+        {% for transitionContext in article.transitionContexts[0:5]|reverse %}
             <div class="panel panel-default">
                 <div class="panel-body">
                     <dl class="dl-horizontal" style="margin: 0">
