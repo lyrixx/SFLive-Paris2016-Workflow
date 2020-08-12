@@ -7,7 +7,7 @@ Installation
 ------------
 
     composer install
-    edit the .env file
+    # edit the .env file
     bin/console doctrine:database:create
     bin/console doctrine:schema:update --force
 
