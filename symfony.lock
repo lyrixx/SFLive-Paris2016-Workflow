@@ -90,6 +90,15 @@
     "facebook/webdriver": {
         "version": "1.6.0"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "1.x-dev"
+    },
+    "laminas/laminas-code": {
+        "version": "4.0.x-dev"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.2.x-dev"
+    },
     "monolog/monolog": {
         "version": "2.x-dev"
     },
@@ -273,6 +282,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "2.3-dev"
     },
     "symfony/http-foundation": {
         "version": "5.1.x-dev"
