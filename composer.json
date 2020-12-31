@@ -12,35 +12,35 @@
         "doctrine/orm": "^2.5.11",
         "phpdocumentor/reflection-docblock": "^3.0|^4.0",
         "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "5.1.*",
-        "symfony/console": "5.1.*",
-        "symfony/dotenv": "5.1.*",
-        "symfony/expression-language": "5.1.*",
+        "symfony/asset": "5.2.*",
+        "symfony/console": "5.2.*",
+        "symfony/dotenv": "5.2.*",
+        "symfony/expression-language": "5.2.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "5.1.*",
-        "symfony/framework-bundle": "5.1.*",
+        "symfony/form": "5.2.*",
+        "symfony/framework-bundle": "5.2.*",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/process": "5.1.*",
-        "symfony/property-access": "5.1.*",
-        "symfony/property-info": "5.1.*",
-        "symfony/security-bundle": "5.1.*",
-        "symfony/serializer": "5.1.*",
-        "symfony/twig-bundle": "5.1.*",
-        "symfony/validator": "5.1.*",
-        "symfony/web-link": "5.1.*",
-        "symfony/workflow": "5.1.*",
-        "symfony/yaml": "5.1.*"
+        "symfony/process": "5.2.*",
+        "symfony/property-access": "5.2.*",
+        "symfony/property-info": "5.2.*",
+        "symfony/security-bundle": "5.2.*",
+        "symfony/serializer": "5.2.*",
+        "symfony/twig-bundle": "5.2.*",
+        "symfony/validator": "5.2.*",
+        "symfony/web-link": "5.2.*",
+        "symfony/workflow": "5.2.*",
+        "symfony/yaml": "5.2.*"
     },
     "require-dev": {
         "easycorp/easy-log-handler": "^1.0.7",
-        "symfony/browser-kit": "5.1.*",
-        "symfony/css-selector": "5.1.*",
-        "symfony/debug-bundle": "5.1.*",
+        "symfony/browser-kit": "5.2.*",
+        "symfony/css-selector": "5.2.*",
+        "symfony/debug-bundle": "5.2.*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/phpunit-bridge": "5.1.*",
-        "symfony/stopwatch": "5.1.*",
-        "symfony/var-dumper": "5.1.*",
-        "symfony/web-profiler-bundle": "5.1.*"
+        "symfony/phpunit-bridge": "5.2.*",
+        "symfony/stopwatch": "5.2.*",
+        "symfony/var-dumper": "5.2.*",
+        "symfony/web-profiler-bundle": "5.2.*"
     },
     "config": {
         "preferred-install": {
@@ -65,6 +65,9 @@
         "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php72": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
@@ -89,7 +92,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.1.*"
+            "require": "5.2.*"
         }
     }
 }
