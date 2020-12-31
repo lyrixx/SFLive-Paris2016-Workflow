@@ -55,6 +55,9 @@ framework:
             metadata:
                 title: Workflow to manager article
             audit_trail: true
+            # events_to_dispatch: ~
+            # events_to_dispatch: []
+            # events_to_dispatch: ['workflow.enter']
 
         task:
             type: state_machine
