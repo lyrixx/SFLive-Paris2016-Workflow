@@ -1,4 +1,5 @@
 security:
+    enable_authenticator_manager: true
     role_hierarchy:
         ROLE_ADMIN: [ROLE_WRITTER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
     encoders:
@@ -20,7 +21,8 @@ security:
 
         main:
             pattern: ^/
-            anonymous: true
-            logout: true
-            switch_user:
-                role: IS_AUTHENTICATED_ANONYMOUSLY
+            logout:
+                handlers:
+                    - App\Security\YoloAuthenticator
+            custom_authenticators:
+                - App\Security\YoloAuthenticator

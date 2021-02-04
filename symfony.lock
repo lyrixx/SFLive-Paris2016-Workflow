@@ -1,7 +1,4 @@
 {
-    "dealerdirect/phpcodesniffer-composer-installer": {
-        "version": "v0.7.0"
-    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -17,17 +14,17 @@
     "doctrine/cache": {
         "version": "1.10.x-dev"
     },
-    "doctrine/coding-standard": {
-        "version": "8.1.x-dev"
-    },
     "doctrine/collections": {
         "version": "1.7.x-dev"
     },
     "doctrine/common": {
-        "version": "2.12.x-dev"
+        "version": "3.3.x-dev"
     },
     "doctrine/dbal": {
         "version": "2.11.x-dev"
+    },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -64,7 +61,7 @@
         "version": "1.4.x-dev"
     },
     "doctrine/instantiator": {
-        "version": "1.4.x-dev"
+        "version": "1.5.x-dev"
     },
     "doctrine/lexer": {
         "version": "1.3.x-dev"
@@ -73,22 +70,13 @@
         "version": "2.3.x-dev"
     },
     "doctrine/orm": {
-        "version": "2.7.x-dev"
+        "version": "2.12.x-dev"
     },
     "doctrine/persistence": {
         "version": "1.4.x-dev"
     },
-    "doctrine/reflection": {
-        "version": "1.2.x-dev"
-    },
     "doctrine/sql-formatter": {
         "version": "1.x-dev"
-    },
-    "easycorp/easy-log-handler": {
-        "version": "v1.0.9"
-    },
-    "facebook/webdriver": {
-        "version": "1.6.0"
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "1.x-dev"
@@ -96,23 +84,11 @@
     "laminas/laminas-code": {
         "version": "4.0.x-dev"
     },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.2.x-dev"
-    },
     "monolog/monolog": {
         "version": "2.x-dev"
     },
     "nikic/php-parser": {
         "version": "v4.4.0"
-    },
-    "ocramius/package-versions": {
-        "version": "1.5.1"
-    },
-    "ocramius/proxy-manager": {
-        "version": "2.2.3"
-    },
-    "php": {
-        "version": "7.3.17"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.x-dev"
@@ -122,9 +98,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.x-dev"
-    },
-    "phpstan/phpdoc-parser": {
-        "version": "0.4.9"
     },
     "psr/cache": {
         "version": "1.0.x-dev"
@@ -151,21 +124,6 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
-        ]
-    },
-    "slevomat/coding-standard": {
-        "version": "6.x-dev"
-    },
-    "squizlabs/php_codesniffer": {
-        "version": "3.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "3.0",
-            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
-        },
-        "files": [
-            "phpcs.xml.dist"
         ]
     },
     "symfony/asset": {
@@ -195,9 +153,6 @@
             "bin/console"
         ]
     },
-    "symfony/contracts": {
-        "version": "1.0-dev"
-    },
     "symfony/css-selector": {
         "version": "5.1.x-dev"
     },
@@ -212,9 +167,6 @@
         "files": [
             "config/packages/dev/debug.yaml"
         ]
-    },
-    "symfony/debug-pack": {
-        "version": "dev-master"
     },
     "symfony/dependency-injection": {
         "version": "5.1.x-dev"
@@ -283,19 +235,10 @@
             "src/Kernel.php"
         ]
     },
-    "symfony/http-client-contracts": {
-        "version": "2.3-dev"
-    },
     "symfony/http-foundation": {
         "version": "5.1.x-dev"
     },
     "symfony/http-kernel": {
-        "version": "5.1.x-dev"
-    },
-    "symfony/inflector": {
-        "version": "5.1.x-dev"
-    },
-    "symfony/intl": {
         "version": "5.1.x-dev"
     },
     "symfony/maker-bundle": {
@@ -328,11 +271,8 @@
     "symfony/options-resolver": {
         "version": "5.1.x-dev"
     },
-    "symfony/orm-pack": {
-        "version": "dev-master"
-    },
-    "symfony/panther": {
-        "version": "1.0.x-dev"
+    "symfony/password-hasher": {
+        "version": "6.0.x-dev"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",
@@ -361,17 +301,11 @@
     "symfony/polyfill-mbstring": {
         "version": "1.15.x-dev"
     },
-    "symfony/polyfill-php73": {
-        "version": "1.15.x-dev"
-    },
-    "symfony/polyfill-php80": {
-        "version": "1.15.x-dev"
+    "symfony/polyfill-php81": {
+        "version": "v1.25.0"
     },
     "symfony/process": {
         "version": "5.1.x-dev"
-    },
-    "symfony/profiler-pack": {
-        "version": "dev-master"
     },
     "symfony/property-access": {
         "version": "5.1.x-dev"
@@ -411,17 +345,11 @@
     "symfony/security-csrf": {
         "version": "5.1.x-dev"
     },
-    "symfony/security-guard": {
-        "version": "5.1.x-dev"
-    },
     "symfony/security-http": {
         "version": "5.1.x-dev"
     },
     "symfony/serializer": {
         "version": "5.1.x-dev"
-    },
-    "symfony/serializer-pack": {
-        "version": "dev-master"
     },
     "symfony/service-contracts": {
         "version": "2.0.x-dev"
@@ -431,9 +359,6 @@
     },
     "symfony/string": {
         "version": "5.1.x-dev"
-    },
-    "symfony/test-pack": {
-        "version": "dev-master"
     },
     "symfony/translation-contracts": {
         "version": "2.0.x-dev"
@@ -506,11 +431,5 @@
     },
     "webmozart/assert": {
         "version": "1.8.0"
-    },
-    "zendframework/zend-code": {
-        "version": "3.5.x-dev"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.3.x-dev"
     }
 }
