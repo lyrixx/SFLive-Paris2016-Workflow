@@ -1,8 +1,11 @@
 security:
+    enable_authenticator_manager: true
+
     role_hierarchy:
         ROLE_ADMIN: [ROLE_WRITTER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+
+    password_hashers:
+        Symfony\Component\Security\Core\User\InMemoryUser: plaintext
 
     providers:
         in_memory:
@@ -20,7 +23,11 @@ security:
 
         main:
             pattern: ^/
-            anonymous: true
-            logout: true
-            switch_user:
-                role: IS_AUTHENTICATED_ANONYMOUSLY
+
+            logout:
+                target: /
+            # logout:
+            #     handlers:
+            #         - App\Security\YoloAuthenticator
+            custom_authenticators:
+                - App\Security\YoloAuthenticator

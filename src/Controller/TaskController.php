@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
@@ -14,13 +15,18 @@ use Symfony\Component\Workflow\WorkflowInterface;
  */
 class TaskController extends AbstractController
 {
+    public function __construct(
+        private EntityManagerInterface $em
+    ) {
+    }
+
     /**
      * @Route("/", name="task_index")
      */
     public function index()
     {
         return $this->render('task/index.html.twig', [
-            'tasks' => $this->get('doctrine')->getRepository(Task::class)->findAll(),
+            'tasks' => $this->em->getRepository(Task::class)->findAll(),
         ]);
     }
 
@@ -31,9 +37,8 @@ class TaskController extends AbstractController
     {
         $task = new Task($request->request->get('title', 'title'));
 
-        $em = $this->get('doctrine')->getManager();
-        $em->persist($task);
-        $em->flush();
+        $this->em->persist($task);
+        $this->em->flush();
 
         return $this->redirect($this->generateUrl('task_show', ['id' => $task->getId()]));
     }
@@ -56,9 +61,9 @@ class TaskController extends AbstractController
         try {
             $taskStateMachine->apply($task, $request->request->get('transition'));
 
-            $this->get('doctrine')->getManager()->flush();
+            $this->em->flush();
         } catch (ExceptionInterface $e) {
-            $this->get('session')->getFlashBag()->add('danger', $e->getMessage());
+            $this->addFlash('danger', $e->getMessage());
         }
 
         return $this->redirect(
@@ -72,7 +77,7 @@ class TaskController extends AbstractController
     public function resetMarking(Task $task)
     {
         $task->setMarking(null);
-        $this->get('doctrine')->getManager()->flush();
+        $this->em->flush();
 
         return $this->redirect($this->generateUrl('task_show', ['id' => $task->getId()]));
     }

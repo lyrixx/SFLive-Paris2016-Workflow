@@ -3,19 +3,18 @@
 namespace App\Twig;
 
 use Symfony\Component\Workflow\Registry;
+use Symfony\Component\Workflow\TransitionBlockerList;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class WorkflowExtension extends AbstractExtension
 {
-    private $workflowRegistry;
-
-    public function __construct(Registry $workflowRegistry)
-    {
-        $this->workflowRegistry = $workflowRegistry;
+    public function __construct(
+        private Registry $workflowRegistry
+    ) {
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return array(
             new TwigFunction('workflow_all_transitions', [$this, 'getTransitions']),
@@ -25,14 +24,14 @@ class WorkflowExtension extends AbstractExtension
 
     // This method is a hack to get all transitions, enabled or not.
     // This should be done only for a demo purpose
-    public function getTransitions($subject, string $name = null)
+    public function getTransitions(object $subject, string $name = null): array
     {
         $workflow = $this->workflowRegistry->get($subject, $name);
 
         return $workflow->getDefinition()->getTransitions();
     }
 
-    public function buildTransitionBlockerList($subject, string $transitionName, string $name = null)
+    public function buildTransitionBlockerList(object $subject, string $transitionName, string $name = null): TransitionBlockerList
     {
         $workflow = $this->workflowRegistry->get($subject, $name);
 

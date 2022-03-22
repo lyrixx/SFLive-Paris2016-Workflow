@@ -26,7 +26,7 @@ class WorkflowUpdateSvgCommand extends Command implements ContainerAwareInterfac
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('service_name');
 

@@ -12,10 +12,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: '_exit'})) }}">
-                            Hello {{ app.user.username|title }} | logout
+                        <a href="{{ path('logout', { returnTo: app.request.pathinfo }) }}">
+                            Hello {{ app.user|title }} | logout
                         </a>
                     </li>
                 {% else %}
@@ -24,10 +24,10 @@
                             Connect as <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            {% for user in ['alice', 'journalist', 'spellchecker', 'admin'] %}
+                            {% for username in ['alice', 'journalist', 'spellchecker', 'admin'] %}
                                 <li>
-                                    <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({_switch_user: user})) }}">
-                                        {{ user|title }}
+                                    <a href="{{ path('login', {username: username}) }}">
+                                        {{ username|title }}
                                     </a>
                                 </li>
                             {% endfor %}
