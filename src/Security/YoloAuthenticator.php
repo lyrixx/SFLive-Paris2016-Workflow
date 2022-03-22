@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
-class YoloAuthenticator extends AbstractAuthenticator implements LogoutSuccessHandlerInterface
+class YoloAuthenticator extends AbstractAuthenticator
 {
     private UserProviderInterface $userProvider;
 
@@ -30,13 +30,13 @@ class YoloAuthenticator extends AbstractAuthenticator implements LogoutSuccessHa
         return 'login' === $request->attributes->get('_route');
     }
 
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): Passport
     {
         $username = $request->attributes->get('username');
 
         return new Passport(
             new UserBadge($username, function ($username) {
-                return $this->userProvider->loadUserByUsername($username);
+                return $this->userProvider->loadUserByIdentifier($username);
             }),
             new PasswordCredentials('password'),
         );

@@ -9,25 +9,24 @@ use Symfony\Component\Workflow\Event\TransitionEvent;
 
 class TransitionEventSubscriber implements EventSubscriberInterface
 {
-    private $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage)
-    {
-        $this->tokenStorage = $tokenStorage;
+    public function __construct(
+        private TokenStorageInterface $tokenStorage
+    ) {
     }
+
     public function onWorkflowArticleTransition(TransitionEvent $event)
     {
         $context = $event->getContext();
 
-        $user = $this->tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()?->getUser();
         if ($user instanceof UserInterface) {
-            $context['user'] = $user->getUsername();
+            $context['user'] = $user->getUserIdentifier();
         }
 
         $event->setContext($context);
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
            TransitionEvent::class => 'onWorkflowArticleTransition',

@@ -14,8 +14,8 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
-                        <a href="{{ path('logout') }}">
-                            Hello {{ app.user.username|title }} | logout
+                        <a href="{{ path('logout', { returnTo: app.request.pathinfo }) }}">
+                            Hello {{ app.user|title }} | logout
                         </a>
                     </li>
                 {% else %}

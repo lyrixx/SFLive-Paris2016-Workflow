@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
@@ -14,13 +15,18 @@ use Symfony\Component\Workflow\WorkflowInterface;
  */
 class ArticleController extends AbstractController
 {
+    public function __construct(
+        private EntityManagerInterface $em
+    ) {
+    }
+
     /**
      * @Route("", name="article_index")
      */
     public function index()
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $this->get('doctrine')->getRepository(Article::class)->findAll(),
+            'articles' => $this->em->getRepository(Article::class)->findAll(),
         ]);
     }
 
@@ -31,9 +37,8 @@ class ArticleController extends AbstractController
     {
         $article = new Article($request->request->get('title', 'title'));
 
-        $em = $this->get('doctrine')->getManager();
-        $em->persist($article);
-        $em->flush();
+        $this->em->persist($article);
+        $this->em->flush();
 
         return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
     }
@@ -58,9 +63,9 @@ class ArticleController extends AbstractController
                 ->apply($article, $request->request->get('transition'), [
                     'time' => date('y-m-d H:i:s'),
                 ]);
-            $this->get('doctrine')->getManager()->flush();
+            $this->em->flush();
         } catch (ExceptionInterface $e) {
-            $this->get('session')->getFlashBag()->add('danger', $e->getMessage());
+            $this->addFlash('danger', $e->getMessage());
         }
 
         return $this->redirect(
@@ -74,7 +79,7 @@ class ArticleController extends AbstractController
     public function resetMarking(Article $article)
     {
         $article->setMarking([]);
-        $this->get('doctrine')->getManager()->flush();
+        $this->em->flush();
 
         return $this->redirect($this->generateUrl('article_show', ['id' => $article->getId()]));
     }
