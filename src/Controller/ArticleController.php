@@ -16,7 +16,7 @@ use Symfony\Component\Workflow\WorkflowInterface;
 class ArticleController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $em
+        private EntityManagerInterface $em,
     ) {
     }
 

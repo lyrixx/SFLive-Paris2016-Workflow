@@ -24,7 +24,7 @@
             <h2>What can you do?</h2>
             <form action="{{ path('task_apply_transition', {id: task.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
-                    {% for transition in workflow_all_transitions(task) %}
+                    {% for transition in workflow_all_transitions('task') %}
                         <button type="submit" name="transition" value="{{ transition.name }}"
                             {% if workflow_can(task, transition.name) -%}
                                 class="btn btn-primary"

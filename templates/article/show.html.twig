@@ -24,7 +24,7 @@
             <h2>What can you do?</h2>
             <form action="{{ path('article_apply_transition', {id: article.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
-                    {% for transition in workflow_all_transitions(article) %}
+                    {% for transition in workflow_all_transitions('article') %}
                         <button type="submit" name="transition" value="{{ transition.name }}"
                             {% if workflow_can(article, transition.name) -%}
                                 class="btn btn-primary"
@@ -48,7 +48,7 @@
         <div class="col-md-3">
             <h2>Why you can't?</h2>
             <ul class="list-unstyled">
-                {% for transition in workflow_all_transitions(article) %}
+                {% for transition in workflow_all_transitions('article') %}
                     {% if not workflow_can(article, transition.name) %}
                         <li>
                             <strong>{{ transition.name }}</strong>:
