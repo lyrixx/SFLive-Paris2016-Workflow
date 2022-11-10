@@ -10,11 +10,11 @@ use Symfony\Component\Workflow\Event\TransitionEvent;
 class TransitionEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private TokenStorageInterface $tokenStorage
+        private readonly TokenStorageInterface $tokenStorage,
     ) {
     }
 
-    public function onWorkflowArticleTransition(TransitionEvent $event)
+    public function onWorkflowArticleTransition(TransitionEvent $event): void
     {
         $context = $event->getContext();
 
@@ -29,7 +29,7 @@ class TransitionEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-           TransitionEvent::class => 'onWorkflowArticleTransition',
+            TransitionEvent::class => 'onWorkflowArticleTransition',
         ];
     }
 }

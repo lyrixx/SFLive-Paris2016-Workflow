@@ -4,51 +4,29 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Table()
- * @ORM\Entity()
- */
+#[ORM\Entity()]
 class Task
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Column(type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    public int $id;
 
-    /** @ORM\Column(type="string", length=255) */
-    private $title;
+    #[ORM\Column(type: 'string', nullable: true)]
+    public ?string $marking = null;
 
-    /** @ORM\Column(type="string", nullable=true) */
-    private $marking;
-
-    public function __construct($title = 'Title')
-    {
-        $this->title = $title;
+    public function __construct(
+        #[ORM\Column(type: 'string', length: 255)]
+        public readonly string $title = 'Title',
+    ) {
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function getMarking()
+    public function getMarking(): ?string
     {
         return $this->marking;
     }
 
-    public function setMarking($marking)
+    public function setMarking(?string $marking): void
     {
         $this->marking = $marking;
     }

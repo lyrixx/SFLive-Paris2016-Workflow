@@ -2,19 +2,16 @@ security:
     enable_authenticator_manager: true
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_WRITTER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
-
-    password_hashers:
-        Symfony\Component\Security\Core\User\InMemoryUser: plaintext
+        ROLE_ADMIN: [ROLE_WRITER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
 
     providers:
         in_memory:
             memory:
                 users:
-                    alice: { password: password, roles: ROLE_WRITTER }
-                    spellchecker: { password: password , roles: ROLE_SPELLCHECKER }
-                    journalist: { password: password , roles: ROLE_JOURNALIST }
-                    admin: { password: password , roles: ROLE_ADMIN }
+                    alice: { roles: ROLE_WRITER }
+                    spellchecker: { roles: ROLE_SPELLCHECKER }
+                    journalist: { roles: ROLE_JOURNALIST }
+                    admin: { roles: ROLE_ADMIN }
 
     firewalls:
         dev:
@@ -26,8 +23,5 @@ security:
 
             logout:
                 target: /
-            # logout:
-            #     handlers:
-            #         - App\Security\YoloAuthenticator
             custom_authenticators:
                 - App\Security\YoloAuthenticator

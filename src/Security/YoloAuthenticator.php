@@ -11,18 +11,14 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
-use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
-use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
 class YoloAuthenticator extends AbstractAuthenticator
 {
-    private UserProviderInterface $userProvider;
-
-    public function __construct(UserProviderInterface $userProvider)
-    {
-        $this->userProvider = $userProvider;
+    public function __construct(
+        private readonly UserProviderInterface $userProvider,
+    ) {
     }
 
     public function supports(Request $request): bool
@@ -34,17 +30,14 @@ class YoloAuthenticator extends AbstractAuthenticator
     {
         $username = $request->attributes->get('username');
 
-        return new Passport(
-            new UserBadge($username, function ($username) {
-                return $this->userProvider->loadUserByIdentifier($username);
-            }),
-            new PasswordCredentials('password'),
+        return new SelfValidatingPassport(
+            new UserBadge($username, $this->userProvider->loadUserByIdentifier(...)),
         );
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($request->headers->get('referer', '/'));
+        return new RedirectResponse((string) $request->headers->get('referer', '/'));
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
@@ -52,8 +45,8 @@ class YoloAuthenticator extends AbstractAuthenticator
         throw new AccessDeniedHttpException($exception->getMessageKey(), $exception);
     }
 
-    public function onLogoutSuccess(Request $request)
+    public function onLogoutSuccess(Request $request): Response
     {
-        return new RedirectResponse($request->headers->get('referer', '/'));
+        return new RedirectResponse((string) $request->headers->get('referer', '/'));
     }
 }
