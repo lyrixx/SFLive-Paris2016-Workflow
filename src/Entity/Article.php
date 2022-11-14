@@ -4,57 +4,32 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Table()
- * @ORM\Entity()
- */
+#[ORM\Entity()]
 class Article
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Column(type: 'integer')]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    public int $id;
 
-    /** @ORM\Column(type="string", length=255) */
-    private $title;
+    #[ORM\Column(type: 'json', nullable: true)]
+    public ?array $marking = null;
 
-    /** @ORM\Column(type="json", nullable=true) */
-    private $marking;
+    #[ORM\Column(type: 'json', nullable: true)]
+    public array $transitionContexts = [];
 
-    /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $transitionContexts;
-
-    public function __construct($title = 'Title')
-    {
-        $this->title = $title;
-        $this->transitionContexts = [];
+    public function __construct(
+        #[ORM\Column(type: 'string', length: 255)]
+        public readonly string $title = 'Title',
+    ) {
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    public function getMarking()
+    public function getMarking(): ?array
     {
         return $this->marking;
     }
 
-    public function setMarking($marking, $context = [])
+    public function setMarking(?array $marking, array $context = []): void
     {
         $this->marking = $marking;
         $this->transitionContexts[] = [
@@ -62,15 +37,5 @@ class Article
             'context' => $context,
             'time' => (new \DateTime())->format('c'),
         ];
-    }
-
-    public function getTransitionContexts()
-    {
-        return $this->transitionContexts;
-    }
-
-    public function setTransitionContexts($transitionContexts)
-    {
-        $this->transitionContexts = $transitionContexts;
     }
 }
