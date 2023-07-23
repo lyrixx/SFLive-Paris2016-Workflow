@@ -16,8 +16,8 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->bootstrapFiles([__DIR__.'/config/bootstrap.php']);
 
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_81,
-        SymfonyLevelSetList::UP_TO_SYMFONY_60,
+        LevelSetList::UP_TO_PHP_82,
+        SymfonyLevelSetList::UP_TO_SYMFONY_63,
         DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 };

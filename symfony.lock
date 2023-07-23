@@ -24,12 +24,12 @@
         "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
-        "version": "2.7",
+        "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "2.4",
-            "ref": "da713d006953b90d1c085c1be480ecdd6c4a95e0"
+            "version": "2.10",
+            "ref": "e025a6cb69b195970543820b2f18ad21724473fa"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -179,12 +179,12 @@
         "version": "6.0.x-dev"
     },
     "symfony/framework-bundle": {
-        "version": "6.2",
+        "version": "6.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "6.2",
-            "ref": "92528828e988b3b55af6eac7fe05f0e7e130a89d"
+            "ref": "af47254c5e4cd543e6af3e4508298ffebbdaddd3"
         },
         "files": [
             "config/packages/cache.yaml",
@@ -234,12 +234,12 @@
         "version": "6.0.x-dev"
     },
     "symfony/phpunit-bridge": {
-        "version": "6.0",
+        "version": "6.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.3",
-            "ref": "97cb3dc7b0f39c7cfc4b7553504c9d7b7795de96"
+            "branch": "main",
+            "version": "6.3",
+            "ref": "01dfaa98c58f7a7b5a9b30e6edb7074af7ed9819"
         },
         "files": [
             ".env.test",
@@ -325,12 +325,12 @@
         "version": "6.0.x-dev"
     },
     "symfony/twig-bundle": {
-        "version": "6.0",
+        "version": "6.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.4",
-            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
+            "branch": "main",
+            "version": "6.3",
+            "ref": "b7772eb20e92f3fb4d4fe756e7505b4ba2ca1a2c"
         },
         "files": [
             "config/packages/twig.yaml",
