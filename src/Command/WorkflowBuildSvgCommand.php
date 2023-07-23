@@ -59,6 +59,6 @@ class WorkflowBuildSvgCommand extends Command
 
         file_put_contents(sprintf('%s/templates/%s/doc.svg.twig', $this->projectDir, $name), $svg);
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

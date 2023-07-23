@@ -1,6 +1,4 @@
 security:
-    enable_authenticator_manager: true
-
     role_hierarchy:
         ROLE_ADMIN: [ROLE_WRITER, ROLE_SPELLCHECKER, ROLE_JOURNALIST]
 
