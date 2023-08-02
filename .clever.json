@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_08b9b09b-c9b2-41b4-ae43-4fe9e9c3c792",
+      "org_id": "user_bd66f947-3ca5-42d3-87cb-7a109d5df049",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_08b9b09b-c9b2-41b4-ae43-4fe9e9c3c792.git",
+      "name": "symfony-workflow",
+      "alias": "symfony-workflow"
+    }
+  ]
+}
