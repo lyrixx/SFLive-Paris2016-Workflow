@@ -60,6 +60,7 @@ framework:
             # events_to_dispatch: ['workflow.enter']
 
         task:
+            audit_trail: true
             type: state_machine
             supports:
                 - App\Entity\Task
