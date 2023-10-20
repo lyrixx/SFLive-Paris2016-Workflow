@@ -7,7 +7,7 @@
             <ul>
                 {% for task in tasks %}
                     <li>
-                        <a href="{{ url('task_show', { id: task.id }) }}">
+                        <a href="{{ path('task_show', { id: task.id }) }}">
                             {{ task.title }}
                         </a>
                     </li>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-6 mb-3">
             <h2>Add new task</h2>
-            <form action="{{ url('task_create') }}" method="post"  class="form-inline">
+            <form action="{{ path('task_create') }}" method="post"  class="form-inline">
                 <div class="mb-3">
                     <div class="form-group">
                         <label for="title" class="form-label">Title</label>

@@ -7,7 +7,7 @@
             <ul>
                 {% for article in articles %}
                     <li>
-                        <a href="{{ url('article_show', { id: article.id }) }}">
+                        <a href="{{ path('article_show', { id: article.id }) }}">
                             {{ article.title }}
                         </a>
                     </li>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-6">
             <h2>Add new article</h2>
-            <form action="{{ url('article_create') }}" method="post"  class="form-inline">
+            <form action="{{ path('article_create') }}" method="post"  class="form-inline">
                 <div class="mb-3">
                     <div class="form-group">
                         <label for="title" class="form-label">Title</label>
