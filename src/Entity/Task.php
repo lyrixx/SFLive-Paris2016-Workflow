@@ -18,6 +18,5 @@ class Task
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
         public readonly string $title = 'Title',
-    ) {
-    }
+    ) {}
 }

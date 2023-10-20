@@ -10,8 +10,7 @@ class WorkflowExtension extends AbstractExtension
 {
     public function __construct(
         private readonly ContainerInterface $workflows,
-    ) {
-    }
+    ) {}
 
     public function getFunctions(): array
     {
