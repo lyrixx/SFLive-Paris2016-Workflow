@@ -1,17 +1,16 @@
-{% extends 'task/layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block main %}
     <h1>Task "{{ task.title}}"</h1>
+
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-6 mb-3">
             <h2>Current Marking</h2>
             <p>
                 <code>
                     AppBundle\Entity\Task::marking
                 </code>
-                <br />
                 =
-                <br />
                 <code>{{ task.marking }}</code>
             </p>
             <p>
@@ -20,64 +19,33 @@
                 </form>
             </p>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6 mb-3">
             <h2>What can you do?</h2>
             <form action="{{ path('task_apply_transition', {id: task.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
                     {% for transition in workflow_all_transitions('task') %}
-                        <button type="submit" name="transition" value="{{ transition.name }}"
-                            {% if workflow_can(task, transition.name) -%}
-                                class="btn btn-primary"
-                            {%- else -%}
-                                class="btn btn-danger" disabled="disabled"
-                            {%- endif -%}
-                        >
+                        <button type="submit" name="transition" value="{{ transition.name }}" {% if workflow_can(task, transition.name) -%} class="btn btn-primary" {%- else -%} class="btn btn-danger" disabled="disabled" {%- endif -%}>
                             {{ transition.name }}
                         </button>
                     {% endfor %}
                 </div>
             </form>
-            <br />
+            <br/>
             {% if not workflow_transitions(task) %}
                 <strong>{{ 'no_transition_available'|trans }}</strong>
-                <br />
+                <br/>
                 {{ 'try_as_another_user'|trans }}
             {% endif %}
         </div>
     </div>
-{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
+    <hr>
 
-
-    $(function() {
-
-        var name = "{{ task.marking }}".replace(/[^\w]/i, '_').toLowerCase();
-        var $svg = $('#state_machine-task');
-
-        sha1(name).then(function (placeHash) {
-            console.log(name, placeHash);
-            let search = 'place_' + placeHash;
-            console.log('searching for ' + search + ' in $svg');
-
-            $('g.node title:contains("'+search +'")', $svg).each(function(j, place) {
-                console.log("now looking for " + name);
-                console.log(place);
-                    console.log('found ' + name, j, place);
-                    var place = $(place).parent();
-                    var ref = $('ellipse', place);
-                    ref.attr('stroke', 'red');
-                    var newEllipse = ref.clone();
-                    newEllipse.attr('rx', ref.attr('rx') * .9);
-                    newEllipse.attr('ry', ref.attr('ry') * .9);
-                    ref.after(newEllipse);
-            });
-        });
-
-        // let placeHash = sha1(name);
-        // let placeHash = crypto.createHash('sha1').update(name).digest("hex");
-    });
-    </script>
+    <div class="row">
+        <div class="col text-center mx-auto">
+            <div class="mermaid">
+                {{- workflow_dump('task', 'statemachine', task) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

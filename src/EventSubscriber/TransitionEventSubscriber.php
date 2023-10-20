@@ -11,8 +11,7 @@ class TransitionEventSubscriber
 {
     public function __construct(
         private readonly TokenStorageInterface $tokenStorage,
-    ) {
-    }
+    ) {}
 
     #[AsTransitionListener()]
     #[AsTransitionListener(workflow: 'my-workflow')]

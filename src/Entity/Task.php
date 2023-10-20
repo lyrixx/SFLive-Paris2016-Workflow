@@ -18,16 +18,5 @@ class Task
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
         public readonly string $title = 'Title',
-    ) {
-    }
-
-    public function getMarking(): ?string
-    {
-        return $this->marking;
-    }
-
-    public function setMarking(?string $marking): void
-    {
-        $this->marking = $marking;
-    }
+    ) {}
 }

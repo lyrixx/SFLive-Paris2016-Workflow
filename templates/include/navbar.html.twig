@@ -1,32 +1,29 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">Symfony Workflow</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" href="{{ url('homepage') }}">Symfony Workflow</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto"></ul>
+            <ul class="navbar-nav">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
+                        Hello {{ app.user|title }} |
                         <a href="{{ path('logout', { returnTo: app.request.pathinfo }) }}">
-                            Hello {{ app.user|title }} | logout
+                            logout
                         </a>
                     </li>
                 {% else %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Connect as <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Connect as
+                            <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             {% for username in ['alice', 'journalist', 'spellchecker', 'admin'] %}
                                 <li>
-                                    <a href="{{ path('login', {username: username}) }}">
+                                    <a href="{{ path('login', {username: username}) }}" class="dropdown-item">
                                         {{ username|title }}
                                     </a>
                                 </li>
