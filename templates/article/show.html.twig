@@ -1,9 +1,10 @@
-{% extends 'article/layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block main %}
     <h1>Article "{{ article.title}}"</h1>
+
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3 mb-3">
             <h2>Current Marking</h2>
             <p>
                 <code>
@@ -20,7 +21,7 @@
                 </form>
             </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 mb-3">
             <h2>What can you do?</h2>
             <form action="{{ path('article_apply_transition', {id: article.id}) }}" method="post">
                 <div class="btn-group-vertical" role="group">
@@ -45,7 +46,7 @@
                 she may have more permissions than you.
             {% endif %}
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 mb-3">
             <h2>Why you can't?</h2>
             <ul class="list-unstyled">
                 {% for transition in workflow_all_transitions('article') %}
@@ -67,7 +68,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 mb-3">
             <h2>Metadata</h2>
             <p>
                 <strong>Workflow</strong>:<br >
@@ -97,54 +98,40 @@
             </p>
         </div>
     </div>
-{% endblock %}
 
-{% block main_footer %}
-    <div class="col-md-6">
-        <h2>Last 5 transitions context <small class="text-muted">(most recent first)</small></h2>
-        {% for transitionContext in article.transitionContexts[0:5]|reverse %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <dl class="dl-horizontal" style="margin: 0">
-                        <dt>New Marking</dt>
-                        <dd>{{ transitionContext.new_marking|keys|join(', ') }}</dd>
+    <hr>
 
-                        <dt>When</dt>
-                        <dd>{{ transitionContext.time|date('Y-m-d H:i:s') }}</dd>
-
-                        {% for k, v in transitionContext.context %}
-                            <dt>{{ k|title }}</dt>
-                            <dd>{{ v }}</dd>
-                        {% endfor %}
-                    </dl>
-                </div>
+    <div class="row">
+        <div class="col text-center mx-auto">
+            <div class="mermaid">
+                {{- workflow_dump('article', 'workflow', article) }}
             </div>
-        {% endfor %}
+        </div>
     </div>
-{% endblock %}
 
+    <hr>
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-    $(function() {
-        var marking = {{ article.marking|keys|json_encode|raw }};
-        var $svg = $('#workflow-article');
+    <div class="row">
+        <div class="col-xl-6">
+            <h2>Last 5 transitions context <small class="text-muted">(most recent first)</small></h2>
+            {% for transitionContext in article.transitionContexts[0:5]|reverse %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">New Marking</dt>
+                            <dd class="col-sm-9">{{ transitionContext.new_marking|keys|join(', ') }}</dd>
 
-        for (var i = 0; i < marking.length; i++) {
-            sha1(marking[i]).then(function (placeHash) {
-                let search = 'place_' + placeHash;
-                $('g.node title:contains("'+search+'")', $svg).each(function(j, place) {
-                    var place = $(place).parent();
-                    var ref = $('ellipse', place);
-                    ref.attr('stroke', 'red');
-                    var newEllipse = ref.clone();
-                    newEllipse.attr('rx', ref.attr('rx') * .9);
-                    newEllipse.attr('ry', ref.attr('ry') * .9);
-                    ref.after(newEllipse);
-                });
-            });
-        }
-    });
-    </script>
+                            <dt class="col-sm-3">When</dt>
+                            <dd class="col-sm-9">{{ transitionContext.time|date('Y-m-d H:i:s') }}</dd>
+
+                            {% for k, v in transitionContext.context %}
+                                <dt class="col-sm-3">{{ k|title }}</dt>
+                                <dd class="col-sm-9">{{ v }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -1,65 +1,45 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-
-    <div class="jumbotron">
-
-        <h1>symfony/workflow</h1>
-
-        <p>
-
-            This application is a demo to see how the <a href="https://symfony.com/doc/current/components/workflow.html" target="_blank">symfony/workflow</a> component
-            works, and what you can do with.
-            <br />
-            The code is hosted on <a href="https://github.com/lyrixx/SFLive-Paris2016-Workflow" target="_blank">Github</a>
-            and it's deployed on <a href="https://app-08b9b09b-c9b2-41b4-ae43-4fe9e9c3c792.cleverapps.io/" target="_blank">CleverCloud</a>
-
-        </p>
-
+{% block main %}
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold mb-3">symfony/workflow demo</h1>
+            <p class="col-8 fs-4">
+                This application is a demo to see how the
+                <a href="https://symfony.com/doc/current/components/workflow.html" target="_blank">symfony/workflow</a>
+                component works, and what you can do with.
+                <br/>
+                The code is hosted on
+                <a href="https://github.com/lyrixx/SFLive-Paris2016-Workflow" target="_blank">Github</a>
+                and it's deployed on
+                <a href="https://app-08b9b09b-c9b2-41b4-ae43-4fe9e9c3c792.cleverapps.io/" target="_blank">CleverCloud</a>
+            </p>
+        </div>
     </div>
 
     <div class="row">
-
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">State Machine</h3>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    State Machine
                 </div>
-                <div class="panel-body">
-                    Play with a state machine:
-                    <p>
-                        <ul>
-                            <li>
-                                <a href="{{ path('task_index') }}">
-                                    Task
-                                </a>
-                            </li>
-                        </ul>
-                    </p>
+                <div class="card-body">
+                    <p class="card-text">Play with a state machine</p>
+                    <a href="{{ url('task_index') }}" class="btn btn-primary">▶ Task</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Workflow Net</h3>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Workflow Net
                 </div>
-                <div class="panel-body">
-                    Play with a workflow net:
-                    <p>
-                        <ul>
-                            <li>
-                                <a href="{{ path('article_index') }}">
-                                    Article
-                                </a>
-                            </li>
-                        </ul>
-                    </p>
+                <div class="card-body">
+                    <p class="card-text">Play with a workflow net</p>
+                    <a href="{{ url('article_index') }}" class="btn btn-primary">▶ Article</a>
                 </div>
             </div>
         </div>
-
     </div>
-
 {% endblock %}

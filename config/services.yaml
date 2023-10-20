@@ -4,9 +4,6 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        bind:
-            Psr\Container\ContainerInterface $workflows: !tagged_locator  { tag: workflow, index_by: name }
-            string $projectDir: '%kernel.project_dir%'
 
     App\:
         resource: '../src/'

@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Dumper\MermaidDumper;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
@@ -43,8 +44,14 @@ class TaskController extends AbstractController
     #[Route(path: '/show/{id}', name: 'task_show')]
     public function show(Task $task): Response
     {
+        $dumper = new MermaidDumper(MermaidDumper::TRANSITION_TYPE_STATEMACHINE);
+
         return $this->render('task/show.html.twig', [
             'task' => $task,
+            'dump' => $dumper->dump(
+                $this->stateMachine->getDefinition(),
+                $this->stateMachine->getMarking($task),
+            ),
         ]);
     }
 
@@ -65,7 +72,7 @@ class TaskController extends AbstractController
     #[Route(path: '/reset-marking/{id}', methods: ['POST'], name: 'task_reset_marking')]
     public function resetMarking(Task $task): Response
     {
-        $task->setMarking(null);
+        $task->marking = null;
         $this->em->flush();
 
         return $this->redirectToRoute('task_show', ['id' => $task->id]);

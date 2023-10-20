@@ -1,13 +1,13 @@
-{% extends 'article/layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block main %}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             <h1>Article list</h1>
-            <ul class="list-unstyled">
+            <ul>
                 {% for article in articles %}
                     <li>
-                        <a href="{{ path('article_show', {id: article.id}) }}">
+                        <a href="{{ url('article_show', { id: article.id }) }}">
                             {{ article.title }}
                         </a>
                     </li>
@@ -22,13 +22,25 @@
         </div>
         <div class="col-md-6">
             <h2>Add new article</h2>
-            <form action="{{ path('article_create') }}" method="post"  class="form-inline">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" value="{{ articles ? "Articles #{(articles|length) + 1}" : "My first article" }}" class="form-control" />
+            <form action="{{ url('article_create') }}" method="post"  class="form-inline">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title"  name="title" value="{{ articles ? "articles #{(articles|length) + 1}" : "My first article" }}">
+                    </div>
                 </div>
-                <button type="submit"  class="btn btn-default">create</button>
+                <button type="submit" class="btn btn-primary">Create</button>
             </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col text-center mx-auto">
+            <div class="mermaid">
+                {{- workflow_dump('article', 'statemachine') }}
+            </div>
         </div>
     </div>
 {% endblock %}
