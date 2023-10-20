@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,8 @@ class TaskController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
+        #[Target('task')]
+        private readonly WorkflowInterface $stateMachine,
     ) {
     }
 
@@ -47,10 +50,10 @@ class TaskController extends AbstractController
     }
 
     #[Route(path: '/apply-transition/{id}', methods: ['POST'], name: 'task_apply_transition')]
-    public function applyTransition(WorkflowInterface $taskStateMachine, Request $request, Task $task): Response
+    public function applyTransition(Request $request, Task $task): Response
     {
         try {
-            $taskStateMachine->apply($task, (string) $request->request->get('transition'));
+            $this->stateMachine->apply($task, (string) $request->request->get('transition'));
 
             $this->em->flush();
         } catch (ExceptionInterface $e) {

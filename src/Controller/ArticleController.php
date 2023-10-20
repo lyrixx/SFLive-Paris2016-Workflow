@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,8 @@ class ArticleController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
+        #[Target('article')]
+        private readonly WorkflowInterface $workflow,
     ) {
     }
 
@@ -47,10 +50,10 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/apply-transition/{id}', methods: ['POST'], name: 'article_apply_transition')]
-    public function applyTransition(WorkflowInterface $articleWorkflow, Request $request, Article $article): Response
+    public function applyTransition(Request $request, Article $article): Response
     {
         try {
-            $articleWorkflow
+            $this->workflow
                 ->apply($article, (string) $request->request->get('transition'), [
                     'time' => date('y-m-d H:i:s'),
                 ])
@@ -67,6 +70,8 @@ class ArticleController extends AbstractController
     public function resetMarking(Article $article): Response
     {
         $article->setMarking([]);
+        $article->transitionContexts = [];
+
         $this->em->flush();
 
         return $this->redirectToRoute('article_show', ['id' => $article->id]);

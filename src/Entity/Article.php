@@ -24,11 +24,6 @@ class Article
     ) {
     }
 
-    public function getMarking(): ?array
-    {
-        return $this->marking;
-    }
-
     public function setMarking(?array $marking, array $context = []): void
     {
         $this->marking = $marking;
