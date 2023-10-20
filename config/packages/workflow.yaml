@@ -53,7 +53,7 @@ framework:
                     metadata:
                         title: Do you want to publish?
             metadata:
-                title: Workflow to manager article
+                title: Manage article
             audit_trail: true
             # events_to_dispatch: ~
             # events_to_dispatch: []
