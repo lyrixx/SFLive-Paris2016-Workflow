@@ -15,10 +15,12 @@ class WorkflowExtension extends AbstractExtension
         private readonly ContainerInterface $workflows,
     ) {}
 
-    public function getFunctions(): iterable
+    public function getFunctions(): array
     {
-        yield new TwigFunction('workflow_all_transitions', $this->getTransitions(...));
-        yield new TwigFunction('workflow_dump', $this->dump(...));
+        return [
+            new TwigFunction('workflow_all_transitions', $this->getTransitions(...)),
+            new TwigFunction('workflow_dump', $this->dump(...)),
+        ];
     }
 
     // This method is a hack to get all transitions, enabled or not.
