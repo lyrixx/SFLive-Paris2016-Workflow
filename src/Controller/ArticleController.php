@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
-#[Route(path: '/article')]
+#[Route(path: '/articles')]
 class ArticleController extends AbstractController
 {
     public function __construct(
