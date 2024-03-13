@@ -10,7 +10,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
                         Hello {{ app.user|title }} |
-                        <a href="{{ path('logout', { returnTo: app.request.pathinfo }) }}">
+                        <a href="{{ path('_logout_main', { returnTo: app.request.pathinfo }) }}">
                             logout
                         </a>
                     </li>
