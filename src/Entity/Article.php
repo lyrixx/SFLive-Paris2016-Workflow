@@ -9,7 +9,7 @@ class Article
 {
     #[ORM\Column(type: 'integer')]
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\GeneratedValue(strategy: 'SEQUENCE')]
     public int $id;
 
     #[ORM\Column(type: 'json', nullable: true)]
