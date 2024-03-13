@@ -19,10 +19,4 @@ class HomepageController extends AbstractController
     {
         throw new \LogicException('The security component should handle this route.');
     }
-
-    #[Route(path: '/logout', name: 'logout')]
-    public function logout(): never
-    {
-        throw new \LogicException('The security component should handle this route.');
-    }
 }

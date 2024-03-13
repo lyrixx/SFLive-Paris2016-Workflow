@@ -11,10 +11,9 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 {
     use MicroKernelTrait;
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
-        foreach ($container->findTaggedServiceIds('workflow.workflow') as $id => $attributes) {
-            $config = $container->getDefinition($id)->getTag('workflow')[0];
-        }
+        // Do nice things with this...
+        $container->findTaggedServiceIds('workflow');
     }
 }

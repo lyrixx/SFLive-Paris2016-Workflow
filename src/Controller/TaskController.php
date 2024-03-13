@@ -13,7 +13,7 @@ use Symfony\Component\Workflow\Dumper\MermaidDumper;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 use Symfony\Component\Workflow\WorkflowInterface;
 
-#[Route(path: '/task')]
+#[Route(path: '/tasks')]
 class TaskController extends AbstractController
 {
     public function __construct(
@@ -22,7 +22,7 @@ class TaskController extends AbstractController
         private readonly WorkflowInterface $stateMachine,
     ) {}
 
-    #[Route(path: '/', name: 'task_index')]
+    #[Route(path: '', name: 'task_index')]
     public function index(): Response
     {
         return $this->render('task/index.html.twig', [
