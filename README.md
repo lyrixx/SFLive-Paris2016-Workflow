@@ -20,4 +20,4 @@ SVG by running the following command:
 ## Thanks
 
 Thanks [CleverCloud](https://www.clever-cloud.com/) for hosting the [demo
-application](https://s.lyrixx.info/workflow-demo).
+application](https://demo-symfony-workflow.cleverapps.io/).
