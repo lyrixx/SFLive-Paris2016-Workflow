@@ -68,28 +68,23 @@ framework:
                 - App\Entity\Task
             marking_store:
                 type: method
-            places:
-                - new
-                - backlogged
-                - processing
-                - failed
-                - completed
+            places: !php/enum App\Entity\Model\TaskStep
             transitions:
                 start_process:
-                    from: new
-                    to: processing
+                    from: !php/enum App\Entity\Model\TaskStep::New
+                    to: !php/enum App\Entity\Model\TaskStep::Processing
                 retry:
-                    from: backlogged
-                    to: processing
+                    from: !php/enum App\Entity\Model\TaskStep::Backlogged
+                    to: !php/enum App\Entity\Model\TaskStep::Processing
                 temp_error:
-                    from: processing
-                    to: backlogged
+                    from: !php/enum App\Entity\Model\TaskStep::Processing
+                    to: !php/enum App\Entity\Model\TaskStep::Backlogged
                 permanent_error:
-                    from: processing
-                    to: failed
+                    from: !php/enum App\Entity\Model\TaskStep::Processing
+                    to: !php/enum App\Entity\Model\TaskStep::Failed
                 complete_without_error:
-                    from: processing
-                    to: completed
+                    from: !php/enum App\Entity\Model\TaskStep::Processing
+                    to: !php/enum App\Entity\Model\TaskStep::Completed
 
         straight:
             type: workflow

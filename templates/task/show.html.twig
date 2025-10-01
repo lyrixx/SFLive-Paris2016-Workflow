@@ -11,7 +11,7 @@
                     AppBundle\Entity\Task::marking
                 </code>
                 =
-                <code>{{ task.marking }}</code>
+                <code>{{ task.marking.value }}</code>
             </p>
             <p>
                 <form action="{{ path('task_reset_marking', {id: task.id}) }}" method="post" class="form-inline">
