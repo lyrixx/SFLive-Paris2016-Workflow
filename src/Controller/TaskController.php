@@ -18,7 +18,7 @@ class TaskController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        #[Target('task.state_machine')]
+        #[Target('task')]
         private readonly WorkflowInterface $stateMachine,
     ) {
     }
