@@ -17,7 +17,7 @@ class ArticleController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        #[Target('article')]
+        #[Target('article.workflow')]
         private readonly WorkflowInterface $workflow,
     ) {}
 
