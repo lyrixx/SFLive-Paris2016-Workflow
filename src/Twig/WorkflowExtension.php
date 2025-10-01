@@ -13,7 +13,8 @@ class WorkflowExtension extends AbstractExtension
     public function __construct(
         #[TaggedLocator('workflow', indexAttribute: 'name')]
         private readonly ContainerInterface $workflows,
-    ) {}
+    ) {
+    }
 
     public function getFunctions(): array
     {
@@ -30,7 +31,7 @@ class WorkflowExtension extends AbstractExtension
         return $this->workflows->get($name)->getDefinition()->getTransitions();
     }
 
-    public function dump(string $name, string $transitionType, object $subject = null): string
+    public function dump(string $name, string $transitionType, ?object $subject = null): string
     {
         $dumper = new MermaidDumper($transitionType);
         $workflow = $this->workflows->get($name);

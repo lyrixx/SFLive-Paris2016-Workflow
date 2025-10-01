@@ -20,7 +20,8 @@ class TaskController extends AbstractController
         private readonly EntityManagerInterface $em,
         #[Target('task.state_machine')]
         private readonly WorkflowInterface $stateMachine,
-    ) {}
+    ) {
+    }
 
     #[Route(path: '', name: 'task_index')]
     public function index(): Response

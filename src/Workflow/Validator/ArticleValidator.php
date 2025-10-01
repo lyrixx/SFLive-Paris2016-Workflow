@@ -11,7 +11,7 @@ class ArticleValidator implements DefinitionValidatorInterface
     public function validate(Definition $definition, string $name): void
     {
         if (!$definition->getMetadataStore()->getMetadata('title')) {
-            throw new InvalidDefinitionException(sprintf('The workflow metadata title is missing in Workflow "%s".', $name));
+            throw new InvalidDefinitionException(\sprintf('The workflow metadata title is missing in Workflow "%s".', $name));
         }
     }
 }
