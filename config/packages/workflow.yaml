@@ -6,6 +6,8 @@ framework:
                 type: method
             supports:
                 - App\Entity\Article
+            definition_validators:
+                - App\Workflow\Validator\ArticleValidator
             places:
                 draft:
                     metadata:
