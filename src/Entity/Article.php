@@ -21,7 +21,8 @@ class Article
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
         public readonly string $title = 'Title',
-    ) {}
+    ) {
+    }
 
     public function setMarking(?array $marking, array $context = []): void
     {

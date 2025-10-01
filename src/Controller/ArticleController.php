@@ -19,7 +19,8 @@ class ArticleController extends AbstractController
         private readonly EntityManagerInterface $em,
         #[Target('article.workflow')]
         private readonly WorkflowInterface $workflow,
-    ) {}
+    ) {
+    }
 
     #[Route(path: '', name: 'article_index')]
     public function index(): Response

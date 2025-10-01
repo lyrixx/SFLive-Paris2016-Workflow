@@ -6,13 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SmokeTest extends WebTestCase
 {
-    public static function providePages(): iterable
-    {
-        yield ['/', 'symfony/workflow', '.container-fluid h1'];
-        yield ['/tasks'];
-        yield ['/articles'];
-    }
-
     /** @dataProvider providePages */
     public function test(string $page, ?string $expected = null, ?string $selector = null): void
     {
@@ -24,5 +17,12 @@ class SmokeTest extends WebTestCase
         if ($expected && $selector) {
             $this->assertStringContainsString($expected, $crawler->filter($selector)->text());
         }
+    }
+
+    public static function providePages(): iterable
+    {
+        yield ['/', 'symfony/workflow', '.container-fluid h1'];
+        yield ['/tasks'];
+        yield ['/articles'];
     }
 }
