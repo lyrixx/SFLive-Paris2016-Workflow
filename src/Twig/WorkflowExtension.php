@@ -3,7 +3,7 @@
 namespace App\Twig;
 
 use Psr\Container\ContainerInterface;
-use Symfony\Component\DependencyInjection\Attribute\TaggedLocator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
 use Symfony\Component\Workflow\Dumper\MermaidDumper;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -11,7 +11,7 @@ use Twig\TwigFunction;
 class WorkflowExtension extends AbstractExtension
 {
     public function __construct(
-        #[TaggedLocator('workflow', indexAttribute: 'name')]
+        #[AutowireLocator('workflow', indexAttribute: 'name')]
         private readonly ContainerInterface $workflows,
     ) {
     }
