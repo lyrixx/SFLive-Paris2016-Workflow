@@ -2,11 +2,12 @@
 
 namespace App\Tests\Controller;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SmokeTest extends WebTestCase
 {
-    /** @dataProvider providePages */
+    #[DataProvider('providePages')]
     public function test(string $page, ?string $expected = null, ?string $selector = null): void
     {
         $client = static::createClient();
