@@ -16,3 +16,8 @@
 
 /var/phpstan/tmp/
 .clever.json
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
