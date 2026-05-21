@@ -28,11 +28,4 @@ class TransitionEventSubscriber
 
         $event->setContext($context);
     }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            TransitionEvent::class => 'onWorkflowArticleTransition',
-        ];
-    }
 }
