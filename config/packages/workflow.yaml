@@ -61,30 +61,30 @@ framework:
             # events_to_dispatch: []
             # events_to_dispatch: ['workflow.enter']
 
-        task:
-            audit_trail: true
-            type: state_machine
-            supports:
-                - App\Entity\Task
-            marking_store:
-                type: method
-            places: !php/enum App\Entity\Model\TaskStep
-            transitions:
-                start_process:
-                    from: !php/enum App\Entity\Model\TaskStep::New
-                    to: !php/enum App\Entity\Model\TaskStep::Processing
-                retry:
-                    from: !php/enum App\Entity\Model\TaskStep::Backlogged
-                    to: !php/enum App\Entity\Model\TaskStep::Processing
-                temp_error:
-                    from: !php/enum App\Entity\Model\TaskStep::Processing
-                    to: !php/enum App\Entity\Model\TaskStep::Backlogged
-                permanent_error:
-                    from: !php/enum App\Entity\Model\TaskStep::Processing
-                    to: !php/enum App\Entity\Model\TaskStep::Failed
-                complete_without_error:
-                    from: !php/enum App\Entity\Model\TaskStep::Processing
-                    to: !php/enum App\Entity\Model\TaskStep::Completed
+        # task:
+        #     audit_trail: true
+        #     type: state_machine
+        #     supports:
+        #         - App\Entity\Task
+        #     marking_store:
+        #         type: method
+        #     places: !php/enum App\Entity\Model\TaskStep
+        #     transitions:
+        #         start_process:
+        #             from: !php/enum App\Entity\Model\TaskStep::New
+        #             to: !php/enum App\Entity\Model\TaskStep::Processing
+        #         retry:
+        #             from: !php/enum App\Entity\Model\TaskStep::Backlogged
+        #             to: !php/enum App\Entity\Model\TaskStep::Processing
+        #         temp_error:
+        #             from: !php/enum App\Entity\Model\TaskStep::Processing
+        #             to: !php/enum App\Entity\Model\TaskStep::Backlogged
+        #         permanent_error:
+        #             from: !php/enum App\Entity\Model\TaskStep::Processing
+        #             to: !php/enum App\Entity\Model\TaskStep::Failed
+        #         complete_without_error:
+        #             from: !php/enum App\Entity\Model\TaskStep::Processing
+        #             to: !php/enum App\Entity\Model\TaskStep::Completed
 
         straight:
             type: workflow
