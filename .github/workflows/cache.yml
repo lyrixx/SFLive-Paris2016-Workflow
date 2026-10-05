@@ -1,0 +1,32 @@
+name: Push docker image to registry
+
+"on":
+  push:
+    # Only run this job when pushing to the master branch
+    branches: ["master"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  push-images:
+    name: Push image to registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Log in to registry
+        shell: bash
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: setup-castor
+        uses: castor-php/setup-castor@2a495b8c91f00be6768ad8a040ba8634c797d386 # v1.1.0
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: "Push build cache to the registry"
+        run: "castor docker:push"

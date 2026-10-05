@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
-    <h1>Article "{{ article.title}}"</h1>
+    <h1>Article "{{ article.title }}"</h1>
 
     <div class="row">
         <div class="col-lg-3 mb-3">
@@ -80,7 +80,7 @@
                     {% for place in workflow_marked_places(article) %}
                         <li>
                             {{ place }}:
-                            <code>{{ workflow_metadata(article, 'title', place) ?: 'n-a'}}</code>
+                            <code>{{ workflow_metadata(article, 'title', place) ?: 'n-a' }}</code>
                         </li>
                     {% endfor %}
                 </ul>
@@ -91,7 +91,7 @@
                     {% for transition in workflow_transitions(article) %}
                         <li>
                             {{ transition.name }}:
-                            <code>{{ workflow_metadata(article, 'title', transition) ?: 'n-a'}}</code>
+                            <code>{{ workflow_metadata(article, 'title', transition) ?: 'n-a' }}</code>
                         </li>
                     {% endfor %}
                 </ul>

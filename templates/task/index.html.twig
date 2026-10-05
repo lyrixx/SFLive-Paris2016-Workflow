@@ -7,7 +7,7 @@
             <ul>
                 {% for task in tasks %}
                     <li>
-                        <a href="{{ path('task_show', { id: task.id }) }}">
+                        <a href="{{ path('task_show', {id: task.id}) }}">
                             {{ task.title }}
                         </a>
                     </li>
@@ -26,7 +26,7 @@
                 <div class="mb-3">
                     <div class="form-group">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title"  name="title" value="{{ tasks ? "Tasks #{(tasks|length) + 1}" : "My first task" }}">
+                        <input type="text" class="form-control" id="title"  name="title" value="{{ tasks ? "Tasks #{(tasks|length) + 1}" : 'My first task' }}">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
