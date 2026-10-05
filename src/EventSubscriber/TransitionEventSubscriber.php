@@ -14,6 +14,9 @@ class TransitionEventSubscriber
     ) {
     }
 
+    /**
+     * @param TransitionEvent<object> $event
+     */
     #[AsTransitionListener()]
     #[AsTransitionListener(workflow: 'my-workflow')]
     #[AsTransitionListener(workflow: 'my-workflow', transition: 'some-transition')]

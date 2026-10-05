@@ -7,7 +7,7 @@
             <ul>
                 {% for article in articles %}
                     <li>
-                        <a href="{{ path('article_show', { id: article.id }) }}">
+                        <a href="{{ path('article_show', {id: article.id}) }}">
                             {{ article.title }}
                         </a>
                     </li>
@@ -26,7 +26,7 @@
                 <div class="mb-3">
                     <div class="form-group">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title"  name="title" value="{{ articles ? "articles #{(articles|length) + 1}" : "My first article" }}">
+                        <input type="text" class="form-control" id="title"  name="title" value="{{ articles ? "articles #{(articles|length) + 1}" : 'My first article' }}">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
