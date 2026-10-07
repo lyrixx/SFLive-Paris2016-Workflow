@@ -3,23 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Workflow\TaskWorkflow;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Workflow\Dumper\MermaidDumper;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
-use Symfony\Component\Workflow\WorkflowInterface;
 
 #[Route(path: '/tasks')]
 class TaskController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        #[Target('task')]
-        private readonly WorkflowInterface $stateMachine,
+        private readonly TaskWorkflow $stateMachine,
     ) {
     }
 
