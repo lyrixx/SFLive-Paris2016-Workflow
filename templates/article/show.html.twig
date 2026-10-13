@@ -73,6 +73,8 @@
             <p>
                 <strong>Workflow</strong>:<br >
                 <code>{{ workflow_metadata(article, 'title') }}</code>
+                <br />
+                <small class="text-muted">{{ workflow_metadata(article, 'description') }}</small>
             </p>
             <p>
                 <strong>Current place(s)</strong>
@@ -81,6 +83,8 @@
                         <li>
                             {{ place }}:
                             <code>{{ workflow_metadata(article, 'title', place) ?: 'n-a' }}</code>
+                            <br />
+                            <small class="text-muted">{{ workflow_metadata(article, 'description', place) }}</small>
                         </li>
                     {% endfor %}
                 </ul>
@@ -92,6 +96,8 @@
                         <li>
                             {{ transition.name }}:
                             <code>{{ workflow_metadata(article, 'title', transition) ?: 'n-a' }}</code>
+                            <br />
+                            <small class="text-muted">{{ workflow_metadata(article, 'description', transition) }}</small>
                         </li>
                     {% endfor %}
                 </ul>

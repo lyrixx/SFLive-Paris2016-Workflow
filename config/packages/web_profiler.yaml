@@ -4,10 +4,12 @@ when@dev:
 
     framework:
         profiler:
-            collect_serializer_data: true
+            collect: true
+            excluded_paths:
+                - '^/\.well-known/'
+                - '^/favicon\.ico$'
 
 when@test:
     framework:
         profiler:
             collect: false
-            collect_serializer_data: true
