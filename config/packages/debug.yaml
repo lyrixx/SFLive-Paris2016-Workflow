@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schema.json
 when@dev:
     debug:
         # Forwards VarDumper Data clones to a centralized server allowing to inspect dumps on CLI or in your browser.
