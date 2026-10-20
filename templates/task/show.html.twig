@@ -12,6 +12,8 @@
                 </code>
                 =
                 <code>{{ task.marking.value }}</code>
+                <br />
+                <small class="text-muted">{{ workflow_metadata(task, 'description', task.marking.value) }}</small>
             </p>
             <p>
                 <form action="{{ path('task_reset_marking', {id: task.id}) }}" method="post" class="form-inline">
