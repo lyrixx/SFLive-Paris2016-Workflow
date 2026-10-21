@@ -17,8 +17,6 @@ parameters:
         - '{Property .* type has no value type specified in iterable type array\.}'
         - '{Method .* return type has no value type specified in iterable type array\.}'
         - '{Method .* has parameter .* with no value type specified in iterable type array\.}'
-        # Called by KernelTrait, that MicroKernelTrait uses in App\Kernel
-        - '{^Method App\\Kernel::getAllowedEnvs\(\) is unused\.$}'
 
     typeAliases:
         ContextData: '''
