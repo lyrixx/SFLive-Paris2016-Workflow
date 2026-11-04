@@ -2,7 +2,9 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
+/config/secrets/*/*.decrypt.private.php
+!/config/secrets/dev/dev.decrypt.private.php
+!/config/secrets/test/test.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/

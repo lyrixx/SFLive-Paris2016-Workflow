@@ -32,7 +32,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "3.1",
-            "ref": "5b12898971b315f19a5be25bc60d347614b78c75"
+            "ref": "798165f38ea0191f4b195503338d843f13acd312"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -225,10 +225,10 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "cd90fb049c59d5577f0177bc0badc6d2970eca89"
+            "ref": "3432a58fba173e2c80d9e86b50fdd9598fef1335"
         },
         "files": [
-            "config/packages/csrf.yaml"
+            "config/packages/form.yaml"
         ]
     },
     "symfony/framework-bundle": {
@@ -237,7 +237,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "dc142f63913d14d2225b0f425e48895592f0fbcd"
+            "ref": "6dad798dd0f9536371957911281436501bdc0d8f"
         },
         "files": [
             ".editorconfig",
@@ -313,11 +313,9 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "d2be7c7db8a2baaeee79138b20cacc54850cd974"
+            "ref": "46c0212530169ce92351ce7d58336db04f77c2a6"
         },
-        "files": [
-            "config/packages/property_info.yaml"
-        ]
+        "files": []
     },
     "symfony/routing": {
         "version": "8.2",
@@ -325,7 +323,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "0071d8dba06cbd2d94559e6ab753445fcfb1f0f0"
+            "ref": "1c0b0d4378307e83cb6e99cf3333390e3c2c9041"
         },
         "files": [
             "config/packages/routing.yaml",
@@ -341,7 +339,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "ec5af66a05c54477cc8ca27b7cd4f8cc879aa076"
+            "ref": "c0af0228ae2d5825bbbca9f32a4c054f1c40e88d"
         },
         "files": [
             "config/packages/security.yaml",
@@ -352,7 +350,16 @@
         "version": "6.0.x-dev"
     },
     "symfony/security-csrf": {
-        "version": "6.0.x-dev"
+        "version": "8.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "8.2",
+            "ref": "939ab3e95126f02c1d7a481abf72c40f810ea1cb"
+        },
+        "files": [
+            "config/packages/csrf_protection.yaml"
+        ]
     },
     "symfony/security-http": {
         "version": "6.0.x-dev"
@@ -375,7 +382,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "7c7f46d05183226347a1fbc1266f9f2460ce9189"
+            "ref": "30050bb35d10c0195a1500199a97c8c04085d2be"
         },
         "files": [
             "config/packages/translation.yaml",
@@ -394,7 +401,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "baa677c6f88ec4af98fd9bab84039e8835e17019"
+            "ref": "7e3e99b592d2b9d9afa64cfbd2fe18f1400f9750"
         },
         "files": [
             "config/packages/twig.yaml",
@@ -407,7 +414,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "d49089c43605829ee424e0c92b60c494ff95aef6"
+            "ref": "06ad4500705d987fa871ffb4ad04cea68870371e"
         },
         "files": [
             "config/packages/validator.yaml"
@@ -428,7 +435,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.2",
-            "ref": "90b638a9d099592feea4d14ad2a654e4f45b71dd"
+            "ref": "8379003b884b943fdf0ff66b0378231b0e51f893"
         },
         "files": [
             "config/packages/web_profiler.yaml",
