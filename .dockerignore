@@ -41,6 +41,7 @@ rector.php
 phpunit.xml
 config/reference.php
 config/secrets/prod/prod.decrypt.private.php
+assets/vendor
 public/assets
 public/build
 public/bundles

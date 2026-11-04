@@ -68,6 +68,10 @@ jobs:
                   curl --fail --silent -o /dev/null http://127.0.0.1:8000/tasks
                   test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/index.php)" = 404
 
+                  # The assets compiled by AssetMapper are served by nginx, with a long cache lifetime
+                  css="$(curl --fail --silent http://127.0.0.1:8000 | grep -o '/assets/styles/app-[^"]*\.css' | head -n 1)"
+                  curl --fail --silent -o /dev/null -D - "http://127.0.0.1:8000${css}" | grep -i "cache-control: public, max-age=31536000, immutable"
+
             - name: "Test the php image runs as a non-root user"
               run: "castor builder -- id -u | grep -x 1000"
 
