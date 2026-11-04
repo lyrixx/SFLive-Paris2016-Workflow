@@ -10,6 +10,7 @@ use function Castor\io;
 use function Castor\variable;
 use function docker\docker_compose_run;
 use function docker\docker_exit_code;
+use function install as app_install;
 
 #[AsTask(description: 'Runs all QA tasks')]
 function all(): int
@@ -17,9 +18,10 @@ function all(): int
     $cs = cs();
     $phpstan = phpstan();
     $twigCs = twig_cs();
+    $lintExpressions = lint_expressions();
     $phpunit = phpunit();
 
-    return max($cs, $phpstan, $twigCs, $phpunit);
+    return max($cs, $phpstan, $twigCs, $lintExpressions, $phpunit);
 }
 
 #[AsTask(description: 'Installs tooling')]
@@ -74,6 +76,18 @@ function phpstan(
     }
 
     return docker_exit_code($command, workDir: '/var/www');
+}
+
+#[AsTask(description: 'Lints the expressions: workflow guards, security attributes...', aliases: ['lint-expressions'])]
+function lint_expressions(): int
+{
+    if (!is_dir(variable('root_dir') . '/vendor')) {
+        app_install();
+    }
+
+    io()->section('Linting the expressions...');
+
+    return docker_exit_code(['bin/console', 'lint:expressions']);
 }
 
 #[AsTask(description: 'Runs Security audit')]

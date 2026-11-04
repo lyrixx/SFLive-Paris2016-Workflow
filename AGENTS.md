@@ -67,10 +67,11 @@ Without option, the `default` context applies.
 Tools run inside the builder. `qa:cs` and `qa:twig-cs` **apply fixes by default** — pass `--dry-run` to only check.
 
 ```bash
-castor qa:all                                # everything: cs + phpstan + twig-cs + phpunit
+castor qa:all                                # everything: cs + phpstan + twig-cs + lint-expressions + phpunit
 castor qa:cs [--dry-run]                     # PHP-CS-Fixer (.php-cs-fixer.php)
 castor qa:phpstan [-b]                       # PHPStan level 8 (phpstan.neon)
 castor qa:twig-cs [--dry-run]                # Twig-CS-Fixer
+castor qa:lint-expressions                   # lint:expressions (workflow guards, security attributes...)
 castor qa:phpunit                            # PHPUnit (tests/)
 castor qa:security-audit                     # composer audit
 ```
