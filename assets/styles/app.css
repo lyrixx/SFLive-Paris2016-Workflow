@@ -1,5 +1,5 @@
 /*
- * Theme on top of Bootstrap: the colors live in the --wf-* properties, assets/app.js
+ * Theme on top of Bootstrap: the colors live in the --wf-* properties, the mermaid controller
  * reads them to theme the Mermaid diagrams.
  */
 :root {
@@ -384,37 +384,36 @@ code,
 
 /* Mermaid diagrams */
 
-.mermaid {
+.wf-diagram {
     min-height: 8rem;
     overflow-x: auto;
     text-align: center;
-    color: transparent; /* Hides the definition until Mermaid replaces it with the diagram */
 }
 
-.mermaid svg {
+.wf-diagram svg {
     max-width: 100%;
     height: auto;
 }
 
 /* Wide diagrams scroll on small screens instead of shrinking until they are unreadable */
 @media (max-width: 767.98px) {
-    .mermaid svg {
+    .wf-diagram svg {
         min-width: 40rem;
     }
 }
 
 /* The transitions of a workflow net are drawn as black bars, like in a Petri net */
-.mermaid .node[id*="-transition"] :is(rect, path) {
+.wf-diagram .node[id*="-transition"] :is(rect, path) {
     fill: var(--wf-ink) !important;
     stroke: var(--wf-ink) !important;
 }
 
-.mermaid .node[id*="-transition"] .nodeLabel {
+.wf-diagram .node[id*="-transition"] .nodeLabel {
     color: #fff !important;
 }
 
 /* The workflow dumpers draw the marked places with a 4px stroke */
-.mermaid .node :is(rect, circle, path, polygon)[style*="stroke-width:4px"] {
+.wf-diagram .node :is(rect, circle, path, polygon)[style*="stroke-width:4px"] {
     fill: var(--wf-accent) !important;
     stroke: var(--wf-ink) !important;
 }

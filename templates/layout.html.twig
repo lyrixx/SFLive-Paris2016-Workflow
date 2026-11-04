@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Symfony Workflow demo{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        {# Applying a transition redirects to the same page: Turbo morphs it instead of reloading it #}
+        {{ turbo_refreshes_with(method: 'morph', scroll: 'preserve') }}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
     <body>

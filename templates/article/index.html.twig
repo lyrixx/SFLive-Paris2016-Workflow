@@ -53,9 +53,7 @@
             <div class="card">
                 <div class="card-header">Definition</div>
                 <div class="card-body">
-                    <div class="mermaid">
-                        {{- workflow_dump('article', 'statemachine') -}}
-                    </div>
+                    <div class="wf-diagram" {{ stimulus_controller('mermaid', {definition: workflow_dump('article', 'statemachine')})|stimulus_action('mermaid', 'keep', 'turbo:before-morph-element') }}></div>
                 </div>
             </div>
         </div>

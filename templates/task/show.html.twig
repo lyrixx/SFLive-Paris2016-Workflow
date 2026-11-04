@@ -23,9 +23,7 @@
     <div class="card mb-4">
         <div class="card-header">Diagram</div>
         <div class="card-body">
-            <div class="mermaid">
-                {{- workflow_dump('task', 'statemachine', task) -}}
-            </div>
+            <div class="wf-diagram" {{ stimulus_controller('mermaid', {definition: workflow_dump('task', 'statemachine', task)})|stimulus_action('mermaid', 'keep', 'turbo:before-morph-element') }}></div>
         </div>
     </div>
 

@@ -33,7 +33,7 @@
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('_logout_main', {returnTo: app.request.pathinfo}) }}">Log out</a>
+                        <a class="nav-link" href="{{ path('_logout_main', {returnTo: app.request.pathinfo}) }}" data-turbo-prefetch="false">Log out</a>
                     </li>
                 {% else %}
                     <li class="nav-item dropdown">
@@ -43,7 +43,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             {% for username in ['alice', 'journalist', 'spellchecker', 'admin'] %}
                                 <li>
-                                    <a href="{{ path('login', {username: username}) }}" class="dropdown-item">{{ username|title }}</a>
+                                    <a href="{{ path('login', {username: username}) }}" class="dropdown-item" data-turbo-prefetch="false">{{ username|title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
