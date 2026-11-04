@@ -22,5 +22,6 @@ class TaskControllerTest extends WebTestCase
 
         self::assertSelectorTextContains('.wf-band .wf-place.is-marked', 'processing');
         self::assertSelectorTextContains('main', 'TaskStep::Processing');
+        self::assertSelectorExists('[data-controller="mermaid"][data-mermaid-definition-value*="stroke-width:4px"]');
     }
 }

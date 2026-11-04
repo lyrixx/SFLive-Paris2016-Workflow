@@ -30,6 +30,7 @@
         "symfony/serializer": "^8.2",
         "symfony/translation": "^8.2",
         "symfony/twig-bundle": "^8.2",
+        "symfony/ux-turbo": "^3.7",
         "symfony/validator": "^8.2",
         "symfony/web-link": "^8.2",
         "symfony/workflow": "^8.2",
