@@ -14,11 +14,12 @@ security:
 
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_profiler(/|$)|(_wdt|css|images|js)/)
             security: false
 
         main:
             pattern: ^/
+            user_checker_on_refresh: true
 
             logout:
                 target: /

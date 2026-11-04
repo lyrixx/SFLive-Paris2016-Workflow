@@ -1,124 +1,115 @@
-framework:
-    workflows:
-        straight:
-            type: workflow
-            supports:
-                - stdClass # Just a hack
-            places:
-                - a
-                - b
-                - c
-                - d
-            transitions:
-                t1:
-                    from: a
-                    to: b
-                t2:
-                    from: b
-                    to: c
-                t3:
-                    from: c
-                    to: d
+# yaml-language-server: $schema=../schema.json
+workflow:
+    straight:
+        type: workflow
+        places:
+            - a
+            - b
+            - c
+            - d
+        transitions:
+            t1:
+                from: a
+                to: b
+            t2:
+                from: b
+                to: c
+            t3:
+                from: c
+                to: d
 
-        round_trip:
-            type: workflow
-            supports:
-                - stdClass # Just a hack
-            places:
-                - a
-                - b
-                - c
-            transitions:
-                t1:
-                    from: a
-                    to: b
-                t2:
-                    from: b
-                    to: c
-                t3:
-                    from: c
-                    to: a
+    round_trip:
+        type: workflow
+        places:
+            - a
+            - b
+            - c
+        transitions:
+            t1:
+                from: a
+                to: b
+            t2:
+                from: b
+                to: c
+            t3:
+                from: c
+                to: a
 
-        or:
-            type: workflow
-            supports:
-                - stdClass # Just a hack
-            places:
-                - a
-                - b
-                - c
-                - d
-            transitions:
-                t1:
-                    from: a
-                    to: b
-                t2:
-                    from: a
-                    to: c
-                t3:
-                    from: b
-                    to: d
-                t4:
-                    from: c
-                    to: d
+    or:
+        type: workflow
+        places:
+            - a
+            - b
+            - c
+            - d
+        transitions:
+            t1:
+                from: a
+                to: b
+            t2:
+                from: a
+                to: c
+            t3:
+                from: b
+                to: d
+            t4:
+                from: c
+                to: d
 
-        and:
-            type: workflow
-            supports:
-                - stdClass # Just a hack
-            places:
-                - a
-                - b
-                - c
-                - d
-                - e
-                - f
-            transitions:
-                t1:
-                    from: a
-                    to: [b, c]
-                t2:
-                    from: b
-                    to: d
-                t3:
-                    from: c
-                    to: e
-                t4:
-                    from: [d, e]
-                    to: f
+    and:
+        type: workflow
+        places:
+            - a
+            - b
+            - c
+            - d
+            - e
+            - f
+        transitions:
+            t1:
+                from: a
+                to: [b, c]
+            t2:
+                from: b
+                to: d
+            t3:
+                from: c
+                to: e
+            t4:
+                from: [d, e]
+                to: f
 
-        wtf:
-            type: workflow
-            supports: stdClass # Just a hack
-            places: [ a, b, c, d, e, f, g, h, i, j, k ]
-            transitions:
-                t1:
-                    from: a
-                    to: b
-                t2:
-                    from: b
-                    to: c
-                t3:
-                    from: c
-                    to: d
-                t4:
-                    from: b
-                    to: e
-                t5:
-                    from: b
-                    to: f
-                t6:
-                    from: [c, d]
-                    to: [f, g]
-                t7:
-                    from: e
-                    to: h
-                t8:
-                    from: [e, g, i]
-                    to: h
-                t9:
-                    from: [f, g]
-                    to: [i, j]
-                t10:
-                    from: h
-                    to: k
+    wtf:
+        type: workflow
+        places: [ a, b, c, d, e, f, g, h, i, j, k ]
+        transitions:
+            t1:
+                from: a
+                to: b
+            t2:
+                from: b
+                to: c
+            t3:
+                from: c
+                to: d
+            t4:
+                from: b
+                to: e
+            t5:
+                from: b
+                to: f
+            t6:
+                from: [c, d]
+                to: [f, g]
+            t7:
+                from: e
+                to: h
+            t8:
+                from: [e, g, i]
+                to: h
+            t9:
+                from: [f, g]
+                to: [i, j]
+            t10:
+                from: h
+                to: k

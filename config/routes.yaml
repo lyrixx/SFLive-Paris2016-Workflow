@@ -2,3 +2,11 @@
 
 controllers:
     resource: routing.controllers
+
+homepage:
+    path: /
+    template: homepage/index.html.twig
+
+# App\Security\YoloAuthenticator answers this route, no controller runs
+login:
+    path: /login/{username}

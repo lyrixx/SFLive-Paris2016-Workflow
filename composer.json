@@ -2,7 +2,7 @@
     "name": "lyrixx/sf-live-paris2016-workflow",
     "type": "project",
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "prefer-stable": true,
     "require": {
         "php": ">=8.4.0",
@@ -39,7 +39,7 @@
         "symfony/css-selector": "^8.2",
         "symfony/debug-bundle": "^8.2",
         "symfony/maker-bundle": "^1.68.0",
-        "phpunit/phpunit": "^13.4.5",
+        "phpunit/phpunit": "^13.4.6",
         "symfony/stopwatch": "^8.2",
         "symfony/var-dumper": "^8.2",
         "symfony/web-profiler-bundle": "^8.2"
@@ -87,7 +87,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^8.0",
+            "require": "8.2.*",
             "docker": false
         }
     },
