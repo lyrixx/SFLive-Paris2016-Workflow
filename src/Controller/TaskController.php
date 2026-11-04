@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Workflow\Dumper\MermaidDumper;
 use Symfony\Component\Workflow\Exception\ExceptionInterface;
 
 #[Route(path: '/tasks')]
@@ -43,14 +42,8 @@ class TaskController extends AbstractController
     #[Route(path: '/show/{id}', name: 'task_show')]
     public function show(Task $task): Response
     {
-        $dumper = new MermaidDumper(MermaidDumper::TRANSITION_TYPE_STATEMACHINE);
-
         return $this->render('task/show.html.twig', [
             'task' => $task,
-            'dump' => $dumper->dump(
-                $this->stateMachine->getDefinition(),
-                $this->stateMachine->getMarking($task),
-            ),
         ]);
     }
 
