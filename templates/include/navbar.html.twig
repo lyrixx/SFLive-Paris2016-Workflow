@@ -1,31 +1,49 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('homepage') }}">Symfony Workflow</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+{% set route = app.request.attributes.get('_route', '') %}
+<nav class="navbar navbar-expand-md wf-navbar sticky-top" data-bs-theme="dark">
+    <div class="container-xl">
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+            <svg width="30" height="16" viewBox="0 0 30 16" aria-hidden="true">
+                <path d="M7 8h16" stroke="currentColor" stroke-opacity=".5" stroke-width="1.5" />
+                <circle cx="7" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <circle cx="7" cy="8" r="2.5" fill="#c6f432" />
+                <rect x="13.5" y="2" width="3" height="12" rx="1" fill="currentColor" />
+                <circle cx="23" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            Symfony Workflow
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto"></ul>
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link {{ route starts with 'task_' ? 'active' }}" href="{{ path('task_index') }}">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ route starts with 'article_' ? 'active' }}" href="{{ path('article_index') }}">Articles</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav align-items-md-center">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li>
-                        Hello {{ app.user|title }} |
-                        <a href="{{ path('_logout_main', {returnTo: app.request.pathinfo}) }}">
-                            logout
-                        </a>
+                    <li class="nav-item d-flex align-items-center gap-2 me-md-3 py-2 py-md-0 text-white">
+                        <span class="wf-avatar">{{ app.user.userIdentifier|first }}</span>
+                        <span>
+                            {{ app.user.userIdentifier|title }}
+                            <small class="wf-muted d-block lh-1">{{ app.user.roles|join(', ') }}</small>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('_logout_main', {returnTo: app.request.pathinfo}) }}">Log out</a>
                     </li>
                 {% else %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Connect as
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
+                        <button class="btn btn-accent btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Connect as…
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
                             {% for username in ['alice', 'journalist', 'spellchecker', 'admin'] %}
                                 <li>
-                                    <a href="{{ path('login', {username: username}) }}" class="dropdown-item">
-                                        {{ username|title }}
-                                    </a>
+                                    <a href="{{ path('login', {username: username}) }}" class="dropdown-item">{{ username|title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

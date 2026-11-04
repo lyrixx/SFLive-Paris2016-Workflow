@@ -56,6 +56,11 @@ Without option, the `default` context applies.
   (`app_test` database in the test environment)
 - nginx + php-fpm (service `frontend`), Traefik router, HTTPS on `<root_domain>` (see `castor.php`)
 - Node/yarn only inside the `builder` container
+- Front-end: AssetMapper, without a build step. Bootstrap and Mermaid are pinned in
+  `importmap.php` (`castor builder -- bin/console importmap:require <package>`).
+  `composer install` downloads them into `assets/vendor/` (`importmap:install`), and
+  production compiles the assets with `asset-map:compile` (Dockerfile, `clevercloud/post_build.sh`).
+  The colors live in the `--wf-*` CSS properties of `assets/styles/app.css`
 - Production images (`php` and `nginx`) can be built and tested locally from the
   "Production stages" of `infrastructure/docker/services/php/Dockerfile`; they are not
   published anywhere (the real deployment is Clever Cloud). php-fpm and nginx
@@ -67,10 +72,11 @@ Without option, the `default` context applies.
 Tools run inside the builder. `qa:cs` and `qa:twig-cs` **apply fixes by default** — pass `--dry-run` to only check.
 
 ```bash
-castor qa:all                                # everything: cs + phpstan + twig-cs + phpunit
+castor qa:all                                # everything: cs + phpstan + twig-cs + lint-expressions + phpunit
 castor qa:cs [--dry-run]                     # PHP-CS-Fixer (.php-cs-fixer.php)
 castor qa:phpstan [-b]                       # PHPStan level 8 (phpstan.neon)
 castor qa:twig-cs [--dry-run]                # Twig-CS-Fixer
+castor qa:lint-expressions                   # lint:expressions (workflow guards, security attributes...)
 castor qa:phpunit                            # PHPUnit (tests/)
 castor qa:security-audit                     # composer audit
 ```

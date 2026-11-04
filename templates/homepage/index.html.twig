@@ -1,45 +1,109 @@
 {% extends 'layout.html.twig' %}
 
+{% block band %}
+    {% set token_path_a = 'M60,130 H145 C195,130 200,62 250,62 C300,62 305,130 355,130 H460' %}
+    {% set token_path_b = 'M60,130 H145 C195,130 200,198 250,198 C300,198 305,130 355,130 H460' %}
+    <section class="wf-band wf-hero">
+        <div class="container-xl py-5">
+            <div class="row align-items-center g-4 g-lg-5 py-lg-4">
+                <div class="col-lg-6">
+                    <p class="wf-kicker mb-3">symfony/workflow · live demo</p>
+                    <h1 class="mb-4">Play with the Symfony Workflow component.</h1>
+                    <p class="lead mb-4">
+                        Create a task or an article, apply transitions, and see how markings,
+                        guards and metadata react. The diagrams are dumped from the real definitions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ path('task_index') }}" class="btn btn-accent btn-lg">Try the state machine</a>
+                        <a href="{{ path('article_index') }}" class="btn btn-outline-light btn-lg">Try the workflow</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <svg class="wf-net" viewBox="0 0 520 260" role="img" aria-label="A workflow net: a token leaves the draft place, splits into two parallel reviews, and joins in the published place">
+                        <defs>
+                            <marker id="wf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,.5)" />
+                            </marker>
+                        </defs>
+                        <g marker-end="url(#wf-arrow)">
+                            <path class="arc" d="M84,130 H139" />
+                            <path class="arc" d="M150,130 C195,130 200,62 225,62" />
+                            <path class="arc" d="M150,130 C195,130 200,198 225,198" />
+                            <path class="arc" d="M274,62 C300,62 305,130 349,130" />
+                            <path class="arc" d="M274,198 C300,198 305,130 349,130" />
+                            <path class="arc" d="M360,130 H435" />
+                        </g>
+
+                        <circle class="place" cx="60" cy="130" r="24" />
+                        <circle class="place" cx="250" cy="62" r="24" />
+                        <circle class="place" cx="250" cy="198" r="24" />
+                        <circle class="place" cx="460" cy="130" r="24" />
+                        <rect class="transition" x="140" y="102" width="10" height="56" rx="2" />
+                        <rect class="transition" x="350" y="102" width="10" height="56" rx="2" />
+
+                        <text x="60" y="176">draft</text>
+                        <text x="250" y="26">journalist</text>
+                        <text x="250" y="244">spellchecker</text>
+                        <text x="460" y="176">published</text>
+                        <text x="145" y="90">request review</text>
+                        <text x="355" y="90">publish</text>
+
+                        {% for token_path in [token_path_a, token_path_b] %}
+                            <circle class="token moving-token" r="8">
+                                <animateMotion dur="6s" repeatCount="indefinite" path="{{ token_path }}" keyPoints="0;0;1;1" keyTimes="0;.15;.85;1" calcMode="linear" />
+                            </circle>
+                        {% endfor %}
+                        <circle class="token static-token" cx="60" cy="130" r="8" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
 {% block main %}
-    <div class="p-md-5 mb-4 bg-body-tertiary rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold mb-3">symfony/workflow demo</h1>
-            <p class="col-lg-8 fs-4">
-                This application is a demo to see how the
-                <a href="https://symfony.com/doc/current/components/workflow.html" target="_blank">symfony/workflow</a>
-                component works, and what you can do with.
-                <br/>
-                The code is hosted on
-                <a href="https://github.com/lyrixx/SFLive-Paris2016-Workflow" target="_blank">Github</a>
-                and it's deployed on
-                <a href="https://demo-symfony-workflow.cleverapps.io/" target="_blank">CleverCloud</a>.
-            </p>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <a href="{{ path('task_index') }}" class="card h-100 text-reset text-decoration-none wf-card-link">
+                <div class="card-body p-4">
+                    <p class="wf-kicker text-primary mb-2">State machine</p>
+                    <h2 class="h3 mb-3">Task</h2>
+                    <p class="text-secondary">
+                        A task is in one place at a time: new, processing, backlogged, failed or completed.
+                        The places are the cases of a PHP enum, and the definition lives in attributes.
+                    </p>
+                    <span class="fw-semibold link-primary">Open the tasks →</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ path('article_index') }}" class="card h-100 text-reset text-decoration-none wf-card-link">
+                <div class="card-body p-4">
+                    <p class="wf-kicker text-primary mb-2">Workflow net</p>
+                    <h2 class="h3 mb-3">Article</h2>
+                    <p class="text-secondary">
+                        An article can be in several places at once: a journalist and a spellchecker
+                        review it in parallel. Guards check the roles of the connected user.
+                    </p>
+                    <span class="fw-semibold link-primary">Open the articles →</span>
+                </div>
+            </a>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="card">
-                <div class="card-header">
-                    State Machine
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Play with a state machine</p>
-                    <a href="{{ path('task_index') }}" class="btn btn-primary">▶ Task</a>
-                </div>
-            </div>
+    <h2 class="h4 fw-bold mb-4">How to play</h2>
+    <div class="row g-4">
+        <div class="col-md-4 d-flex gap-3">
+            <span class="wf-step">1</span>
+            <p class="mb-0"><strong>Connect as a user</strong> from the top bar. Each user has different roles.</p>
         </div>
-
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    Workflow Net
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Play with a workflow net</p>
-                    <a href="{{ path('article_index') }}" class="btn btn-primary">▶ Article</a>
-                </div>
-            </div>
+        <div class="col-md-4 d-flex gap-3">
+            <span class="wf-step">2</span>
+            <p class="mb-0"><strong>Create a task or an article</strong>. It starts in the initial place.</p>
+        </div>
+        <div class="col-md-4 d-flex gap-3">
+            <span class="wf-step">3</span>
+            <p class="mb-0"><strong>Apply transitions</strong>. A blocked transition tells you why.</p>
         </div>
     </div>
 {% endblock %}

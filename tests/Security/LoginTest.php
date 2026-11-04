@@ -16,6 +16,6 @@ class LoginTest extends WebTestCase
 
         $client->followRedirect();
 
-        self::assertSelectorTextContains('nav', 'Hello Alice');
+        self::assertSelectorTextContains('nav', 'Alice');
     }
 }

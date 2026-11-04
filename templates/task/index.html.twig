@@ -1,45 +1,60 @@
 {% extends 'layout.html.twig' %}
 
-{% block main %}
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <h1>Task list</h1>
-            <ul>
-                {% for task in tasks %}
-                    <li>
-                        <a href="{{ path('task_show', {id: task.id}) }}">
-                            {{ task.title }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <p>
-                            No task found, add one?
-                        </p>
-                    </li>
-                {% endfor %}
-            </ul>
+{% block title %}Tasks · {{ parent() }}{% endblock %}
+
+{% block band %}
+    <section class="wf-band">
+        <div class="container-xl py-5">
+            <p class="wf-kicker mb-2">State machine · App\Workflow\TaskWorkflow</p>
+            <h1 class="wf-page-title mb-3">Tasks</h1>
+            <p class="lead mb-0 col-lg-8">Create a task, then open it to move it from one place to the next.</p>
         </div>
-        <div class="col-md-6 mb-3">
-            <h2>Add new task</h2>
-            <form action="{{ path('task_create') }}" method="post"  class="form-inline">
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title"  name="title" value="{{ tasks ? "Tasks #{(tasks|length) + 1}" : 'My first task' }}">
+    </section>
+{% endblock %}
+
+{% block main %}
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="{{ path('task_create') }}" method="post">
+                        <label for="title" class="form-label fw-semibold">New task</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="title" name="title" value="{{ tasks ? "Task #{(tasks|length) + 1}" : 'My first task' }}" required>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    All tasks
+                    <span class="badge rounded-pill text-bg-light border">{{ tasks|length }}</span>
+                </div>
+                <div class="list-group list-group-flush wf-scroll">
+                    {% for task in tasks %}
+                        <a href="{{ path('task_show', {id: task.id}) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center gap-3 py-3">
+                            <span class="text-truncate">{{ task.title }}</span>
+                            {% if task.marking %}
+                                <span class="wf-place">{{ task.marking.value }}</span>
+                            {% endif %}
+                        </a>
+                    {% else %}
+                        <p class="text-secondary p-4 mb-0">No task yet: create the first one.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">Definition</div>
+                <div class="card-body">
+                    <div class="mermaid">
+                        {{- workflow_dump('task', 'statemachine') -}}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
-            </form>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-        <div class="col text-center mx-auto">
-            <div class="mermaid">
-                {{- workflow_dump('task', 'statemachine') }}
             </div>
         </div>
     </div>

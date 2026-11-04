@@ -8,9 +8,8 @@
 {% endmacro %}
 
 {% macro message(message, level = 'info') %}
-    <div class="alerts">
-        <div class="alert alert-{{ level }}">
-            {{ message }}
-        </div>
+    <div class="alert alert-{{ level }} alert-dismissible mb-4" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {% endmacro %}

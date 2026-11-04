@@ -1,45 +1,62 @@
 {% extends 'layout.html.twig' %}
 
-{% block main %}
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <h1>Article list</h1>
-            <ul>
-                {% for article in articles %}
-                    <li>
-                        <a href="{{ path('article_show', {id: article.id}) }}">
-                            {{ article.title }}
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <p>
-                            No article found, add one?
-                        </p>
-                    </li>
-                {% endfor %}
-            </ul>
+{% block title %}Articles · {{ parent() }}{% endblock %}
+
+{% block band %}
+    <section class="wf-band">
+        <div class="container-xl py-5">
+            <p class="wf-kicker mb-2">Workflow net · App\Workflow\ArticleWorkflow</p>
+            <h1 class="wf-page-title mb-3">Articles</h1>
+            <p class="lead mb-0 col-lg-8">Create an article, then open it to send it to review and publish it.</p>
         </div>
-        <div class="col-md-6">
-            <h2>Add new article</h2>
-            <form action="{{ path('article_create') }}" method="post"  class="form-inline">
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title"  name="title" value="{{ articles ? "articles #{(articles|length) + 1}" : 'My first article' }}">
+    </section>
+{% endblock %}
+
+{% block main %}
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="{{ path('article_create') }}" method="post">
+                        <label for="title" class="form-label fw-semibold">New article</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="title" name="title" value="{{ articles ? "Article #{(articles|length) + 1}" : 'My first article' }}" required>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    All articles
+                    <span class="badge rounded-pill text-bg-light border">{{ articles|length }}</span>
+                </div>
+                <div class="list-group list-group-flush wf-scroll">
+                    {% for article in articles %}
+                        <a href="{{ path('article_show', {id: article.id}) }}" class="list-group-item list-group-item-action py-3">
+                            <span class="d-block text-truncate mb-1">{{ article.title }}</span>
+                            <span class="d-flex flex-wrap gap-1">
+                                {% for place in article.marking|default([])|keys %}
+                                    <span class="wf-place">{{ place }}</span>
+                                {% endfor %}
+                            </span>
+                        </a>
+                    {% else %}
+                        <p class="text-secondary p-4 mb-0">No article yet: create the first one.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">Definition</div>
+                <div class="card-body">
+                    <div class="mermaid">
+                        {{- workflow_dump('article', 'statemachine') -}}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
-            </form>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-        <div class="col text-center mx-auto">
-            <div class="mermaid">
-                {{- workflow_dump('article', 'statemachine') }}
             </div>
         </div>
     </div>

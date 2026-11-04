@@ -22,7 +22,7 @@ class SmokeTest extends WebTestCase
 
     public static function provideCases(): iterable
     {
-        yield ['/', 'symfony/workflow', '.container-fluid h1'];
+        yield ['/', 'symfony/workflow', '.wf-hero .wf-kicker'];
         yield ['/tasks'];
         yield ['/articles'];
     }
