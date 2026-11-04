@@ -1,0 +1,420 @@
+/*
+ * Theme on top of Bootstrap: the colors live in the --wf-* properties, assets/app.js
+ * reads them to theme the Mermaid diagrams.
+ */
+:root {
+    --wf-ink: #0e1512;
+    --wf-ink-soft: #1a2520;
+    --wf-bg: #f4f6f5;
+    --wf-surface: #ffffff;
+    --wf-border: #dde4e0;
+    --wf-muted: #5a6862;
+    --wf-muted-on-ink: #9fb0a8;
+    --wf-primary: #0a7f50;
+    --wf-primary-rgb: 10, 127, 80;
+    --wf-primary-hover: #086a42;
+    --wf-accent: #c6f432;
+    --wf-accent-rgb: 198, 244, 50;
+    --wf-danger: #c43b2f;
+
+    --bs-body-bg: var(--wf-bg);
+    --bs-body-color: var(--wf-ink);
+    --bs-body-font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --bs-font-monospace: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --bs-emphasis-color: var(--wf-ink);
+    --bs-secondary-color: var(--wf-muted);
+    --bs-border-color: var(--wf-border);
+    --bs-border-radius: .625rem;
+    --bs-border-radius-sm: .4rem;
+    --bs-border-radius-lg: .9rem;
+    --bs-link-color: var(--wf-primary);
+    --bs-link-color-rgb: var(--wf-primary-rgb);
+    --bs-link-hover-color: var(--wf-primary-hover);
+    --bs-link-hover-color-rgb: 8, 106, 66;
+    --bs-primary: var(--wf-primary);
+    --bs-primary-rgb: var(--wf-primary-rgb);
+    --bs-danger: var(--wf-danger);
+    --bs-code-color: var(--wf-ink);
+    --bs-focus-ring-color: rgba(var(--wf-primary-rgb), .3);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1;
+}
+
+code,
+.font-monospace {
+    font-size: .875em;
+}
+
+/* Buttons */
+
+.btn {
+    --bs-btn-font-weight: 600;
+    --bs-btn-padding-x: 1rem;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--wf-primary);
+    --bs-btn-border-color: var(--wf-primary);
+    --bs-btn-hover-bg: var(--wf-primary-hover);
+    --bs-btn-hover-border-color: var(--wf-primary-hover);
+    --bs-btn-active-bg: var(--wf-primary-hover);
+    --bs-btn-active-border-color: var(--wf-primary-hover);
+    --bs-btn-focus-shadow-rgb: var(--wf-primary-rgb);
+}
+
+.btn-accent {
+    --bs-btn-color: var(--wf-ink);
+    --bs-btn-bg: var(--wf-accent);
+    --bs-btn-border-color: var(--wf-accent);
+    --bs-btn-hover-color: var(--wf-ink);
+    --bs-btn-hover-bg: #d5fa5c;
+    --bs-btn-hover-border-color: #d5fa5c;
+    --bs-btn-active-color: var(--wf-ink);
+    --bs-btn-active-bg: #b4e01f;
+    --bs-btn-active-border-color: #b4e01f;
+    --bs-btn-focus-shadow-rgb: var(--wf-accent-rgb);
+}
+
+.btn-outline-light {
+    --bs-btn-border-color: rgba(255, 255, 255, .35);
+}
+
+/* Header and footer */
+
+.wf-navbar {
+    background: var(--wf-ink);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.wf-navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.wf-navbar .nav-link {
+    font-weight: 500;
+}
+
+.wf-navbar .nav-link.active {
+    color: var(--wf-accent);
+}
+
+.wf-avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--wf-accent);
+    color: var(--wf-ink);
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.wf-footer {
+    border-top: 1px solid var(--wf-border);
+    color: var(--wf-muted);
+    font-size: .875rem;
+}
+
+.wf-footer a {
+    color: inherit;
+}
+
+/* Dark bands: the hero of the homepage and the header of the other pages */
+
+.wf-band {
+    position: relative;
+    background-color: var(--wf-ink);
+    background-image:
+        radial-gradient(50rem 26rem at 88% 0%, rgba(var(--wf-primary-rgb), .38), transparent 65%),
+        radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px);
+    background-size: auto, 22px 22px;
+    color: #fff;
+}
+
+.wf-kicker {
+    font-family: var(--bs-font-monospace);
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    color: var(--wf-accent);
+}
+
+.wf-band .lead,
+.wf-band .wf-muted {
+    color: var(--wf-muted-on-ink);
+}
+
+.wf-hero h1 {
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -.04em;
+    line-height: 1;
+}
+
+.wf-page-title {
+    font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.wf-back {
+    color: var(--wf-muted-on-ink);
+    text-decoration: none;
+}
+
+.wf-back:hover {
+    color: #fff;
+}
+
+/* Petri net of the hero */
+
+.wf-net {
+    width: 100%;
+    height: auto;
+}
+
+.wf-net .arc {
+    fill: none;
+    stroke: rgba(255, 255, 255, .28);
+    stroke-width: 2;
+}
+
+.wf-net .place {
+    fill: var(--wf-ink-soft);
+    stroke: rgba(255, 255, 255, .85);
+    stroke-width: 2;
+}
+
+.wf-net .transition {
+    fill: #fff;
+}
+
+.wf-net .token {
+    fill: var(--wf-accent);
+}
+
+.wf-net text {
+    fill: var(--wf-muted-on-ink);
+    font-family: var(--bs-font-monospace);
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+.wf-net .static-token {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wf-net .moving-token {
+        display: none;
+    }
+
+    .wf-net .static-token {
+        display: inline;
+    }
+}
+
+/* Cards */
+
+.card {
+    --bs-card-border-color: var(--wf-border);
+    --bs-card-cap-bg: transparent;
+    --bs-card-spacer-y: 1.25rem;
+    --bs-card-spacer-x: 1.25rem;
+    box-shadow: 0 1px 2px rgba(14, 21, 18, .04), 0 8px 24px -12px rgba(14, 21, 18, .12);
+}
+
+.card-header {
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.list-group {
+    --bs-list-group-action-color: var(--wf-ink);
+    --bs-list-group-action-hover-color: var(--wf-ink);
+}
+
+.wf-scroll {
+    max-height: 28rem;
+    overflow: auto;
+}
+
+.wf-card-link {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.wf-card-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(14, 21, 18, .04), 0 16px 32px -16px rgba(14, 21, 18, .25);
+}
+
+.wf-card-link h2 {
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+.wf-step {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--wf-ink);
+    color: var(--wf-accent);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Places, transitions and markings */
+
+.wf-place {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .15rem .6rem;
+    border: 1px solid var(--wf-border);
+    border-radius: 999px;
+    background: var(--wf-surface);
+    font-family: var(--bs-font-monospace);
+    font-size: .8rem;
+    white-space: nowrap;
+}
+
+.wf-place::before {
+    content: "";
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+}
+
+.wf-place.is-marked {
+    border-color: var(--wf-ink);
+    background: var(--wf-ink);
+    color: #fff;
+}
+
+.wf-place.is-marked::before {
+    border: 0;
+    background: var(--wf-accent);
+}
+
+.wf-band .wf-place {
+    border-color: rgba(255, 255, 255, .2);
+    background: transparent;
+    color: #fff;
+}
+
+.wf-transition {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--wf-border);
+}
+
+.wf-transition:first-child {
+    border-top: 0;
+}
+
+.wf-transition-name {
+    font-family: var(--bs-font-monospace);
+    font-weight: 600;
+}
+
+.wf-transition.is-blocked .wf-transition-name {
+    color: var(--wf-muted);
+}
+
+.wf-blockers {
+    margin: .5rem 0 0;
+    padding: .5rem .75rem;
+    border-left: 3px solid var(--wf-danger);
+    background: rgba(196, 59, 47, .06);
+    border-radius: 0 var(--bs-border-radius-sm) var(--bs-border-radius-sm) 0;
+    font-size: .85rem;
+    list-style: none;
+}
+
+/* History */
+
+.wf-timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wf-timeline li {
+    position: relative;
+    padding: 0 0 1.25rem 1.5rem;
+    border-left: 2px solid var(--wf-border);
+    margin-left: .4rem;
+}
+
+.wf-timeline li:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+}
+
+.wf-timeline li::before {
+    content: "";
+    position: absolute;
+    left: -.45rem;
+    top: .2rem;
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    background: var(--wf-primary);
+    box-shadow: 0 0 0 3px var(--wf-surface);
+}
+
+/* Mermaid diagrams */
+
+.mermaid {
+    min-height: 8rem;
+    overflow-x: auto;
+    text-align: center;
+    color: transparent; /* Hides the definition until Mermaid replaces it with the diagram */
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Wide diagrams scroll on small screens instead of shrinking until they are unreadable */
+@media (max-width: 767.98px) {
+    .mermaid svg {
+        min-width: 40rem;
+    }
+}
+
+/* The transitions of a workflow net are drawn as black bars, like in a Petri net */
+.mermaid .node[id*="-transition"] :is(rect, path) {
+    fill: var(--wf-ink) !important;
+    stroke: var(--wf-ink) !important;
+}
+
+.mermaid .node[id*="-transition"] .nodeLabel {
+    color: #fff !important;
+}
+
+/* The workflow dumpers draw the marked places with a 4px stroke */
+.mermaid .node :is(rect, circle, path, polygon)[style*="stroke-width:4px"] {
+    fill: var(--wf-accent) !important;
+    stroke: var(--wf-ink) !important;
+}

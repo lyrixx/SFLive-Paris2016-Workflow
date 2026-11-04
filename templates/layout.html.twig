@@ -4,26 +4,29 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Symfony Workflow demo application</title>
-        {% block stylesheets %}
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}Symfony Workflow demo{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
     <body>
-        <div class="container-xl">
-            {{ include('include/navbar.html.twig') }}
+        {{ include('include/navbar.html.twig') }}
 
+        {% block band %}{% endblock %}
+
+        <main class="container-xl py-4 py-lg-5">
             {{ flash.flashbag() }}
 
-            {% block main '' %}
-        </div>
-        {% block javascripts %}
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-            <script type="module">
-                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-                mermaid.initialize({ startOnLoad: true });
-            </script>
-        {% endblock %}
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="wf-footer">
+            <div class="container-xl py-4 d-flex flex-wrap gap-3 justify-content-between">
+                <span>A demo of the <a href="https://symfony.com/doc/current/components/workflow.html">symfony/workflow</a> component.</span>
+                <span>
+                    <a href="https://github.com/lyrixx/SFLive-Paris2016-Workflow">Source code on GitHub</a>
+                    · Hosted by <a href="https://www.clever-cloud.com/">Clever Cloud</a>
+                </span>
+            </div>
+        </footer>
     </body>
 </html>

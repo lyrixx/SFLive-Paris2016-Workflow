@@ -1,52 +1,63 @@
 {% extends 'layout.html.twig' %}
 
-{% block main %}
-    <h1>Task "{{ task.title }}"</h1>
+{% block title %}{{ task.title }} · Tasks · {{ parent() }}{% endblock %}
 
-    <div class="row">
-        <div class="col-lg-6 mb-3">
-            <h2>Current Marking</h2>
-            <p>
-                <code>
-                    AppBundle\Entity\Task::marking
-                </code>
-                =
-                <code>{{ task.marking.value }}</code>
-                <br />
-                <small class="text-muted">{{ workflow_metadata(task, 'description', task.marking.value) }}</small>
-            </p>
-            <p>
-                <form action="{{ path('task_reset_marking', {id: task.id}) }}" method="post" class="form-inline">
-                    <button type="submit" class="btn btn-danger btn-xs">Reset marking</button>
-                </form>
-            </p>
+{% block band %}
+    <section class="wf-band">
+        <div class="container-xl py-5">
+            <a class="wf-back small" href="{{ path('task_index') }}">← All tasks</a>
+            <p class="wf-kicker mt-4 mb-2">State machine · task #{{ task.id }}</p>
+            <h1 class="wf-page-title mb-3">{{ task.title }}</h1>
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <span class="wf-muted small">Current place</span>
+                {% for place in workflow_marked_places(task) %}
+                    <span class="wf-place is-marked">{{ place }}</span>
+                {% endfor %}
+            </div>
+            <p class="wf-muted mb-0 col-lg-8">{{ workflow_metadata(task, 'description') }}</p>
         </div>
-        <div class="col-lg-6 mb-3">
-            <h2>What can you do?</h2>
-            <form action="{{ path('task_apply_transition', {id: task.id}) }}" method="post">
-                <div class="btn-group-vertical" role="group">
-                    {% for transition in workflow_all_transitions('task') %}
-                        <button type="submit" name="transition" value="{{ transition.name }}" {% if workflow_can(task, transition.name) -%} class="btn btn-primary" {%- else -%} class="btn btn-danger" disabled="disabled" {%- endif -%}>
-                            {{ transition.name }}
-                        </button>
-                    {% endfor %}
-                </div>
-            </form>
-            <br/>
-            {% if not workflow_transitions(task) %}
-                <strong>{{ 'no_transition_available'|trans }}</strong>
-                <br/>
-                {{ 'try_as_another_user'|trans }}
-            {% endif %}
+    </section>
+{% endblock %}
+
+{% block main %}
+    <div class="card mb-4">
+        <div class="card-header">Diagram</div>
+        <div class="card-body">
+            <div class="mermaid">
+                {{- workflow_dump('task', 'statemachine', task) -}}
+            </div>
         </div>
     </div>
 
-    <hr>
+    <div class="row g-4">
+        <div class="col-lg-7">
+            {{ include('include/transitions.html.twig', {
+                subject: task,
+                workflow: 'task',
+                action: path('task_apply_transition', {id: task.id}),
+            }) }}
+        </div>
 
-    <div class="row">
-        <div class="col text-center mx-auto">
-            <div class="mermaid">
-                {{- workflow_dump('task', 'statemachine', task) }}
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">Marking</div>
+                <div class="card-body">
+                    {% for place in workflow_marked_places(task) %}
+                        <p class="mb-3">
+                            <span class="wf-place is-marked me-2">{{ place }}</span>
+                            {{ workflow_metadata(task, 'description', place) }}
+                        </p>
+                    {% endfor %}
+                    <p class="small text-secondary mb-0">
+                        Stored in <code>App\Entity\Task::$marking</code> as the enum case
+                        <code>TaskStep::{{ task.marking.name }}</code>.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <form action="{{ path('task_reset_marking', {id: task.id}) }}" method="post">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Reset the marking</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

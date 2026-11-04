@@ -1,0 +1,48 @@
+{# Lists every transition of the workflow, enabled or not, with what blocks the disabled ones #}
+{% set blocked_by_marking = constant('Symfony\\Component\\Workflow\\TransitionBlocker::BLOCKED_BY_MARKING') %}
+<div class="card">
+    <div class="card-header">Transitions</div>
+    {% if not workflow_transitions(subject) %}
+        <div class="card-body border-bottom">
+            <strong>{{ 'no_transition_available'|trans }}</strong>
+            {% if hint_other_user|default(false) %}
+                <span class="text-secondary">{{ 'try_as_another_user'|trans }}</span>
+            {% endif %}
+        </div>
+    {% endif %}
+    <form action="{{ action }}" method="post">
+        {% for transition in workflow_all_transitions(workflow) %}
+            {% set enabled = workflow_can(subject, transition.name) %}
+            {% set title = workflow_metadata(subject, 'title', transition) %}
+            {% set description = workflow_metadata(subject, 'description', transition) %}
+            <div class="wf-transition d-flex gap-3 align-items-start {{ enabled ? '' : 'is-blocked' }}">
+                <div class="flex-grow-1 text-break">
+                    <div class="wf-transition-name">{{ transition.name }}</div>
+                    <div class="small text-secondary font-monospace">{{ transition.froms|join(' + ') }} → {{ transition.tos|join(' + ') }}</div>
+                    {% if title %}
+                        <div class="small fw-semibold mt-2">{{ title }}</div>
+                    {% endif %}
+                    {% if description %}
+                        <div class="small text-secondary mt-1">{{ description }}</div>
+                    {% endif %}
+                    {% if not enabled %}
+                        {% set blockers = workflow_transition_blockers(subject, transition.name)|filter(blocker => blocker.code != blocked_by_marking) %}
+                        {% if blockers is not empty %}
+                            <ul class="wf-blockers">
+                                {% for blocker in blockers %}
+                                    <li>
+                                        {{ blocker.message }}
+                                        {% if blocker.parameters.expression is defined %}
+                                            <code>{{ blocker.parameters.expression }}</code>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <button type="submit" name="transition" value="{{ transition.name }}" class="btn btn-sm {{ enabled ? 'btn-primary' : 'btn-outline-secondary' }}" {{ enabled ? '' : 'disabled' }}>Apply</button>
+            </div>
+        {% endfor %}
+    </form>
+</div>
