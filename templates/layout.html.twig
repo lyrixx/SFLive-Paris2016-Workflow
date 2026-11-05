@@ -5,6 +5,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Symfony Workflow demo{% endblock %}</title>
+        <meta property="og:description" content="Create a task or an article, apply transitions, and see how markings, guards and metadata react.">
+        <meta property="og:image" content="{{ absolute_url(asset('images/social-preview.png')) }}">
+        <meta property="og:image:alt" content="Symfony Workflow: the diagram of the article workflow, where a draft splits into two parallel reviews that join to publish it.">
+        <meta property="og:image:height" content="640">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1280">
+        <meta property="og:site_name" content="Symfony Workflow demo">
+        <meta property="og:title" content="{{ block('title') }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ absolute_url(app.request.pathInfo) }}">
+        <meta name="twitter:card" content="summary_large_image">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
         {# Applying a transition redirects to the same page: Turbo morphs it instead of reloading it #}
         {{ turbo_refreshes_with(method: 'morph', scroll: 'preserve') }}
