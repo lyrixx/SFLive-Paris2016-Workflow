@@ -7,6 +7,9 @@ framework:
     session:
         isolate_attributes: true
 
+    # Clever Cloud terminates TLS on its load balancers: without this, the app sees every request as http
+    trusted_proxies: '%env(default::CC_REVERSE_PROXY_IPS)%'
+
     #esi: true
     #fragments: true
 
